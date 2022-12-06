@@ -1,0 +1,55 @@
+<div class="h-screen flex items-center justify-center bg-gray-100">
+
+   <form class="bg-white py-5 px-8 border-t-4 border-blue-700 rounded-md shadow-lg" #formLogin="ngForm">
+
+      <h2 class="text-3xl text-gray-400 mb-3">Login</h2>
+
+      <div class="pb-2 grow group">
+         <label class="text-sm">Email</label>
+         <input type="text" placeholder="email@email.com" name="emailInput" [(ngModel)]="email" #emailInput="ngModel"
+            class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none " required ngvemail>
+         <span *ngIf="emailInput.errors &&  emailInput.touched" class="absolute h-fit">
+            <span
+               class="mr right-1/2 top-1 animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+            <span class="absolute right-1/2 top-1 inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            <div>
+               <span
+                  class="absolute hidden group-hover:flex flex-col top-1/2 -right-3 translate-x-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm before:content-[''] before:absolute before:top-1/2  before:right-[100%] before:-translate-y-1/2 before:border-8 before:border-y-transparent before:border-l-transparent before:border-r-gray-700">
+                  <div [hidden]="!emailInput.errors['required']"> O campo é obrigatório </div>
+                  <div [hidden]="!emailInput.errors['email']"> O campo precisa ser um email
+                  </div>
+               </span>
+            </div>
+         </span>
+      </div>
+
+      <div class="grow group">
+         <label class="text-sm">Senha</label>
+         <input type="text" placeholder="******" name="senha"
+            class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none" [(ngModel)]="senha" #senhaInput="ngModel"
+            required>
+         <span *ngIf="senhaInput.errors && senhaInput.touched" class="absolute h-fit">
+            <span
+               class="mr right-1/2 top-1 animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+            <span class="absolute right-1/2 top-1 inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            <div>
+               <span
+                  class="absolute hidden group-hover:flex flex-col top-1/2 -right-3 translate-x-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm before:content-[''] before:absolute before:top-1/2  before:right-[100%] before:-translate-y-1/2 before:border-8 before:border-y-transparent before:border-l-transparent before:border-r-gray-700">
+                  <div [hidden]="!senhaInput.errors['required']"> O campo é obrigatório </div>
+               </span>
+            </div>
+         </span>
+      </div>
+
+      <div class="flex place-content-center p-3">
+         <button class="border-none bg-blue-800 py-2 px-3 text-white roudend-sm smt-2 rounded-md hover:bg-blue-700"
+            (click)="onSubmit()" type="button">
+            Logar
+         </button>
+      </div>
+
+      <a href="#" [routerLink]="['/register']" class="text-sm text-blue-400">Não tem uma conta?</a>
+
+   </form>
+
+</div>
