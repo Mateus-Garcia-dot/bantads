@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -14,10 +15,14 @@ export class LoginComponent implements OnInit {
   public errorMessage = ""
 
   constructor(
-    private loginService: LoginService
+    private loginService: LoginService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if (this.loginService.getUsuario() !== null) {
+      this.router.navigate(['/home']);
+    }
   }
 
   async onSubmit() {
@@ -27,11 +32,10 @@ export class LoginComponent implements OnInit {
     }
     const success = await this.loginService.login(this.email, this.senha)
     if (!success) {
-      this.errorMessage = "Sadge"
+      this.errorMessage = "Usuario ou senha incorretos"
       return
     }
-    this.errorMessage = "logado"
-
+    this.router.navigate(['/home']);
   }
 
 }

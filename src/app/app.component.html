@@ -1,37 +1,43 @@
 <!-- wrapper -->
 <div class="h-screen flex flex-col">
-   <!-- heading -->
-   <div class="fixed top-0 inset-x-0 bg-gray-800 text-gray-400 z-10">
-      <div class="max-w-5xl mx-auto h-16 px-4 flex items-center justify-between">
-         <!-- left -->
-         <div class="flex items-center">
-            <!-- navbar-brand -->
-            <a href="#" class="text-blue-400">
-               <svg viewBox="0 0 24 24" class="h-10 w-10 fill-current stroke-current stroke-2">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                     d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-               </svg>
-            </a>
-            <!-- navbar-nav -->
-            <div class="ml-4 space-x-2">
-               <a href="#" class="px-3 py-2 text-sm rounded bg-gray-900 text-white">Usuario</a>
-               <a href="#" class="px-3 py-2 text-sm rounded hover:bg-gray-700 hover:text-white">Gerente</a>
-               <a href="#" class="px-3 py-2 text-sm rounded hover:bg-gray-700 hover:text-white">Outro</a>
-            </div>
-         </div>
+  <!-- heading -->
+  <div class="fixed top-0 inset-x-0 bg-gray-800 text-gray-400 z-10">
+    <div class="max-w-5xl mx-auto h-16 px-4 flex items-center justify-between">
+      <!-- left -->
+      <div class="flex items-center">
+        <!-- navbar-brand -->
+        <a href="#" class="text-blue-400">
+          <svg viewBox="0 0 24 24" class="h-10 w-10 fill-current stroke-current stroke-2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+          </svg>
+        </a>
+        <!-- navbar-nav -->
+        <div [hidden]="!isLoggedIn" class="ml-4 space-x-2">
+          <a href="#" [routerLink]="['home']"
+            class="px-3 py-2 text-sm no-underline rounded bg-gray-900 text-white">Home</a>
+          <a href="#" class="px-3 py-2 text-sm no-underline rounded hover:bg-gray-700 hover:text-white">Gerente</a>
+          <a href="#" class="px-3 py-2 text-sm no-underline rounded hover:bg-gray-700 hover:text-white">Outro</a>
+        </div>
 
-         <!-- rght -->
-         <button class="">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor">
-               <path
-                  d="M10 20C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16zm0-14a4 4 0 0 1 4 4v2a4 4 0 1 1-8 0V8a4 4 0 0 1 4-4zm0 2a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V8a2 2 0 0 0-2-2zM5.91 16.876a8.033 8.033 0 0 1-1.58-1.232 5.57 5.57 0 0 1 2.204-1.574 1 1 0 1 1 .733 1.86c-.532.21-.993.538-1.358.946zm8.144.022a3.652 3.652 0 0 0-1.41-.964 1 1 0 1 1 .712-1.868 5.65 5.65 0 0 1 2.284 1.607 8.032 8.032 0 0 1-1.586 1.225z">
-               </path>
-            </svg>
-         </button>
       </div>
-   </div>
 
-   <div class="flex-1 pt-16 bg-blue-100 text-gray-900">
-      <router-outlet></router-outlet>
-   </div>
+      <!-- rght -->
+      <button (click)="logout()" *ngIf="isLoggedIn" class="hover:bg-gray-700 rounded px-3 py-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -3 24 24" width="24" fill="white">
+          <path
+            d="M6.641 9.828H1a1 1 0 1 1 0-2h5.641l-1.12-1.12a1 1 0 0 1 1.413-1.415L9.763 8.12a.997.997 0 0 1 0 1.415l-2.829 2.828A1 1 0 0 1 5.52 10.95l1.121-1.122zM13 0a1 1 0 0 1 1 1v16a1 1 0 0 1-2 0V1a1 1 0 0 1 1-1z">
+          </path>
+        </svg>
+      </button>
+
+
+
+    </div>
+  </div>
+
+  <div class="flex-1 pt-16 bg-blue-100 text-gray-900">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>

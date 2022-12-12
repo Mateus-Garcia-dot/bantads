@@ -35,6 +35,24 @@
       "telefone": "13212321321",
       "salario": 321.12,
       "id": 2
+    },
+    {
+      "nome": "asd",
+      "email": "1a@a.con",
+      "cpf": "11111111111",
+      "senha": "asd",
+      "endereco": {
+        "tipo": "111111",
+        "logradouro": "111111111111",
+        "numero": 111111,
+        "cidade": "11111111",
+        "complemento": "1111",
+        "cep": "11111111",
+        "estado": "1"
+      },
+      "telefone": "11111111111",
+      "salario": 11111111111,
+      "id": 3
     }
   ]
 }

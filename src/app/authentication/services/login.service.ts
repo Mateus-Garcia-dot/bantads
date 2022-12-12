@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import db from 'src/app/shared/database/database';
 import { Cliente } from 'src/app/shared/models/cliente.model';
+import { Endereco } from 'src/app/shared/models/endereco.model';
 
 const LS_CHAVE: string = "usuarioLogado"
 
@@ -11,13 +12,31 @@ export class LoginService {
 
   constructor() { }
 
-  public get usuarioLogado(): Cliente {
-    let usu = localStorage[LS_CHAVE]
-    return usu ? JSON.parse(localStorage[LS_CHAVE]) : null
-  }
-
-  public set usuarioLogado(usuario: Cliente) {
-    localStorage[LS_CHAVE] = JSON.stringify(usuario)
+  getUsuario() {
+    try {
+      const plainJson = JSON.parse(localStorage[LS_CHAVE])[0]
+      const endereco = new Endereco(
+        plainJson.endereco.tipo,
+        plainJson.endereco.logradouro,
+        plainJson.endereco.numero,
+        plainJson.endereco.cidade,
+        plainJson.endereco.complemento,
+        plainJson.endereco.cep,
+        plainJson.endereco.estado
+      )
+      const user = new Cliente(
+        plainJson.nome,
+        plainJson.email,
+        plainJson.cpf,
+        endereco,
+        plainJson.telefone,
+        plainJson.salario
+      )
+      return user
+    } catch (err) {
+      console.log(err)
+      return null
+    }
   }
 
   logout() {

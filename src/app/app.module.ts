@@ -7,10 +7,14 @@ import { NgxMaskModule } from 'ngx-mask';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { AuthGuardGuard } from './authentication/guard/auth-guard.guard';
+import { LoginService } from './authentication/services/login.service';
+import { ClienteComponent } from './home/cliente/cliente.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -18,9 +22,9 @@ import { AuthenticationModule } from './authentication/authentication.module';
     RouterModule,
     AuthenticationModule,
     FormsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
-  providers: [],
+  providers: [AuthGuardGuard, LoginService],
   bootstrap: [AppComponent],
   exports: [
     FormsModule
