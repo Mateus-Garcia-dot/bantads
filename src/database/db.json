@@ -1,0 +1,40 @@
+{
+  "cliente": [
+    {
+      "id": 1,
+      "nome": "John Doe",
+      "email": "johndoe@example.com",
+      "cpf": "12345678901",
+      "senha": "123",
+      "endereco": {
+        "tipo": "Residencial",
+        "logradouro": "Main Street",
+        "numero": 100,
+        "cidade": "New York",
+        "complemento": "Apt. 5",
+        "cep": "55555-555",
+        "estado": "NY"
+      },
+      "telefone": "555-555-5555",
+      "salario": 1000
+    },
+    {
+      "nome": "test",
+      "email": "test@test.com",
+      "cpf": "12312321312",
+      "senha": "test",
+      "endereco": {
+        "tipo": "1231231",
+        "logradouro": "3213",
+        "numero": 3121,
+        "cidade": "312213",
+        "complemento": "312312",
+        "cep": "13223221",
+        "estado": "321132123"
+      },
+      "telefone": "13212321321",
+      "salario": 321.12,
+      "id": 2
+    }
+  ]
+}

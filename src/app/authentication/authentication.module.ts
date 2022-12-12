@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 import { NgxMaskModule } from 'ngx-mask';
+import { LoginService } from './services/login.service';
 
 
 
@@ -21,6 +22,9 @@ import { NgxMaskModule } from 'ngx-mask';
     ReactiveFormsModule,
     NarikCustomValidatorsModule,
     NgxMaskModule.forRoot()
+  ],
+  providers: [
+    LoginService
   ]
 })
 export class AuthenticationModule { }
