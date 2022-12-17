@@ -44,7 +44,7 @@ export class CrudClienteService {
 
   public async updateCliente(cliente: Cliente, senha: string) {
     const enderecoId = await this.crudEndereco.updateEndereco(cliente.endereco!)
-    const response = await db.put(`/cliente/${cliente.id}`, {
+    const response = await db.patch(`/cliente/${cliente.id}`, {
       nome: cliente.nome,
       email: cliente.email,
       cpf: cliente.cpf,

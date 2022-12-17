@@ -41,7 +41,7 @@ export class CrudEnderecoService {
   }
 
   async updateEndereco(endereco: Endereco) {
-    const response = await db.put(`/endereco/${endereco.id}`, {
+    const response = await db.patch(`/endereco/${endereco.id}`, {
       tipo: endereco.tipo,
       logradouro: endereco.logradouro,
       numero: endereco.numero,
