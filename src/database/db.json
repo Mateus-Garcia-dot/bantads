@@ -6,52 +6,50 @@
       "email": "johndoe@example.com",
       "cpf": "12345678901",
       "senha": "123",
-      "endereco": {
-        "tipo": "Residencial",
-        "logradouro": "Main Street",
-        "numero": 100,
-        "cidade": "New York",
-        "complemento": "Apt. 5",
-        "cep": "55555-555",
-        "estado": "NY"
-      },
+      "endereco": 1,
       "telefone": "555-555-5555",
       "salario": 1000
     },
     {
       "nome": "test",
       "email": "test@test.com",
-      "cpf": "12312321312",
+      "cpf": "11111111111",
+      "endereco": 3,
+      "telefone": "32131232132",
+      "salario": 2132.11,
       "senha": "test",
-      "endereco": {
-        "tipo": "1231231",
-        "logradouro": "3213",
-        "numero": 3121,
-        "cidade": "312213",
-        "complemento": "312312",
-        "cep": "13223221",
-        "estado": "321132123"
-      },
-      "telefone": "13212321321",
-      "salario": 321.12,
+      "id": 2
+    }
+  ],
+  "endereco": [
+    {
+      "id": 1,
+      "tipo": "Residencial",
+      "logradouro": "Main Street",
+      "numero": 100,
+      "cidade": "New York",
+      "complemento": "Apt. 5",
+      "cep": "55555-555",
+      "estado": "NY"
+    },
+    {
+      "tipo": "a",
+      "logradouro": "a",
+      "numero": "a",
+      "cidade": "a",
+      "complemento": "a",
+      "cep": "a",
+      "estado": "a",
       "id": 2
     },
     {
-      "nome": "asd",
-      "email": "1a@a.con",
-      "cpf": "11111111111",
-      "senha": "asd",
-      "endereco": {
-        "tipo": "111111",
-        "logradouro": "111111111111",
-        "numero": 111111,
-        "cidade": "11111111",
-        "complemento": "1111",
-        "cep": "11111111",
-        "estado": "1"
-      },
-      "telefone": "11111111111",
-      "salario": 11111111111,
+      "tipo": "123",
+      "logradouro": "2121",
+      "numero": 132132,
+      "cidade": "123123132",
+      "complemento": "132312",
+      "cep": "13213221",
+      "estado": "321132123312",
       "id": 3
     }
   ]

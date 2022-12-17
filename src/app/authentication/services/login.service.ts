@@ -1,42 +1,19 @@
 import { Injectable } from '@angular/core';
+import { CrudClienteService } from 'src/app/cliente/services/crud-cliente.service';
 import db from 'src/app/shared/database/database';
 import { Cliente } from 'src/app/shared/models/cliente.model';
-import { Endereco } from 'src/app/shared/models/endereco.model';
 
-const LS_CHAVE: string = "usuarioLogado"
+const LS_CHAVE: string = "loggedUser"
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor() { }
+  constructor(private crudCliente: CrudClienteService) {}
 
-  getUsuario() {
-    try {
-      const plainJson = JSON.parse(localStorage[LS_CHAVE])[0]
-      const endereco = new Endereco(
-        plainJson.endereco.tipo,
-        plainJson.endereco.logradouro,
-        plainJson.endereco.numero,
-        plainJson.endereco.cidade,
-        plainJson.endereco.complemento,
-        plainJson.endereco.cep,
-        plainJson.endereco.estado
-      )
-      const user = new Cliente(
-        plainJson.nome,
-        plainJson.email,
-        plainJson.cpf,
-        endereco,
-        plainJson.telefone,
-        plainJson.salario
-      )
-      return user
-    } catch (err) {
-      console.log(err)
-      return null
-    }
+  async isLoggedIn(): Promise<boolean> {
+    return localStorage[LS_CHAVE] !== undefined
   }
 
   logout() {
@@ -44,18 +21,22 @@ export class LoginService {
   }
 
   public async login(email: string, senha: string): Promise<boolean> {
-    const user = await db.get('/cliente', {
+    const cliente = await db.get('/cliente', {
       params: {
         email,
         senha,
         "_limit": 1
       }
     })
-    if (user.data.length === 0) {
+    if (cliente.data.length === 0) {
       return false
     }
-    localStorage[LS_CHAVE] = JSON.stringify(user.data)
+    localStorage[LS_CHAVE] = cliente.data[0].id
     return true
+  }
+
+  public async getLoggedUser(): Promise<Cliente> {
+    return this.crudCliente.getCliente(localStorage[LS_CHAVE])
   }
 
 

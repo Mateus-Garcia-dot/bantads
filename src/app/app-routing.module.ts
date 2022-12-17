@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuardGuard } from './authentication/guard/auth-guard.guard';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
-import { ClienteComponent } from './home/cliente/cliente.component';
+import { EditarClienteComponent } from './cliente/editar-cliente/editar-cliente.component';
+import { ClienteComponent } from './cliente/home/cliente.component';
 
 const routes: Routes = [{
   path: '',
@@ -14,6 +15,11 @@ const routes: Routes = [{
 }, {
   path: 'home',
   component: ClienteComponent,
+  canActivate: [AuthGuardGuard]
+},
+{
+  path: 'editarCliente/:id',
+  component: EditarClienteComponent,
   canActivate: [AuthGuardGuard]
 }];
 

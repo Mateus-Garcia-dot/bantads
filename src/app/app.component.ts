@@ -13,14 +13,10 @@ export class AppComponent {
 
   constructor(private router: Router, private loginService: LoginService) { }
 
-  ngOnInit() {
-    this.router.events.subscribe(event => {
+  async ngOnInit() {
+    this.router.events.subscribe(async event => {
       if (event.constructor.name === "NavigationEnd") {
-        if (!this.loginService.getUsuario()) {
-          this.isLoggedIn = false
-          return
-        }
-        this.isLoggedIn = true
+        this.isLoggedIn = await this.loginService.isLoggedIn()
       }
     })
   }

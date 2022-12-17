@@ -12,8 +12,8 @@ export class ClienteComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
-  ngOnInit(): void {
-    this.cliente = this.loginService.getUsuario()
+  async ngOnInit() {
+    this.cliente = await this.loginService.getLoggedUser()
   }
 
 }
