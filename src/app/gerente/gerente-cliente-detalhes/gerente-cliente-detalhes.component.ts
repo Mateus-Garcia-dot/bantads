@@ -19,11 +19,10 @@ export class GerenteClienteDetalhesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(this.clienteId)
     let id = +this.route.snapshot.params['id'] || this.clienteId!;
-
     this.clienteService.buscarClientePorId(id).subscribe(c => {
       this.cliente = c;
-      console.log(this.cliente)
     })
 
   }

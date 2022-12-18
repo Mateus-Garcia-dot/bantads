@@ -52,8 +52,8 @@ export class ClienteService {
     return this.HttpClient.put<Cliente>(`${this.BASE_URL}`, cliente, this.httpOptions);
   }
 
-  buscarClientePorCpf(cpf: string): Observable<Cliente> {
-    return this.HttpClient.get<Cliente>(`${this.BASE_URL}/cpf/${cpf}`, this.httpOptions);
+  buscarClientePorCpf(cpf: string): Observable<Cliente[]> {
+    return this.HttpClient.get<Cliente[]>(`${this.BASE_URL}?cpf=${cpf}`, this.httpOptions);
 
   }
 

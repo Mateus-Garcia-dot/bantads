@@ -18,8 +18,8 @@ export class GerenteConsultaCpfComponent implements OnInit {
 
   buscar() {
    this.clienteService.buscarClientePorCpf(this.cpf).subscribe(cliente => {
-    this.cliente = cliente;
-   })
+    this.cliente = cliente[0];
+  })
   }
 
 }
