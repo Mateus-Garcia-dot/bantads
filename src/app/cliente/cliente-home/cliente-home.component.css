@@ -1,0 +1,21 @@
+.operacoes {
+    display: flex;
+    
+}
+
+.operacoes .card {
+    height: 250px;
+    margin-right: 40px;
+    margin-top: 20px;
+}
+
+.operacoes .card .card-body {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+
+    width: 100%;
+}

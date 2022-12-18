@@ -1,29 +1,28 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './authentication/services/login.service';
+import { Usuario } from 'src/shared/models/usuario.model';
+import { LoginService } from './auth/services/login.service';
+
+const LS_CHAVE: string = 'usuarioLogado';
+const LS_CHAVE_TOKEN: string = 'token';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bantads';
-  isLoggedIn = false
+  constructor(private router: Router, private loginService: LoginService) {}
 
-  constructor(private router: Router, private loginService: LoginService) { }
-
-  async ngOnInit() {
-    this.router.events.subscribe(async event => {
-      if (event.constructor.name === "NavigationEnd") {
-        this.isLoggedIn = await this.loginService.isLoggedIn()
-      }
-    })
+  get usuarioLogado(): Usuario | null {
+    return this.loginService.usuarioLogado;
   }
 
   logout() {
-    this.loginService.logout()
-    this.router.navigate(['/']);
+    this.loginService.logout().subscribe(e => {
+      localStorage[LS_CHAVE] = null;
+      localStorage[LS_CHAVE_TOKEN] = null;
+      this.router.navigate(['/login']);
+    });
   }
-
 }

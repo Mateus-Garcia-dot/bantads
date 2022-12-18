@@ -1,0 +1,21 @@
+table>tbody>tr>td,
+table>thead>tr>th {
+    padding: 0px 10px;
+}
+
+.form-inline {
+    display: flex;
+    align-items: flex-end;
+}
+
+button {
+    height: 100%;
+}
+
+.saida {
+    background-color: red;
+}
+
+.entrada{
+    background-color: blue;
+}

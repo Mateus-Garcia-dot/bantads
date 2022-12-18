@@ -1,32 +1,33 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgxMaskModule } from 'ngx-mask';
-
+import { AdministradorModule } from './administrador/administrador.module';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { AuthenticationModule } from './authentication/authentication.module';
-import { AuthGuardGuard } from './authentication/guard/auth-guard.guard';
-import { LoginService } from './authentication/services/login.service';
+import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { GerenteModule } from './gerente/gerente.module';
+import { HomeComponent } from './home/home.component';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
+    RouterModule,
     AppRoutingModule,
     ClienteModule,
-    RouterModule,
-    AuthenticationModule,
-    FormsModule,
-    NgxMaskModule.forRoot(),
+    AuthModule,
+    AdministradorModule,
+    GerenteModule,
+    HttpClientModule 
   ],
-  providers: [AuthGuardGuard, LoginService],
-  bootstrap: [AppComponent],
-  exports: [
-  ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
