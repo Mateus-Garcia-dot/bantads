@@ -59,9 +59,9 @@
       {
          "id": 1,
          "conta": 1,
-         "login": "",
-         "senha": "",
-         "tipo": 1
+         "login": "test@test.com",
+         "senha": "test",
+         "tipo": 2
       }
    ]
 }

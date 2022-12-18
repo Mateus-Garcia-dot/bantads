@@ -26,7 +26,7 @@ export class EditarClienteComponent implements OnInit {
   async ngOnInit() {
     this.route.paramMap.subscribe(async (params) => {
       this.cliente = await this.crudCliente.getCliente(Number(params.get('id')))
-      this.endereco = this.cliente.endereco!
+        this.endereco = this.cliente.endereco!
     });
   }
 

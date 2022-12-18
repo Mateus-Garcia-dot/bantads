@@ -10,7 +10,7 @@ export class Autenticacao {
     public id: number,
     public login: string,
     public senha: string,
-    public type: autenticacaoType,
+    public tipo: autenticacaoType,
     public conta?: number
   ) {}
 
@@ -19,7 +19,7 @@ export class Autenticacao {
          id: this.id,
          login: this.login,
          senha: this.senha,
-         type: this.type,
+         type: this.tipo,
          conta: this.conta
       }
     }

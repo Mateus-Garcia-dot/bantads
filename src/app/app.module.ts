@@ -3,11 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgxMaskModule } from 'ngx-mask';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { AuthGuardGuard } from './authentication/guard/auth-guard.guard';
 import { LoginService } from './authentication/services/login.service';
 import { ClienteModule } from './cliente/cliente.module';
 
@@ -24,7 +22,7 @@ import { ClienteModule } from './cliente/cliente.module';
     FormsModule,
     NgxMaskModule.forRoot(),
   ],
-  providers: [AuthGuardGuard, LoginService],
+  providers: [LoginService],
   bootstrap: [AppComponent],
   exports: [
   ]
