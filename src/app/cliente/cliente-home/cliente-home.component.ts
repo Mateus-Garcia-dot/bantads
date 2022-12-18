@@ -39,6 +39,7 @@ export class ClienteHomeComponent implements OnInit {
         return this.contaService.buscarContaPorCliente(cliente.id)
       }))
       .subscribe(cliente => {
+        console.log(cliente)
         this.cliente = cliente;
       });
   }

@@ -44,11 +44,12 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.login).
       pipe(
         first(),
-      ).subscribe((uau) => {
-        const user = uau[0];
-        if (user?.auth) {
-          this.loginService.usuarioLogado = user.data!;
+      ).subscribe((user) => {
+        if (user) {
+          user = user[0];
+          this.loginService.usuarioLogado = user;
           this.loading = false;
+
           if(this.loginService.usuarioLogado.perfil === "CLIENTE") {
             this.router.navigate(['/home-cliente']);
           }

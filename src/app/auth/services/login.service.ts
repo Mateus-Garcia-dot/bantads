@@ -31,7 +31,6 @@ export class LoginService {
   }
 
   public set usuarioLogado(usuario: Usuario) {
-    console.log(usuario)
     localStorage[LS_CHAVE] = JSON.stringify(usuario);
   }
   
@@ -44,10 +43,10 @@ export class LoginService {
   }
 
   login(login: Login): Observable<any> {
-    return this.httpClient.get<any>(`${this.AUTH_BASE_URL}/login?login=${login.login}&senha=${login.senha}`, this.httpOptions);
+    return this.httpClient.get<any>(`${this.AUTH_BASE_URL}/usuarios?login=${login.login}&senha=${login.senha}`, this.httpOptions);
   }
 
   logout() {
-    return this.httpClient.get<Usuario>(`${this.AUTH_BASE_URL}/logout`, this.httpOptions);
+    return of();
   }
 }

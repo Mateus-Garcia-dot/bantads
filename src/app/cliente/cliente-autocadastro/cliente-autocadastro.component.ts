@@ -34,7 +34,7 @@ export class ClienteAutocadastroComponent implements OnInit {
 
   autocadastrar(): void {
     if (this.formCliente.form.valid) {
-      this.usuarioService.registrar(new Usuario(1, this.cliente.nome, 'TESTE', 'TESTE', 'CLIENTE'))
+      this.usuarioService.registrar(new Usuario(undefined, this.cliente.nome, this.cliente.nome, this.cliente.nome, 'CLIENTE'))
       .pipe(
         switchMap(c => {
           this.login = c; 
@@ -42,7 +42,7 @@ export class ClienteAutocadastroComponent implements OnInit {
         } )
       )
       .subscribe(e => {
-        console.log(e);
+        console.log(e)
         if (e) {
           this.loginService.login(new Login(this.login.login, this.login.senha)).subscribe((uau) => {
               if (uau?.auth) {

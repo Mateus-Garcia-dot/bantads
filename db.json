@@ -1,46 +1,25 @@
 {
-  "login": [
+  "usuarios": [
     {
-      "auth": true,
-      "data": {
-        "id": 1,
-        "nome": "admin",
-        "login": "admin",
-        "senha": "admin",
-        "perfil": "ADMIN"
-      },
-      "token": "123"
+      "nome": "aa",
+      "login": "aa",
+      "senha": "aa",
+      "perfil": "CLIENTE",
+      "id": 5
     },
     {
-      "auth": true,
-      "data": {
-        "id": 1,
-        "nome": "cliente",
-        "login": "cliente",
-        "senha": "cliente",
-        "perfil": "CLIENTE"
-      },
-      "token": "123"
+      "nome": "admin",
+      "login": "admin",
+      "senha": "admin",
+      "perfil": "ADMIN",
+      "id": 6
     },
     {
-      "auth": true,
-      "data": {
-        "id": 1,
-        "nome": "gerente",
-        "login": "gerente",
-        "senha": "gerente",
-        "perfil": "GERENTE"
-      },
-      "token": "123"
-    }
-  ],
-  "user": [
-    {
-      "id": 1,
-      "nome": "123",
-      "login": "TESTE",
-      "senha": "TESTE",
-      "perfil": "CLIENTE"
+      "nome": "gerente",
+      "login": "gerente",
+      "senha": "gerente",
+      "perfil": "GERENTE",
+      "id": 7
     }
   ],
   "clientes": [
@@ -58,7 +37,71 @@
         "estado": "312"
       },
       "id": 1
+    },
+    {
+      "salario": "10000",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T16:19:51.034Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "teste",
+      "email": "fer-mcosta@hotmail.com",
+      "cpf": "12312312",
+      "endereco": {
+        "tipo": "12",
+        "logradouro": "12",
+        "numero": 21,
+        "complemento": "12",
+        "cidade": "12",
+        "estado": "12"
+      },
+      "id": 2
+    },
+    {
+      "salario": "1234dasd",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T16:23:51.531Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "das",
+      "email": "dasd",
+      "cpf": "dasd",
+      "endereco": {
+        "tipo": "asd",
+        "logradouro": "asd",
+        "numero": 312,
+        "complemento": "sd",
+        "cidade": "321",
+        "estado": "321"
+      },
+      "id": 3
+    },
+    {
+      "salario": "aa",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T16:24:58.630Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "aa",
+      "email": "aa",
+      "cpf": "aa",
+      "endereco": {
+        "tipo": "aa",
+        "logradouro": "aa",
+        "numero": 1,
+        "complemento": "aa",
+        "cidade": "aa",
+        "estado": "aa"
+      },
+      "id": 4
     }
   ],
-  "gerentes": []
+  "gerentes": [],
+  "contas": []
 }

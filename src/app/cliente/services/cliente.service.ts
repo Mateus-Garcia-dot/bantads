@@ -17,7 +17,7 @@ import { HistoricoTransacaoService } from './historico-transacao.service';
 })
 export class ClienteService {
 
-  private AUTH_BASE_URL = `http://localhost:3000/clientes`;
+  private BASE_URL = `http://localhost:3000/clientes`;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -33,27 +33,27 @@ export class ClienteService {
   ) { }
 
   buscarClientePorId(clienteId: number): Observable<Cliente> {
-    return this.HttpClient.get<Cliente>(`${this.AUTH_BASE_URL}/${clienteId}`, this.httpOptions);
+    return this.HttpClient.get<Cliente>(`${this.BASE_URL}/${clienteId}`, this.httpOptions);
   }
 
   buscarClientePorUsuario(usuario: Usuario): Observable<Cliente> {
-    return this.HttpClient.get<Cliente>(`${this.AUTH_BASE_URL}/usuario/${usuario.id}`, this.httpOptions);
+    return this.HttpClient.get<Cliente>(`${this.BASE_URL}/usuario/${usuario.id}`, this.httpOptions);
   }
 
   listarTodos(): Observable<Cliente[]> {
-    return this.HttpClient.get<Cliente[]>(this.AUTH_BASE_URL, this.httpOptions);
+    return this.HttpClient.get<Cliente[]>(this.BASE_URL, this.httpOptions);
   }
 
   autocadastrar(cliente: Cliente): Observable<Cliente> {
-    return this.HttpClient.post<Cliente>(`${this.AUTH_BASE_URL}`, cliente, this.httpOptions);
+    return this.HttpClient.post<Cliente>(`${this.BASE_URL}`, cliente, this.httpOptions);
   }
 
   atualizaCliente(cliente: Cliente) : Observable<Cliente> {
-    return this.HttpClient.put<Cliente>(`${this.AUTH_BASE_URL}`, cliente, this.httpOptions);
+    return this.HttpClient.put<Cliente>(`${this.BASE_URL}`, cliente, this.httpOptions);
   }
 
   buscarClientePorCpf(cpf: string): Observable<Cliente> {
-    return this.HttpClient.get<Cliente>(`${this.AUTH_BASE_URL}/cpf/${cpf}`, this.httpOptions);
+    return this.HttpClient.get<Cliente>(`${this.BASE_URL}/cpf/${cpf}`, this.httpOptions);
 
   }
 

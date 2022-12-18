@@ -14,5 +14,6 @@ export class Cliente {
     public usuario?: Usuario
   ) {
     this.endereco = new Endereco();
+    this.conta = new Conta();
   }
 }

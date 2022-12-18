@@ -12,7 +12,7 @@ const LS_CHAVE: string = 'contas';
 })
 export class ContaService {
 
-  private AUTH_BASE_URL = `http://localhost:3000/contas`;
+  private BASE_URL = `http://localhost:3000/contas`;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export class ContaService {
   }
 
   buscarContaPorCliente(clienteId?: number): Observable<Conta>{
-    return this.httpClient.get<Conta>(this.AUTH_BASE_URL, this.httpOptions);
+    return this.httpClient.get<Conta>(`${this.BASE_URL}/cliente/${clienteId}`, this.httpOptions);
   }
 
   aprovarConta(conta?: Conta) {
