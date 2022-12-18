@@ -17,9 +17,9 @@ export class ClienteGuard implements CanActivate {
     if (!this.loginService.isLoggedIn()) {
       this.route.navigate(['/'])
     }
-    if (await this.loginService.getPermissionLevel() === autenticacaoType.CLIENTE) {
-      return true
-    }
+    // if (await this.loginService.getPermissionLevel() === autenticacaoType.CLIENTE) {
+    //   return true
+    // }
     return false
   }
 

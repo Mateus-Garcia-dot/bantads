@@ -9,4 +9,18 @@ export class Endereco {
       public cep?: string,
       public estado?: string
    ) { }
+
+
+   public toJson() {
+      return {
+         id: this.id,
+         tipo: this.tipo,
+         logradouro: this.logradouro,
+         numero: this.numero,
+         cidade: this.cidade,
+         complemento: this.complemento,
+         cep: this.cep,
+         estado: this.estado
+      }
+   }
 }

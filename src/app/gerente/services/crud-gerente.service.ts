@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
 import db from 'src/app/shared/database/database';
 import { Gerente } from 'src/app/shared/models/gerente.model';
 
@@ -7,7 +8,9 @@ import { Gerente } from 'src/app/shared/models/gerente.model';
 })
 export class CrudGerenteService {
 
-  constructor() { }
+  constructor(
+    private contaService: CrudContaService
+  ) { }
 
   async getGerentes(): Promise<Gerente[]> {
     const response = await db.get('/gerente');
@@ -16,8 +19,7 @@ export class CrudGerenteService {
         gerente.id,
         gerente.nome,
         gerente.cpf,
-        gerente.telefone,
-        gerente.clientes
+        gerente.telefone
       ));
       return acc;
     }, []);
@@ -29,8 +31,7 @@ export class CrudGerenteService {
       response.data.id,
       response.data.nome,
       response.data.cpf,
-      response.data.telefone,
-      response.data.clientes
+      response.data.telefone
     );
   }
 
@@ -40,8 +41,7 @@ export class CrudGerenteService {
       response.data.id,
       response.data.nome,
       response.data.cpf,
-      response.data.telefone,
-      response.data.clientes
+      response.data.telefone
     );
   }
 
@@ -51,12 +51,21 @@ export class CrudGerenteService {
       response.data.id,
       response.data.nome,
       response.data.cpf,
-      response.data.telefone,
-      response.data.clientes
+      response.data.telefone
     );
   }
 
   async deleteGerente(id: number): Promise<void> {
     await db.delete(`/gerente/${id}`);
+  }
+
+  async getGerenteWithLessClientes() {
+    const gerentes = await this.getGerentes()
+    const conta = []
+    for (let gerente of gerentes) {
+      conta.push( [ gerente,  (await this.contaService.getContaByGerenteId(gerente.id!)).length ] )
+    }
+    conta.sort((a:any, b:any) => a[1] - b[1])
+    return conta[0][0] as Gerente
   }
 }

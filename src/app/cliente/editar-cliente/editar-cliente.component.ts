@@ -26,7 +26,6 @@ export class EditarClienteComponent implements OnInit {
   async ngOnInit() {
     this.route.paramMap.subscribe(async (params) => {
       this.cliente = await this.crudCliente.getCliente(Number(params.get('id')))
-        this.endereco = this.cliente.endereco!
     });
   }
 
@@ -35,7 +34,6 @@ export class EditarClienteComponent implements OnInit {
       this.formEdit.control.markAllAsTouched()
       return
     }
-    this.cliente.endereco = this.endereco
     await this.crudCliente.updateCliente(this.cliente,this.senha)
     this.router.navigate(['/']);
   }

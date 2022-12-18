@@ -41,10 +41,9 @@ export class LoginService {
     return null
   }
 
-  public async getPermissionLevel(): Promise<autenticacaoType> {
+  public async getPermissionLevel(){
     const LS = JSON.parse(localStorage[LS_CHAVE])
     const auth = await this.crudAuthService.getAutenticacao(Number(LS.id))
-    return auth.tipo
   }
 
   public  getContaId() {

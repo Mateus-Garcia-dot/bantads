@@ -7,7 +7,7 @@
     <div class="flex">
       <div class="pr-2 grow group">
         <label class="text-sm">Email</label>
-        <input type="text" placeholder="email@email.com" name="email" [(ngModel)]="cliente.email" #email="ngModel"
+        <input type="text" placeholder="email@email.com" name="email" [(ngModel)]="senha" #email="ngModel"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none " required ngvemail>
         <span *ngIf="email.errors &&  email.touched" class="absolute h-fit">
           <span

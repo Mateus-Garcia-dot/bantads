@@ -21,7 +21,6 @@ export class ClienteComponent implements OnInit {
   async ngOnInit() {
     const contaId = this.crudAuth.getContaId()
     const conta = await this.crudConta.getConta(contaId)
-    this.cliente = conta.cliente
   }
 
 }

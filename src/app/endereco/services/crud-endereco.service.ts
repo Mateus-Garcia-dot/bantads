@@ -24,33 +24,48 @@ export class CrudEnderecoService {
   }
 
   async getEnderecos() {
-    return await db.get('/endereco')
+    const response = await db.get('/endereco')
+    response.data.reduce((acc: Endereco[], endereco: any) => {
+      acc.push(new Endereco(
+        endereco.id,
+        endereco.tipo,
+        endereco.logradouro,
+        endereco.numero,
+        endereco.cidade,
+        endereco.complemento,
+        endereco.cep,
+        endereco.estado
+      ))
+      return acc
+    }, [])
   }
 
   async createEndereco(endereco: Endereco) {
-    const response = await db.post('/endereco', {
-      tipo: endereco.tipo,
-      logradouro: endereco.logradouro,
-      numero: endereco.numero,
-      cidade: endereco.cidade,
-      complemento: endereco.complemento,
-      cep: endereco.cep,
-      estado: endereco.estado
-    })
-    return response.data.id
+    const response = await db.post('/endereco', endereco.toJson())
+    return new Endereco(
+      response.data.id,
+      response.data.tipo,
+      response.data.logradouro,
+      response.data.numero,
+      response.data.cidade,
+      response.data.complemento,
+      response.data.cep,
+      response.data.estado
+    )
   }
 
   async updateEndereco(endereco: Endereco) {
-    const response = await db.patch(`/endereco/${endereco.id}`, {
-      tipo: endereco.tipo,
-      logradouro: endereco.logradouro,
-      numero: endereco.numero,
-      cidade: endereco.cidade,
-      complemento: endereco.complemento,
-      cep: endereco.cep,
-      estado: endereco.estado
-    })
-    return response.data.id
+    const response = await db.patch(`/endereco/${endereco.id}`, endereco.toJson())
+    return new Endereco(
+      response.data.id,
+      response.data.tipo,
+      response.data.logradouro,
+      response.data.numero,
+      response.data.cidade,
+      response.data.complemento,
+      response.data.cep,
+      response.data.estado
+    )
   }
 
   async deleteEndereco(id: number) {

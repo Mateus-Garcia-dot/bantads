@@ -7,6 +7,14 @@
       "endereco": 1,
       "telefone": "555-555-5555",
       "salario": 1000
+    },
+    {
+      "nome": "test",
+      "cpf": "11111111111",
+      "endereco": 2,
+      "telefone": "11111111111",
+      "salario": 1111.11,
+      "id": 2
     }
   ],
   "endereco": [
@@ -19,6 +27,16 @@
       "complemento": "Apt. 5",
       "cep": "55555-555",
       "estado": "NY"
+    },
+    {
+      "tipo": "111111111",
+      "logradouro": "11111",
+      "numero": 1111111,
+      "cidade": "1111",
+      "complemento": "11111",
+      "cep": "11111111",
+      "estado": "11111111",
+      "id": 2
     }
   ],
   "gerente": [
@@ -45,6 +63,12 @@
       "cliente": 1,
       "gerente": 1,
       "limite": 1
+    },
+    {
+      "cliente": 2,
+      "gerente": 1,
+      "limite": 0,
+      "id": 2
     }
   ],
   "autenticacao": [
@@ -56,6 +80,11 @@
       "tipo": 2,
       "isAprovada": false,
       "isPending": false
+    },
+    {
+      "login": "test@test.com",
+      "conta": 2,
+      "id": 2
     }
   ]
 }

@@ -25,7 +25,7 @@ export class AutoCadastroComponent implements OnInit {
     this.pendingAprovalAccount = await this.crudAutenticacao.getPendingAutenticacoes()
     this.pendingAprovalClientes = await Promise.all( this.pendingAprovalAccount.map(async (autenticacao) => {
       const conta = await this.crudConta.getConta(autenticacao.conta!)
-      return await this.crudCliente.getCliente(conta.cliente.id!)
+      return await this.crudCliente.getCliente(conta.cliente!)
     }))
   }
 

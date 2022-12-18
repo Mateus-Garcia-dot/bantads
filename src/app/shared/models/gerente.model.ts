@@ -5,8 +5,7 @@ export class Gerente {
       public id?:number,
       public nome?: string,
       public cpf?: string,
-      public telefone?: string,
-      public clientes?: Conta[]
+      public telefone?: string
    ) {}
 
    toJson() {
@@ -14,8 +13,7 @@ export class Gerente {
          id: this.id,
          nome: this.nome,
          cpf: this.cpf,
-         telefone: this.telefone,
-         clientes: this.clientes
+         telefone: this.telefone
       }
    }
 }

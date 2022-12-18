@@ -25,12 +25,12 @@
                               class="hover:bg-gray-300 p-1 px-2 font-bold rounded-lg focus:outline-none">&#8943;</button>
                            <ul class="absolute hidden pt-1 group-hover:block pl-0">
                               <li class="">
-                                 <button (click)="aprovarAutenticacao(pendingAprovalAccount[i].id)"
+                                 <button (click)="aprovarAutenticacao(pendingAprovalAccount[i].id!)"
                                     class="rounded-t bg-gray-200 hover:bg-gray-400 text-blue-800 no-underline py-2 px-4 block whitespace-no-wrap"
                                     href="#">Aprovar</button>
                               </li>
                               <li class="">
-                                 <button (click)="reprovarAutenticacao(pendingAprovalAccount[i].id)"
+                                 <button (click)="reprovarAutenticacao(pendingAprovalAccount[i].id!)"
                                     class="bg-gray-200 hover:bg-gray-400 py-2 px-4 text-red-700 no-underline block whitespace-no-wrap"
                                     href="#">Recusar</button>
                               </li>

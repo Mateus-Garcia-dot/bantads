@@ -7,12 +7,12 @@ export enum autenticacaoType {
 
 export class Autenticacao {
  constructor( 
-    public id: number,
-    public login: string,
-    public senha: string,
-    public tipo: autenticacaoType,
-    public isPending: boolean,
-    public isAprovada: boolean,
+    public id?: number,
+    public login?: string,
+    public senha?: string,
+    public tipo?: autenticacaoType,
+    public isPending?: boolean,
+    public isAprovada?: boolean,
     public conta?: number
   ) {}
 
