@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {  Observable, of } from 'rxjs';
 import { UsuarioService } from 'src/app/usuario/services/usuario.service';
@@ -13,7 +14,16 @@ const LS_CHAVE_TOKEN: string = 'token';
 })
 export class LoginService {
 
-  constructor(private usuarioService: UsuarioService) {}
+  private AUTH_BASE_URL = `http://localhost:3000`;
+
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'x-access-token': localStorage['token']
+    })
+  };
+
+  constructor(private httpClient: HttpClient) {}
 
   public get usuarioLogado(): Usuario {
     let usuarioLogado = localStorage[LS_CHAVE];
@@ -21,6 +31,7 @@ export class LoginService {
   }
 
   public set usuarioLogado(usuario: Usuario) {
+    console.log(usuario)
     localStorage[LS_CHAVE] = JSON.stringify(usuario);
   }
   
@@ -32,11 +43,11 @@ export class LoginService {
     }
   }
 
-  login(login: Login) : Observable<LoginUsuario | null> {
-    return this.usuarioService.login(login);
+  login(login: Login): Observable<any> {
+    return this.httpClient.get<any>(`${this.AUTH_BASE_URL}/login?login=${login.login}&senha=${login.senha}`, this.httpOptions);
   }
 
   logout() {
-    return this.usuarioService.logout();
+    return this.httpClient.get<Usuario>(`${this.AUTH_BASE_URL}/logout`, this.httpOptions);
   }
 }

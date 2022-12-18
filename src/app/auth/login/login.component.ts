@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { first, pipe, take } from 'rxjs';
 import { Login } from 'src/shared/models/login.model';
 import { LoginService } from '../services/login.service';
 
@@ -40,9 +41,13 @@ export class LoginComponent implements OnInit {
   logar(): void {
     this.loading = false;
     if (this.formLogin.form.valid) {
-      this.loginService.login(this.login).subscribe((uau) => {
-        if (uau?.auth) {
-          this.loginService.usuarioLogado = uau.data!;
+      this.loginService.login(this.login).
+      pipe(
+        first(),
+      ).subscribe((uau) => {
+        const user = uau[0];
+        if (user?.auth) {
+          this.loginService.usuarioLogado = user.data!;
           this.loading = false;
           if(this.loginService.usuarioLogado.perfil === "CLIENTE") {
             this.router.navigate(['/home-cliente']);
