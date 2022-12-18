@@ -20,7 +20,7 @@ export class Autenticacao {
       return {
          id: this.id,
          login: this.login,
-         senha: this.senha,
+         senha: this.senha || undefined,
          type: this.tipo,
          public: this.isAprovada,
          conta: this.conta

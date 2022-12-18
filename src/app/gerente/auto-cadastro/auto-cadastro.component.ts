@@ -30,12 +30,19 @@ export class AutoCadastroComponent implements OnInit {
   }
 
   async aprovarAutenticacao(id: number) {
-    await this.crudAutenticacao.aprovarAutenticacao(id)
+    const auth = new Autenticacao()
+    auth.senha = Math.random().toString(36).slice(-8)
+    auth.isPending = false
+    auth.isAprovada = true
+    await this.crudAutenticacao.updateAutenticacao(auth)
     this.ngOnInit()
   }
 
   async reprovarAutenticacao(id: number) {
-    await this.crudAutenticacao.reprovarAutenticacao(id)
+    const auth = new Autenticacao()
+    auth.isPending = false
+    auth.isAprovada = true
+    await this.crudAutenticacao.updateAutenticacao(auth)
     this.ngOnInit()
   }
 

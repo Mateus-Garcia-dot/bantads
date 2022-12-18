@@ -29,7 +29,7 @@ export class CrudAutenticacaoService {
     return new Autenticacao(
       response.data.id,
       response.data.login,
-      response.data.senha,
+      undefined,
       response.data.tipo,
       response.data.isPending,
       response.data.isAprovada,
@@ -44,20 +44,20 @@ export class CrudAutenticacaoService {
       response.data.login,
       response.data.senha,
       response.data.tipo,
-      autenticacao.isPending,
+      response.data.isPending,
       response.data.isAprovada,
       response.data.conta,
     );
   }
 
   async updateAutenticacao(autenticacao: Autenticacao): Promise<Autenticacao> {
-    const response = await db.put(`/autenticacao/${autenticacao.id}`, autenticacao.toJson());
+    const response = await db.patch(`/autenticacao/${autenticacao.id}`, autenticacao.toJson());
     return new Autenticacao(
       response.data.id,
       response.data.login,
       response.data.senha,
       response.data.tipo,
-      autenticacao.isPending,
+      response.data.isPending,
       response.data.isAprovada,
       response.data.conta,
     );
@@ -82,20 +82,6 @@ export class CrudAutenticacaoService {
       ))
       return acc
     }, []);
-  }
-
-  async aprovarAutenticacao(id: number): Promise<void> {
-    await db.patch(`/autenticacao/${id}`, {
-      isPending: false,
-      isAprovada: true
-    });
-  }
-
-  async reprovarAutenticacao(id: number): Promise<void> {
-    await db.patch(`/autenticacao/${id}`, {
-      isPending: false,
-      isAprovada: false
-    });
   }
 
 }

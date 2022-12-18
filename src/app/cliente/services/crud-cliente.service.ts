@@ -51,14 +51,13 @@ export class CrudClienteService {
 
   }
 
-  public async updateCliente(cliente: Cliente, senha: string) {
+  public async updateCliente(cliente: Cliente) {
     const response = await db.patch(`/cliente/${cliente.id}`, {
       nome: cliente.nome,
       cpf: cliente.cpf,
       endereco: cliente.endereco,
       telefone: cliente.telefone,
       salario: cliente.salario,
-      senha: senha || undefined
     })
     return new Cliente(
       response.data.id,

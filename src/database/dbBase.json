@@ -54,7 +54,7 @@
          "login": "test@test.com",
          "senha": "test",
          "tipo": 2,
-         "isAprovada": null
+         "isAprovada": true
       }
    ]
 }

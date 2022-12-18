@@ -21,6 +21,7 @@ export class AdminGuard implements CanActivate {
     if (await this.loginService.getPermissionLevel() === autenticacaoType.ADMIN) {
       return true
     }
+
     return false
   }
 

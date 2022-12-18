@@ -2,11 +2,11 @@
   "cliente": [
     {
       "id": 1,
-      "nome": "John Doe",
+      "nome": "not John Doe",
       "cpf": "12345678901",
       "endereco": 1,
-      "telefone": "555-555-5555",
-      "salario": 1000
+      "telefone": "55555554444",
+      "salario": 1020
     },
     {
       "nome": "test",
@@ -21,8 +21,8 @@
     {
       "id": 1,
       "tipo": "Residencial",
-      "logradouro": "Main Street",
-      "numero": 100,
+      "logradouro": "Double Street",
+      "numero": 101,
       "cidade": "New York",
       "complemento": "Apt. 5",
       "cep": "55555-555",
@@ -76,15 +76,23 @@
       "id": 1,
       "conta": 1,
       "login": "test@test.com",
-      "senha": "test",
+      "senha": "123",
       "tipo": 2,
-      "isAprovada": false,
-      "isPending": false
+      "isAprovada": true,
+      "isPending": false,
+      "type": 2,
+      "public": true
     },
     {
-      "login": "test@test.com",
+      "login": "test1@test.com",
+      "senha": "test1",
       "conta": 2,
-      "id": 2
+      "id": 2,
+      "isPending": false,
+      "tipo": 2,
+      "isAprovada": true,
+      "type": 2,
+      "public": true
     }
   ]
 }

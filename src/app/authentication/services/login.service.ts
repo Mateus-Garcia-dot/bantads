@@ -33,7 +33,10 @@ export class LoginService {
     if (autenticacao.data.length === 0) {
       return false
     }
-    localStorage[LS_CHAVE] = JSON.stringify(autenticacao.data[0])
+    if(autenticacao.data[0].isPending) {
+      return false
+    }
+    localStorage[LS_CHAVE] = JSON.stringify(autenticacao.data[0].id)
     return true
   }
 
@@ -42,13 +45,14 @@ export class LoginService {
   }
 
   public async getPermissionLevel(){
-    const LS = JSON.parse(localStorage[LS_CHAVE])
-    const auth = await this.crudAuthService.getAutenticacao(Number(LS.id))
+    const LS = localStorage[LS_CHAVE]
+    const auth = await this.crudAuthService.getAutenticacao(Number(LS))
+    return auth.tipo
   }
 
   public  getContaId() {
-    const LS = JSON.parse(localStorage[LS_CHAVE])
-    return Number(LS.conta) 
+    const id = localStorage[LS_CHAVE]
+    return Number(id) 
   }
 
 }

@@ -7,7 +7,7 @@
     <div class="flex">
       <div class="pr-2 grow group">
         <label class="text-sm">Email</label>
-        <input type="text" placeholder="email@email.com" name="email" [(ngModel)]="senha" #email="ngModel"
+        <input type="text" placeholder="email@email.com" name="email" [(ngModel)]="autenticacao.login" #email="ngModel"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none " required ngvemail>
         <span *ngIf="email.errors &&  email.touched" class="absolute h-fit">
           <span
@@ -27,7 +27,7 @@
       <div class="pr-2 grow group">
         <label class="text-sm">Senha</label>
         <input type="text" placeholder="******" name="senha"
-          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none" [(ngModel)]="senha" #senhaInput="ngModel">
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none" [(ngModel)]="autenticacao.senha" #senhaInput="ngModel">
         <span *ngIf="senhaInput.errors && senhaInput.touched" class="absolute h-fit">
           <span
             class="mr right-1/2 top-1 animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>

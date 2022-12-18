@@ -39,7 +39,7 @@
             </svg>
             Depositar
           </button>
-          <button [routerLink]="['/editarCliente', cliente?.id]"
+          <button [routerLink]="['/cliente/editar', crudAuth.getContaId()]"
             class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -2 24 24" width="24" fill="currentColor">
               <path

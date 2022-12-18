@@ -2,6 +2,7 @@ import { Component, Injectable, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+import { autenticacaoType } from 'src/app/shared/models/autenticacao.model';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,11 @@ export class LoginComponent implements OnInit {
 
   async ngOnInit() {
     if ( await this.loginService.isLoggedIn() ) {
-      this.router.navigate(['/home']);
+      const permissionlevel = await this.loginService.getPermissionLevel()
+      console.log(permissionlevel)
+      if (permissionlevel === autenticacaoType.CLIENTE) {
+        this.router.navigate(['/cliente/home'])
+      }
     }
   }
 
@@ -35,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.errorMessage = "Usuario ou senha incorretos"
       return
     }
-    this.router.navigate(['/home']);
+    this.ngOnInit()
   }
 
 }

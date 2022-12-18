@@ -13,7 +13,7 @@ export class ClienteComponent implements OnInit {
   cliente!: Cliente | null
 
   constructor(
-    private crudAuth: LoginService,
+    public crudAuth: LoginService,
     private crudConta: CrudContaService,
     private crudCliente: CrudClienteService
   ) { }
@@ -21,6 +21,7 @@ export class ClienteComponent implements OnInit {
   async ngOnInit() {
     const contaId = this.crudAuth.getContaId()
     const conta = await this.crudConta.getConta(contaId)
+    this.cliente = await this.crudCliente.getCliente(conta.cliente!)
   }
 
 }
