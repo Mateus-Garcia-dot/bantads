@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Gerente } from 'src/shared/models/gerente.model';
 import { AdministradorService } from '../services/administrador.service';
 
@@ -8,25 +9,24 @@ import { AdministradorService } from '../services/administrador.service';
   styleUrls: ['./admin-home.component.css']
 })
 export class AdminHomeComponent implements OnInit {
-  gerentes : Gerente[] = [];
+  gerentes: Gerente[] = [];
 
-  constructor(private  administradorService: AdministradorService) { }
+  constructor(private administradorService: AdministradorService) { }
 
   ngOnInit(): void {
-    this.gerentes = this.listarTodos();
+    this.listarTodos();
   }
 
-  listarTodos(): Gerente[] {
-    return this.administradorService.listarTodos();
+  listarTodos() {
+    this.administradorService.listarTodos().subscribe(gerentes => this.gerentes = gerentes);
   }
 
-  remover($event: any, gerente: Gerente): void{
+  remover($event: any, gerente: Gerente): void {
     $event.preventDefault();
-    if(confirm(`Deseja realmente remover o gerente ${gerente.login}?`) ){
-      this.administradorService.remover(gerente.id!);
-      this.gerentes = this.listarTodos();
+    if (confirm(`Deseja realmente remover o gerente ${gerente.login}?`)) {
+      this.administradorService.remover(gerente.id!).subscribe(() => this.listarTodos());
     }
-  
+
   }
 
 }

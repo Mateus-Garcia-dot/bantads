@@ -20,20 +20,21 @@ export class AdministradorEditarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.params['id'];	
-    const res = this.administradorService.buscarPorId(id);
-    if(res !== undefined) {
-     this.gerente=res;
-    }else{
-      throw new Error("Gerente não encontrado id = " + id);
-      
-    }
+    let id = +this.route.snapshot.params['id'];
+    this.administradorService.buscarPorId(id).subscribe(gerente => {
+      if (gerente !== undefined) {
+        this.gerente = gerente;
+      } else {
+        throw new Error("Gerente não encontrado id = " + id);
+      }
+    });
   }
 
-  atualizar(): void{
-    if(this.formAdminGerente.form.valid){
-      this.administradorService.atualizar(this.gerente);
-      this.router.navigate(['/home-admin']);    
+  atualizar(): void {
+    if (this.formAdminGerente.form.valid) {
+      this.administradorService.atualizar(this.gerente).subscribe(() => {
+        this.router.navigate(['/home-admin']);
+      })
     }
   }
 

@@ -21,7 +21,7 @@ export class ClienteService {
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'x-access-token': localStorage['token']
+      // 'x-access-token': localStorage['token']
     })
   };
 
