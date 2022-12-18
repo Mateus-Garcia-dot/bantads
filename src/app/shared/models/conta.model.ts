@@ -8,7 +8,6 @@ export class Conta {
       public cliente: Cliente,
       public gerente: Gerente,
       public limite: number,
-      public movimentacoes: number[]
    ) {}
 
    public toJson() {
@@ -17,7 +16,6 @@ export class Conta {
          cliente: this.cliente.id,
          gerente: this.gerente.id,
          limite: this.limite,
-         movimentacoes: this.movimentacoes
       }
    }
 }

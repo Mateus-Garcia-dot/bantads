@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { LoginService } from './authentication/services/login.service';
 import { ClienteModule } from './cliente/cliente.module';
+import { GerenteModule } from './gerente/gerente.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ClienteModule } from './cliente/cliente.module';
     BrowserModule,
     AppRoutingModule,
     ClienteModule,
+    GerenteModule,
     RouterModule,
     AuthenticationModule,
     FormsModule,

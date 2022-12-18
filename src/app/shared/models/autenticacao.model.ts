@@ -11,6 +11,8 @@ export class Autenticacao {
     public login: string,
     public senha: string,
     public tipo: autenticacaoType,
+    public isPending: boolean,
+    public isAprovada: boolean,
     public conta?: number
   ) {}
 
@@ -20,6 +22,7 @@ export class Autenticacao {
          login: this.login,
          senha: this.senha,
          type: this.tipo,
+         public: this.isAprovada,
          conta: this.conta
       }
     }

@@ -22,7 +22,6 @@ export class CrudContaService {
         await this.crudClienteService.getCliente(conta.cliente),
         await this.crudGerenteService.getGerente(conta.gerente),
         conta.limite,
-        conta.movimentacoes
       ));
       return acc;
     }, []);
@@ -35,7 +34,6 @@ export class CrudContaService {
       await this.crudClienteService.getCliente(response.data.cliente),
       await this.crudGerenteService.getGerente(response.data.gerente),
       response.data.limite,
-      response.data.movimentacoes
     );
   }
 
@@ -46,7 +44,6 @@ export class CrudContaService {
       await this.crudClienteService.getCliente(response.data.cliente),
       await this.crudGerenteService.getGerente(response.data.gerente),
       response.data.limite,
-      response.data.movimentacoes
     );
   }
 
@@ -57,11 +54,11 @@ export class CrudContaService {
       await this.crudClienteService.getCliente(response.data.cliente),
       await this.crudGerenteService.getGerente(response.data.gerente),
       response.data.limite,
-      response.data.movimentacoes
     );
   }
 
   async deleteConta(id: number): Promise<void> {
     await db.delete(`/conta/${id}`);
   }
+
 }

@@ -3,7 +3,6 @@
     {
       "id": 1,
       "nome": "John Doe",
-      "email": "johndoe@example.com",
       "cpf": "12345678901",
       "endereco": 1,
       "telefone": "555-555-5555",
@@ -26,12 +25,8 @@
     {
       "id": 1,
       "nome": "Jane Doe",
-      "email": "johndoe@example.com",
       "cpf": "12345678901",
-      "telefone": "555-555-5555",
-      "clientes": [
-        1
-      ]
+      "telefone": "555-555-5555"
     }
   ],
   "movimentacao": [
@@ -49,10 +44,7 @@
       "id": 1,
       "cliente": 1,
       "gerente": 1,
-      "limite": 1,
-      "movimentacoes": [
-        1
-      ]
+      "limite": 1
     }
   ],
   "autenticacao": [
@@ -61,7 +53,9 @@
       "conta": 1,
       "login": "test@test.com",
       "senha": "test",
-      "tipo": 2
+      "tipo": 2,
+      "isAprovada": false,
+      "isPending": false
     }
   ]
 }
