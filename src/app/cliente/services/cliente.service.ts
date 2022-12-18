@@ -36,8 +36,8 @@ export class ClienteService {
     return this.HttpClient.get<Cliente>(`${this.BASE_URL}/${clienteId}`, this.httpOptions);
   }
 
-  buscarClientePorUsuario(usuario: Usuario): Observable<Cliente> {
-    return this.HttpClient.get<Cliente>(`${this.BASE_URL}/usuario/${usuario.id}`, this.httpOptions);
+  buscarClientePorUsuario(usuario: Usuario): Observable<Cliente[]> {
+    return this.HttpClient.get<Cliente[]>(`${this.BASE_URL}?usuario${usuario.id}`, this.httpOptions);
   }
 
   listarTodos(): Observable<Cliente[]> {
@@ -101,15 +101,5 @@ export class ClienteService {
   aprovarCadastro(cliente: Cliente) {
     this.contaService.aprovarConta(cliente.conta);
   }
-
-  private criaConta(cliente: Cliente): Conta {
-    const gerente = this.buscarGerenteDisponivel();
-    return this.contaService.criarConta(cliente, gerente);
-  }
-
-  private buscarGerenteDisponivel(): Gerente {
-    return new Gerente();
-  }
-
 
 }

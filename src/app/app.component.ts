@@ -12,17 +12,15 @@ const LS_CHAVE_TOKEN: string = 'token';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router, private loginService: LoginService) { }
 
   get usuarioLogado(): Usuario | null {
     return this.loginService.usuarioLogado;
   }
 
   logout() {
-    this.loginService.logout().subscribe(e => {
-      localStorage[LS_CHAVE] = null;
-      localStorage[LS_CHAVE_TOKEN] = null;
-      this.router.navigate(['/login']);
-    });
+    localStorage[LS_CHAVE] = null;
+    localStorage[LS_CHAVE_TOKEN] = null;
+    this.router.navigate(['/login']);
   }
 }

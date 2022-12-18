@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Gerente } from 'src/shared/models/gerente.model';
 
 const LS_CHAVE: string = "gerente";
@@ -8,45 +10,33 @@ const LS_CHAVE: string = "gerente";
 })
 export class GerenteService {
 
-  constructor() { }
+  private BASE_URL = `http://localhost:3000/gerentes`;
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'x-access-token': localStorage['token']
+    })
+  };
 
-  listarTodos(): Gerente[]{
-    const gerentes = localStorage[LS_CHAVE];
-    return gerentes ? JSON.parse(gerentes) : [];    
+  constructor(private httpClient: HttpClient) { }
+
+  listarTodos(): Observable<Gerente[]> {
+    return this.httpClient.get<Gerente[]>(this.BASE_URL, this.httpOptions);
   }
 
-  inserir(gerente: Gerente): void{
-    const gerentes = this.listarTodos();
-    gerente.id = new Date().getTime();
-    gerentes.push(gerente);
-    localStorage[LS_CHAVE] = JSON.stringify(gerentes);
-  }
-  
-  buscarPorId(id: number):  Gerente | undefined{
-    const gerentes : Gerente[] =  this.listarTodos();
-    return gerentes.find(gerente => gerente.id === id);    
-  }
-  
-  atualizar(gerente: Gerente): void{
-    const gerentes : Gerente[] =  this.listarTodos();
-    gerentes.forEach(
-      (obj, index, objs) => {
-        if(gerente.id === obj.id){
-          objs[index] = gerente;
-        }
-      }
-    );
-    localStorage[LS_CHAVE]  = JSON.stringify(gerentes);  
+  inserir(gerente: Gerente): Observable<any> {
+    return this.httpClient.post<Gerente[]>(this.BASE_URL, gerente, this.httpOptions);
   }
 
-  remover(id: number): void{
-   let gerentes : Gerente[] =  this.listarTodos();
-  
-   gerentes = gerentes.filter(gerente => gerente.id !== id);
-   localStorage[LS_CHAVE] = JSON.stringify(gerentes);
+  buscarPorId(id: number): Observable<Gerente | undefined> {
+    return this.httpClient.get<Gerente>(`${this.BASE_URL}/${id}`, this.httpOptions);
   }
 
+  atualizar(gerente: Gerente): Observable<any> {
+    return this.httpClient.put<Gerente[]>(`${this.BASE_URL}/${gerente.id}`, gerente, this.httpOptions);
+  }
 
-
-
+  remover(id: number): Observable<any> {
+    return this.httpClient.delete(`${this.BASE_URL}/${id}`, this.httpOptions);
+  }
 }

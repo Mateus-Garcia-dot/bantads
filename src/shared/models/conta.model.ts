@@ -17,5 +17,6 @@ export class Conta {
   ) {
     this.dataCriacao = new Date();
     this.historicoMovimentacoes = [];
+    this.saldo = 0;
   }
 }

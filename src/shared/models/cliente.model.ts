@@ -10,8 +10,8 @@ export class Cliente {
     public nome?: string,
     public email?: string,
     public cpf?: string,
+    public usuarioId?: number,
     public endereco?: Endereco,
-    public usuario?: Usuario
   ) {
     this.endereco = new Endereco();
     this.conta = new Conta();

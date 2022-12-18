@@ -1,13 +1,6 @@
 {
   "usuarios": [
     {
-      "nome": "aa",
-      "login": "aa",
-      "senha": "aa",
-      "perfil": "CLIENTE",
-      "id": 5
-    },
-    {
       "nome": "admin",
       "login": "admin",
       "senha": "admin",
@@ -20,88 +13,365 @@
       "senha": "gerente",
       "perfil": "GERENTE",
       "id": 7
+    },
+    {
+      "nome": "aa",
+      "login": "aa",
+      "senha": "aa",
+      "perfil": "CLIENTE",
+      "id": 8
+    },
+    {
+      "nome": "bb",
+      "login": "bb",
+      "senha": "bb",
+      "perfil": "CLIENTE",
+      "id": 9
+    },
+    {
+      "nome": "dd",
+      "login": "dd",
+      "senha": "dd",
+      "perfil": "CLIENTE",
+      "id": 10
+    },
+    {
+      "nome": "ee",
+      "login": "ee",
+      "senha": "ee",
+      "perfil": "CLIENTE",
+      "id": 11
+    },
+    {
+      "nome": "ff",
+      "login": "ff",
+      "senha": "ff",
+      "perfil": "CLIENTE",
+      "id": 12
     }
   ],
   "clientes": [
     {
-      "salario": "1234",
-      "nome": "123",
-      "email": "32",
-      "cpf": "123",
-      "endereco": {
-        "tipo": "sad",
-        "logradouro": "2",
-        "numero": 312,
-        "complemento": "32",
-        "cidade": "123",
-        "estado": "312"
-      },
-      "id": 1
-    },
-    {
-      "salario": "10000",
-      "conta": {
-        "pendenteAprovacao": true,
-        "dataCriacao": "2022-12-18T16:19:51.034Z",
-        "saldo": 0,
-        "historicoMovimentacoes": []
-      },
-      "nome": "teste",
-      "email": "fer-mcosta@hotmail.com",
-      "cpf": "12312312",
-      "endereco": {
-        "tipo": "12",
-        "logradouro": "12",
-        "numero": 21,
-        "complemento": "12",
-        "cidade": "12",
-        "estado": "12"
-      },
-      "id": 2
-    },
-    {
-      "salario": "1234dasd",
-      "conta": {
-        "pendenteAprovacao": true,
-        "dataCriacao": "2022-12-18T16:23:51.531Z",
-        "saldo": 0,
-        "historicoMovimentacoes": []
-      },
-      "nome": "das",
-      "email": "dasd",
-      "cpf": "dasd",
-      "endereco": {
-        "tipo": "asd",
-        "logradouro": "asd",
-        "numero": 312,
-        "complemento": "sd",
-        "cidade": "321",
-        "estado": "321"
-      },
-      "id": 3
-    },
-    {
       "salario": "aa",
       "conta": {
         "pendenteAprovacao": true,
-        "dataCriacao": "2022-12-18T16:24:58.630Z",
+        "dataCriacao": "2022-12-18T21:47:05.948Z",
         "saldo": 0,
         "historicoMovimentacoes": []
       },
       "nome": "aa",
       "email": "aa",
       "cpf": "aa",
+      "usuarioId": 8,
       "endereco": {
         "tipo": "aa",
         "logradouro": "aa",
-        "numero": 1,
+        "numero": 12,
         "complemento": "aa",
         "cidade": "aa",
         "estado": "aa"
       },
+      "id": 1
+    },
+    {
+      "salario": "bb",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T22:00:22.832Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "bb",
+      "email": "bb",
+      "cpf": "bb",
+      "usuarioId": 9,
+      "endereco": {
+        "tipo": "bb",
+        "logradouro": "bb",
+        "numero": 1,
+        "complemento": "bb",
+        "cidade": "bb",
+        "estado": "bb"
+      },
+      "id": 2
+    },
+    {
+      "salario": "dd",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T22:01:34.528Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "dd",
+      "email": "dd",
+      "cpf": "dd",
+      "usuarioId": 10,
+      "endereco": {
+        "tipo": "dd",
+        "logradouro": "dd",
+        "numero": 123,
+        "complemento": "dd",
+        "cidade": "dd",
+        "estado": "dd"
+      },
+      "id": 3
+    },
+    {
+      "salario": "ee",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T22:02:02.788Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "ee",
+      "email": "ee",
+      "cpf": "ee",
+      "usuarioId": 11,
+      "endereco": {
+        "tipo": "ee",
+        "logradouro": "ee",
+        "numero": 11,
+        "complemento": "ee",
+        "cidade": "ee",
+        "estado": "ee"
+      },
       "id": 4
+    },
+    {
+      "salario": "ff",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-18T22:02:58.783Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "ff",
+      "email": "12",
+      "cpf": "ff",
+      "usuarioId": 12,
+      "endereco": {
+        "tipo": "ff",
+        "logradouro": "ff",
+        "numero": 12,
+        "complemento": "ff",
+        "cidade": "ff",
+        "estado": "ff"
+      },
+      "id": 5
     }
   ],
   "gerentes": [],
-  "contas": []
+  "contas": [
+    {
+      "id": 1671399688439,
+      "numeroConta": 1,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "123",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T21:41:09.681Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "123",
+        "email": "123",
+        "cpf": "123",
+        "endereco": {
+          "tipo": "123",
+          "logradouro": "123",
+          "numero": 123,
+          "complemento": "123",
+          "cidade": "123",
+          "estado": "123"
+        },
+        "id": 2
+      },
+      "dataCriacao": "2022-12-18T21:41:28.471Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671399939241,
+      "numeroConta": 2,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "fff",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T21:45:30.464Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "ff",
+        "email": "ff",
+        "cpf": "ff",
+        "endereco": {
+          "tipo": "ff",
+          "logradouro": "ff",
+          "numero": 23,
+          "complemento": "ff",
+          "cidade": "ff",
+          "estado": "ff"
+        },
+        "id": 3
+      },
+      "dataCriacao": "2022-12-18T21:45:39.273Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671400034341,
+      "numeroConta": 3,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "aa",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T21:47:05.948Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "aa",
+        "email": "aa",
+        "cpf": "aa",
+        "usuarioId": 8,
+        "endereco": {
+          "tipo": "aa",
+          "logradouro": "aa",
+          "numero": 12,
+          "complemento": "aa",
+          "cidade": "aa",
+          "estado": "aa"
+        },
+        "id": 1
+      },
+      "dataCriacao": "2022-12-18T21:47:14.379Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671400831802,
+      "numeroConta": 4,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "bb",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T22:00:22.832Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "bb",
+        "email": "bb",
+        "cpf": "bb",
+        "usuarioId": 9,
+        "endereco": {
+          "tipo": "bb",
+          "logradouro": "bb",
+          "numero": 1,
+          "complemento": "bb",
+          "cidade": "bb",
+          "estado": "bb"
+        },
+        "id": 2
+      },
+      "dataCriacao": "2022-12-18T22:00:31.834Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671400904345,
+      "numeroConta": 5,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "dd",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T22:01:34.528Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "dd",
+        "email": "dd",
+        "cpf": "dd",
+        "usuarioId": 10,
+        "endereco": {
+          "tipo": "dd",
+          "logradouro": "dd",
+          "numero": 123,
+          "complemento": "dd",
+          "cidade": "dd",
+          "estado": "dd"
+        },
+        "id": 3
+      },
+      "dataCriacao": "2022-12-18T22:01:44.377Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671400930748,
+      "numeroConta": 6,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "ee",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T22:02:02.788Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "ee",
+        "email": "ee",
+        "cpf": "ee",
+        "usuarioId": 11,
+        "endereco": {
+          "tipo": "ee",
+          "logradouro": "ee",
+          "numero": 11,
+          "complemento": "ee",
+          "cidade": "ee",
+          "estado": "ee"
+        },
+        "id": 4
+      },
+      "dataCriacao": "2022-12-18T22:02:10.780Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671400989952,
+      "numeroConta": 7,
+      "pendenteAprovacao": true,
+      "cliente": {
+        "salario": "ff",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-18T22:02:58.783Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "ff",
+        "email": "12",
+        "cpf": "ff",
+        "usuarioId": 12,
+        "endereco": {
+          "tipo": "ff",
+          "logradouro": "ff",
+          "numero": 12,
+          "complemento": "ff",
+          "cidade": "ff",
+          "estado": "ff"
+        },
+        "id": 5
+      },
+      "dataCriacao": "2022-12-18T22:03:09.984Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    }
+  ],
+  "transacoes": []
 }

@@ -3,11 +3,13 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of, pipe, switchMap } from 'rxjs';
 import { LoginService } from 'src/app/auth/services/login.service';
+import { GerenteService } from 'src/app/gerente/services/gerente.service';
 import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 import { Cliente } from 'src/shared/models/cliente.model';
 import { Login } from 'src/shared/models/login.model';
 import { Usuario } from 'src/shared/models/usuario.model';
 import { ClienteService } from '../services/cliente.service';
+import { ContaService } from '../services/conta.service';
 
 @Component({
   selector: 'app-cliente-autocadastro',
@@ -17,13 +19,15 @@ import { ClienteService } from '../services/cliente.service';
 export class ClienteAutocadastroComponent implements OnInit {
   @ViewChild('formCliente') formCliente!: NgForm;
   cliente!: Cliente;
-  login!: Login;
+  login!: Usuario;
 
   constructor(
     private clienteService: ClienteService,
     private router: Router,
     private loginService: LoginService,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private contaService: ContaService,
+    private gerenteService: GerenteService,
   ) {
     this.redirecionaParaHome();
   }
@@ -36,17 +40,29 @@ export class ClienteAutocadastroComponent implements OnInit {
     if (this.formCliente.form.valid) {
       this.usuarioService.registrar(new Usuario(undefined, this.cliente.nome, this.cliente.nome, this.cliente.nome, 'CLIENTE'))
       .pipe(
-        switchMap(c => {
-          this.login = c; 
+        switchMap(login => {
+          this.login = login; 
+          this.cliente.usuarioId = this.login.id;
           return this.clienteService.autocadastrar(this.cliente)
         } )
       )
+      .pipe(
+        switchMap(cliente => {
+          this.cliente = cliente;
+          return this.gerenteService.listarTodos()
+        } )
+      )
+      .pipe(
+        switchMap(gerentes => {
+          const gerenteDisponivel = gerentes.sort((g1, g2) => g1!.clientes!?.length - g2!.clientes!?.length);
+          return this.contaService.criarConta(this.cliente, gerenteDisponivel[0])
+        } )
+      )
       .subscribe(e => {
-        console.log(e)
         if (e) {
           this.loginService.login(new Login(this.login.login, this.login.senha)).subscribe((uau) => {
-              if (uau?.auth) {
-                this.loginService.usuarioLogado = uau.data!;
+              if (uau.length) {
+                this.loginService.usuarioLogado = uau[0];
                 if (this.loginService.usuarioLogado.perfil === 'CLIENTE') {
                   this.router.navigate(['/home-cliente']);
                 }

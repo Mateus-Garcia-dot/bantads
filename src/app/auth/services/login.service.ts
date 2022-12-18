@@ -34,11 +34,9 @@ export class LoginService {
     localStorage[LS_CHAVE] = JSON.stringify(usuario);
   }
   
-  setUsuarioLogado(login: LoginUsuario) {
-    if(login?.data) {
-      this.usuarioLogado = login.data;
-      localStorage[LS_CHAVE_TOKEN] = JSON.stringify(login.token);
-      localStorage[LS_CHAVE] = JSON.stringify(login.token);
+  setUsuarioLogado(login: Usuario) {
+    if(login) {
+      this.usuarioLogado = login;
     }
   }
 

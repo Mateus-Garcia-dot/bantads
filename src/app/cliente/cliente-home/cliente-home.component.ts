@@ -35,12 +35,13 @@ export class ClienteHomeComponent implements OnInit {
 
     this.clienteService.buscarClientePorUsuario(this.loginService.usuarioLogado)
       .pipe(switchMap(cliente => {
-        this.cliente = cliente;
-        return this.contaService.buscarContaPorCliente(cliente.id)
+        this.cliente = cliente[0];
+        return this.contaService.buscarContaPorCliente(this.cliente.id)
       }))
-      .subscribe(cliente => {
-        console.log(cliente)
-        this.cliente = cliente;
+      .subscribe(conta => {
+        this.conta = conta[0
+        ];
+        this.cliente.conta = conta[0];
       });
   }
 
