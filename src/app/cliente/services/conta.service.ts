@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { Cliente } from 'src/shared/models/cliente.model';
 import { Conta } from 'src/shared/models/conta.model';
 import { Gerente } from 'src/shared/models/gerente.model';
@@ -59,8 +59,8 @@ export class ContaService {
     this.atualizaConta(conta!);
   }
 
-  getByNumeroConta(numeroConta: any) {
-    return this.httpClient.get<Conta>(`${this.BASE_URL}?numeroConta=${numeroConta}` , this.httpOptions);
+  getByNumeroConta(numeroConta: any): Observable<Conta[]> {
+    return this.httpClient.get<Conta[]>(`${this.BASE_URL}?numeroConta=${numeroConta}`, this.httpOptions);
   }
 
   listarTodas(): Observable<Conta[]> {
@@ -68,36 +68,39 @@ export class ContaService {
 
   }
 
-  sacar(valorSaque: number, conta: Conta) {
+  sacar(valorSaque: number, conta: Conta): Observable<any> {
     if (-(conta?.saldo) + valorSaque < conta.limite!) {
       conta.saldo -= valorSaque;
-      this.atualizaConta(conta);
+      return this.atualizaConta(conta);
     }
+    return of();
   }
 
   transferir(
     conta: Conta,
     numeroContaDestino: number,
     valorTransferencia: number
-  ) {
-    
-     this.getByNumeroConta(numeroContaDestino).subscribe(contaDestino => {
+  ): Observable<any> {
+
+    return this.getByNumeroConta(numeroContaDestino).pipe(switchMap(contasDestino => {
+      const contaDestino = contasDestino[0];
       if (-(conta?.saldo) + valorTransferencia < conta.limite!) {
 
         conta.saldo -= valorTransferencia;
         contaDestino!.saldo += valorTransferencia;
         this.atualizaConta(conta);
-        this.atualizaConta(contaDestino!);
+        return this.atualizaConta(contaDestino!);
       }
-    })
+      return of();
+    }))
   }
 
-  depositar(valorDeposito: number, conta: Conta) {
+  depositar(valorDeposito: number, conta: Conta): Observable<any> {
     conta.saldo += valorDeposito;
-    this.atualizaConta(conta);
+    return this.atualizaConta(conta);
   }
 
   atualizaConta(conta: Conta): Observable<any> {
-    return this.httpClient.put(` ${this.BASE_URL}/${conta.id}`, conta, this.httpOptions);
+    return this.httpClient.put(`${this.BASE_URL}/${conta.id}`, conta, this.httpOptions);
   }
 }

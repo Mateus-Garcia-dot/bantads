@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HistoricoTransacao } from 'src/shared/models/historico-transacao.model';
 
 const LS_CHAVE: string = 'transacoes';
@@ -8,22 +10,26 @@ const LS_CHAVE: string = 'transacoes';
 })
 export class HistoricoTransacaoService {
 
-  constructor() { }
+  private BASE_URL = `http://localhost:3000/transacoes`;
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      // 'x-access-token': localStorage['token']
+    })
+  };
 
-  listarTodosPorContaId(contaId?: number): HistoricoTransacao[] {
-    const transacoes = localStorage[LS_CHAVE];
-    return transacoes ? JSON.parse(transacoes).filter((transacao: HistoricoTransacao) => transacao?.contaOrigem?.id == contaId || transacao?.contaDestino?.id == contaId) : [];
+  constructor(private httpClient: HttpClient) { }
+
+  listarTransacoesPorContaId(contaId?: number): Observable<HistoricoTransacao[]> {
+    return this.httpClient.get<HistoricoTransacao[]>(`${this.BASE_URL}?contaId=${contaId}`);
   }
 
-  listarTodos(): HistoricoTransacao[] {
-    const transacoes = localStorage[LS_CHAVE];
-    return transacoes ? JSON.parse(transacoes) : [];
+  listarTodos(): Observable<HistoricoTransacao[]> {
+    return this.httpClient.get<HistoricoTransacao[]>(this.BASE_URL);
   }
 
-  salvarTransacao(transacao: HistoricoTransacao) {
-    const transacoes = this.listarTodos();
-    transacoes.push(transacao);
-    localStorage[LS_CHAVE] = JSON.stringify(transacoes);
+  salvarTransacao(transacao: HistoricoTransacao): Observable<any> {
+    return this.httpClient.post<HistoricoTransacao[]>(this.BASE_URL, transacao);
   }
 
 }

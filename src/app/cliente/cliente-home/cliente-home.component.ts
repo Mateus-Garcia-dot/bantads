@@ -39,21 +39,20 @@ export class ClienteHomeComponent implements OnInit {
         return this.contaService.buscarContaPorCliente(this.cliente.id)
       }))
       .subscribe(conta => {
-        this.conta = conta[0
-        ];
+        this.conta = conta[0];
         this.cliente.conta = conta[0];
       });
   }
 
   sacar() {
-    this.clienteService.sacar(this.valorSaque, this.cliente);
+    this.clienteService.sacar(this.valorSaque, this.cliente).subscribe();
   }
 
   depositar() {
-    this.clienteService.depositar(this.valorDeposito, this.cliente);
+    this.clienteService.depositar(this.valorDeposito, this.cliente).subscribe();
   }
 
   transferir() {
-    this.clienteService.transferir(this.cliente, this.contaDestino, this.valorTransferencia);
+    this.clienteService.transferir(this.cliente, this.contaDestino, this.valorTransferencia).subscribe();
   }
 }

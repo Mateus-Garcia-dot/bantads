@@ -26,21 +26,17 @@ export class ClienteExtratoComponent implements OnInit {
   constructor(
     private historicoTransacoesService: HistoricoTransacaoService,
   ) {
-    this.historicoTransacoes =
-      this.historicoTransacoesService.listarTodosPorContaId(
-        this.clienteLogado?.conta?.id
-      );
-      this.transacoes = this.historicoTransacoes;
+    this.historicoTransacoesService.listarTransacoesPorContaId(this.clienteLogado?.conta?.id).subscribe(transacoes => this.historicoTransacoes = transacoes);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   filtrar() {
     if (this.filtro.dataIncial && this.filtro.dataFinal) {
       this.transacoes = this.historicoTransacoes.filter(
         (transacao: HistoricoTransacao) =>
           new Date(transacao!.data!) >=
-          new Date( this.filtro!.dataIncial!) &&
+          new Date(this.filtro!.dataIncial!) &&
           new Date(transacao!.data!) <=
           new Date(this.filtro!.dataFinal!)
       );

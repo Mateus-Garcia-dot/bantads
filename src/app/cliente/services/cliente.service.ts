@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, switchMap } from 'rxjs';
 import { UsuarioService } from 'src/app/usuario/services/usuario.service';
 import { TipoTransacao } from 'src/shared/enums/tipo-transacao';
 import { Cliente } from 'src/shared/models/cliente.model';
@@ -48,7 +48,7 @@ export class ClienteService {
     return this.HttpClient.post<Cliente>(`${this.BASE_URL}`, cliente, this.httpOptions);
   }
 
-  atualizaCliente(cliente: Cliente) : Observable<Cliente> {
+  atualizaCliente(cliente: Cliente): Observable<Cliente> {
     return this.HttpClient.put<Cliente>(`${this.BASE_URL}`, cliente, this.httpOptions);
   }
 
@@ -57,41 +57,28 @@ export class ClienteService {
 
   }
 
-  private registrarUsuario(cliente: Cliente) {
-    const usuario = new Usuario(
-      new Date().getTime(),
-      cliente.nome,
-      cliente.nome,
-      cliente.nome,
-      'CLIENTE'
-    );
-    this.usuarioService.registrar(usuario);
-    return usuario;
-  }
-
   sacar(valorSaque: number, cliente: Cliente) {
-    this.contaService.sacar(valorSaque, cliente.conta!);
-    this.historicoTransacoesService.salvarTransacao(
-      new HistoricoTransacao(TipoTransacao.SAQUE, valorSaque, cliente.conta)
-    );
+    return this.contaService.sacar(valorSaque, cliente.conta!).pipe(switchMap(() =>
+      this.historicoTransacoesService.salvarTransacao(new HistoricoTransacao(TipoTransacao.SAQUE, valorSaque, cliente.conta))
+    ))
   }
 
-  transferir(cliente: Cliente, numeroContaDestino: number, saldo: number) {
-    this.contaService.transferir(cliente.conta!, numeroContaDestino, saldo);
-    this.historicoTransacoesService.salvarTransacao(
+  transferir(cliente: Cliente, numeroContaDestino: number, saldo: number): Observable<any> {
+    return this.contaService.transferir(cliente.conta!, numeroContaDestino, saldo).pipe(switchMap(() => this.historicoTransacoesService.salvarTransacao(
       new HistoricoTransacao(TipoTransacao.TRANSFERENCIA, saldo, cliente.conta)
-    );
+    )))
   }
 
   depositar(valorDeposito: number, cliente: Cliente) {
-    this.contaService.depositar(valorDeposito, cliente.conta!);
-    this.historicoTransacoesService.salvarTransacao(
-      new HistoricoTransacao(
-        TipoTransacao.DEPOSITO,
-        valorDeposito,
-        cliente.conta
-      )
-    );
+    return this.contaService.depositar(valorDeposito, cliente.conta!).pipe(switchMap(() => {
+      return this.historicoTransacoesService.salvarTransacao(
+        new HistoricoTransacao(
+          TipoTransacao.DEPOSITO,
+          valorDeposito,
+          cliente.conta
+        )
+      );
+    }));
   }
 
   recusarCadastro(cliente: Cliente) {
