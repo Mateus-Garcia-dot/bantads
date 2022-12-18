@@ -4,10 +4,20 @@ import { Movimentacao } from "./movimentacao.model";
 
 export class Conta {
    constructor (
-      public numero: number,
+      public id: number,
       public cliente: Cliente,
-      public limite: number,
       public gerente: Gerente,
-      public movimentacoes: Movimentacao[]
+      public limite: number,
+      public movimentacoes: number[]
    ) {}
+
+   public toJson() {
+      return {
+         id: this.id,
+         cliente: this.cliente.id,
+         gerente: this.gerente.id,
+         limite: this.limite,
+         movimentacoes: this.movimentacoes
+      }
+   }
 }

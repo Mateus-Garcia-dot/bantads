@@ -23,13 +23,13 @@
   "endereco": [
     {
       "id": 1,
-      "tipo": "Residencial",
-      "logradouro": "Main Street",
-      "numero": 100,
-      "cidade": "New York",
-      "complemento": "Apt. 5",
-      "cep": "55555-555",
-      "estado": "NY"
+      "tipo": "a",
+      "logradouro": "a",
+      "numero": "a",
+      "cidade": "a",
+      "complemento": "a",
+      "cep": "a",
+      "estado": "a"
     },
     {
       "tipo": "a",
