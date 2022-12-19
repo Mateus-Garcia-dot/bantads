@@ -8,42 +8,43 @@ import { Cliente } from 'src/app/shared/models/cliente.model';
 @Component({
   selector: 'app-auto-cadastro',
   templateUrl: './auto-cadastro.component.html',
-  styleUrls: ['./auto-cadastro.component.scss']
+  styleUrls: ['./auto-cadastro.component.scss'],
 })
 export class AutoCadastroComponent implements OnInit {
-
-  public pendingAprovalAccount!: Autenticacao[]
-  public pendingAprovalClientes!: Cliente[]
+  public pendingAprovalAccount!: Autenticacao[];
+  public pendingAprovalClientes!: Cliente[];
 
   constructor(
     private crudConta: CrudContaService,
     private crudAutenticacao: CrudAutenticacaoService,
     private crudCliente: CrudClienteService
-  ) { }
+  ) {}
 
   async ngOnInit() {
-    this.pendingAprovalAccount = await this.crudAutenticacao.getPendingAutenticacoes()
-    this.pendingAprovalClientes = await Promise.all( this.pendingAprovalAccount.map(async (autenticacao) => {
-      const conta = await this.crudConta.getConta(autenticacao.conta!)
-      return await this.crudCliente.getCliente(conta.cliente!)
-    }))
+    this.pendingAprovalAccount =
+      await this.crudAutenticacao.getPendingAutenticacoes();
+    this.pendingAprovalClientes = await Promise.all(
+      this.pendingAprovalAccount.map(async autenticacao => {
+        const conta = await this.crudConta.getConta(autenticacao.conta!);
+        return await this.crudCliente.getCliente(conta.cliente!);
+      })
+    );
   }
 
   async aprovarAutenticacao(id: number) {
-    const auth = new Autenticacao()
-    auth.senha = Math.random().toString(36).slice(-8)
-    auth.isPending = false
-    auth.isAprovada = true
-    await this.crudAutenticacao.updateAutenticacao(auth)
-    this.ngOnInit()
+    const auth = new Autenticacao();
+    auth.senha = Math.random().toString(36).slice(-8);
+    auth.isPending = false;
+    auth.isAprovada = true;
+    await this.crudAutenticacao.updateAutenticacao(auth);
+    this.ngOnInit();
   }
 
   async reprovarAutenticacao(id: number) {
-    const auth = new Autenticacao()
-    auth.isPending = false
-    auth.isAprovada = true
-    await this.crudAutenticacao.updateAutenticacao(auth)
-    this.ngOnInit()
+    const auth = new Autenticacao();
+    auth.isPending = false;
+    auth.isAprovada = true;
+    await this.crudAutenticacao.updateAutenticacao(auth);
+    this.ngOnInit();
   }
-
 }

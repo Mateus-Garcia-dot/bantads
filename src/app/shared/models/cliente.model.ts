@@ -1,5 +1,3 @@
-import { Endereco } from "./endereco.model";
-
 export class Cliente {
   constructor(
     public id?: number,
@@ -7,9 +5,8 @@ export class Cliente {
     public cpf?: string,
     public endereco?: number,
     public telefone?: string,
-    public salario?: number,
-  ) { }
-
+    public salario?: number
+  ) {}
 
   public toJson() {
     return {
@@ -19,6 +16,6 @@ export class Cliente {
       endereco: this.endereco,
       telefone: this.telefone,
       salario: this.salario,
-    }
+    };
   }
 }

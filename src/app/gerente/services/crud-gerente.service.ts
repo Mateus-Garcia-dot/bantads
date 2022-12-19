@@ -4,23 +4,17 @@ import db from 'src/app/shared/database/database';
 import { Gerente } from 'src/app/shared/models/gerente.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudGerenteService {
-
-  constructor(
-    private contaService: CrudContaService
-  ) { }
+  constructor(private contaService: CrudContaService) {}
 
   async getGerentes(): Promise<Gerente[]> {
     const response = await db.get('/gerente');
     return response.data.reduce((acc: Gerente[], gerente: any) => {
-      acc.push(new Gerente(
-        gerente.id,
-        gerente.nome,
-        gerente.cpf,
-        gerente.telefone
-      ));
+      acc.push(
+        new Gerente(gerente.id, gerente.nome, gerente.cpf, gerente.telefone)
+      );
       return acc;
     }, []);
   }
@@ -60,12 +54,15 @@ export class CrudGerenteService {
   }
 
   async getGerenteWithLessClientes() {
-    const gerentes = await this.getGerentes()
-    const conta = []
+    const gerentes = await this.getGerentes();
+    const conta = [];
     for (let gerente of gerentes) {
-      conta.push( [ gerente,  (await this.contaService.getContaByGerenteId(gerente.id!)).length ] )
+      conta.push([
+        gerente,
+        (await this.contaService.getContaByGerenteId(gerente.id!)).length,
+      ]);
     }
-    conta.sort((a:any, b:any) => a[1] - b[1])
-    return conta[0][0] as Gerente
+    conta.sort((a: any, b: any) => a[1] - b[1]);
+    return conta[0][0] as Gerente;
   }
 }

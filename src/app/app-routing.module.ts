@@ -9,38 +9,49 @@ import { AutoCadastroComponent } from './gerente/auto-cadastro/auto-cadastro.com
 import { ClienteComponent } from './cliente/home/cliente.component';
 import { GerenteHomeComponent } from './gerente/gerente-home/gerente-home.component';
 
-const routes: Routes = [{
-  path: '',
-  component: LoginComponent
-}, {
-  path: 'register',
-  component: RegisterComponent
-},{
-  path: 'cliente',
-  children: [{
-    path: 'home',
-    component: ClienteComponent,
-    canActivate: [ClienteGuard]
-  },{
-    path: 'editar/:id',
-    component: EditarClienteComponent,
-    canActivate: [ClienteGuard]
-  }],
-},{
-  path: 'gerente',
-  children: [{
-    path: 'home',
-    component: GerenteHomeComponent,
-    canActivate: [GerenteGuard]
-},{
-    path: 'auto-cadastro',
-    component: AutoCadastroComponent,
-    canActivate: [GerenteGuard]
-  }]
-}]
+const routes: Routes = [
+  {
+    path: '',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'cliente',
+    children: [
+      {
+        path: 'home',
+        component: ClienteComponent,
+        canActivate: [ClienteGuard],
+      },
+      {
+        path: 'editar/:id',
+        component: EditarClienteComponent,
+        canActivate: [ClienteGuard],
+      },
+    ],
+  },
+  {
+    path: 'gerente',
+    children: [
+      {
+        path: 'home',
+        component: GerenteHomeComponent,
+        canActivate: [GerenteGuard],
+      },
+      {
+        path: 'auto-cadastro',
+        component: AutoCadastroComponent,
+        canActivate: [GerenteGuard],
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

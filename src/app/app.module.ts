@@ -9,11 +9,10 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { LoginService } from './authentication/services/login.service';
 import { ClienteModule } from './cliente/cliente.module';
 import { GerenteModule } from './gerente/gerente.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -23,10 +22,10 @@ import { GerenteModule } from './gerente/gerente.module';
     AuthenticationModule,
     FormsModule,
     NgxMaskModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [LoginService],
   bootstrap: [AppComponent],
-  exports: [
-  ]
+  exports: [],
 })
-export class AppModule { }
+export class AppModule {}

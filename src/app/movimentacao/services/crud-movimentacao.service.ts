@@ -3,23 +3,24 @@ import db from 'src/app/shared/database/database';
 import { Movimentacao } from 'src/app/shared/models/movimentacao.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudMovimentacaoService {
-
-  constructor() { }
+  constructor() {}
 
   async getMovimentacoes(): Promise<Movimentacao[]> {
     const response = await db.get('/movimentacao');
     return response.data.reduce((acc: Movimentacao[], movimentacao: any) => {
-      acc.push(new Movimentacao(
-        movimentacao.id,
-        new Date(movimentacao.data),
-        movimentacao.valor,
-        movimentacao.tipo,
-        movimentacao.origem,
-        movimentacao.destino
-      ));
+      acc.push(
+        new Movimentacao(
+          movimentacao.id,
+          new Date(movimentacao.data),
+          movimentacao.valor,
+          movimentacao.tipo,
+          movimentacao.origem,
+          movimentacao.destino
+        )
+      );
       return acc;
     }, []);
   }
@@ -49,7 +50,10 @@ export class CrudMovimentacaoService {
   }
 
   async updateMovimentacao(movimentacao: Movimentacao): Promise<Movimentacao> {
-    const response = await db.put(`/movimentacao/${movimentacao.id}`, movimentacao.toJson());
+    const response = await db.put(
+      `/movimentacao/${movimentacao.id}`,
+      movimentacao.toJson()
+    );
     return new Movimentacao(
       response.data.id,
       new Date(response.data.data),

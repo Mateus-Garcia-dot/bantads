@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 const db = axios.create({
-  baseURL: "http://localhost:3000"
+  baseURL: 'http://localhost:3000',
 });
 
-export default db
+export default db;

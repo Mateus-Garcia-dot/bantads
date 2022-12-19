@@ -6,13 +6,20 @@ import { RouterModule } from '@angular/router';
 import { ClienteComponent } from './home/cliente.component';
 import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 import { NgxMaskModule } from 'ngx-mask';
-
-
+import { ModalDepositoComponent } from './modal-deposito/modal-deposito.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalSaqueComponent } from './modal-saque/modal-saque.component';
+import { ModalTransferenciaComponent } from './modal-transferencia/modal-transferencia.component';
 
 @NgModule({
   declarations: [
     EditarClienteComponent,
-    ClienteComponent
+    ClienteComponent,
+    ModalDepositoComponent,
+    ModalSaqueComponent,
+    ModalTransferenciaComponent,
   ],
   imports: [
     CommonModule,
@@ -20,11 +27,12 @@ import { NgxMaskModule } from 'ngx-mask';
     FormsModule,
     ReactiveFormsModule,
     NarikCustomValidatorsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
   ],
-  providers: [
-  ],
-  exports: [
-  ]
+  providers: [],
+  exports: [],
 })
-export class ClienteModule { }
+export class ClienteModule {}

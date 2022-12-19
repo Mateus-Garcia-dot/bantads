@@ -1,55 +1,112 @@
 <body class="flex h-full bg-gray-100">
   <div class="flex-grow text-gray-800">
     <main class="p-6 sm:p-10 space-y-6">
-      <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
+      <div
+        class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
         <div class="mr-6">
           <h1 class="text-4xl font-semibold mb-2">Bem vindo!</h1>
-          <h2 class="text-gray-600 ml-0.5">{{cliente?.nome}}</h2>
+          <h2 class="text-gray-600 ml-0.5">{{ cliente?.nome }}</h2>
         </div>
       </div>
-      <section class="grid md:grid-cols-1 xl:grid-cols-1  justify-items-center gap-6">
-        <div class="flex items-center p-8 bg-white shadow rounded-lg">
-          <div
-            class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" width="24" fill="currentColor"
-              style="user-select: text;">
-              <path
-                d="M9 13v-2a3 3 0 1 1 0-6V4a1 1 0 1 1 2 0v1h.022A2.978 2.978 0 0 1 14 7.978a1 1 0 0 1-2 0A.978.978 0 0 0 11.022 7H11v2a3 3 0 0 1 0 6v1a1 1 0 0 1-2 0v-1h-.051A2.949 2.949 0 0 1 6 12.051a1 1 0 1 1 2 0 .95.95 0 0 0 .949.949H9zm2 0a1 1 0 0 0 0-2v2zM9 7a1 1 0 1 0 0 2V7zm1 13C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z">
-              </path>
-            </svg>
+      <section
+        class="grid md:grid-cols-1 xl:grid-cols-1 justify-items-center gap-6">
+        <div class="flex gap-10">
+          <div class="flex items-center p-8 bg-white shadow rounded-lg">
+            <div
+              class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-2 -2 24 24"
+                width="24"
+                fill="currentColor"
+                style="user-select: text">
+                <path
+                  d="M9 13v-2a3 3 0 1 1 0-6V4a1 1 0 1 1 2 0v1h.022A2.978 2.978 0 0 1 14 7.978a1 1 0 0 1-2 0A.978.978 0 0 0 11.022 7H11v2a3 3 0 0 1 0 6v1a1 1 0 0 1-2 0v-1h-.051A2.949 2.949 0 0 1 6 12.051a1 1 0 1 1 2 0 .95.95 0 0 0 .949.949H9zm2 0a1 1 0 0 0 0-2v2zM9 7a1 1 0 1 0 0 2V7zm1 13C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold">{{ conta?.saldo }}</span>
+              <span class="block text-gray-500">Saldo</span>
+            </div>
           </div>
-          <div>
-            <span class="block text-2xl font-bold">{{cliente?.salario}}</span>
-            <span class="block text-gray-500">Salario</span>
+          <div class="flex items-center p-8 bg-white shadow rounded-lg">
+            <div
+              class="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="-2 -2 24 24"
+                width="24"
+                fill="currentColor"
+                style="user-select: text">
+                <path
+                  d="M9 13v-2a3 3 0 1 1 0-6V4a1 1 0 1 1 2 0v1h.022A2.978 2.978 0 0 1 14 7.978a1 1 0 0 1-2 0A.978.978 0 0 0 11.022 7H11v2a3 3 0 0 1 0 6v1a1 1 0 0 1-2 0v-1h-.051A2.949 2.949 0 0 1 6 12.051a1 1 0 1 1 2 0 .95.95 0 0 0 .949.949H9zm2 0a1 1 0 0 0 0-2v2zM9 7a1 1 0 1 0 0 2V7zm1 13C4.477 20 0 15.523 0 10S4.477 0 10 0s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"></path>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-2xl font-bold">{{ conta?.limite }}</span>
+              <span class="block text-gray-500">Limite</span>
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap items-start justify-end  justify-items-center -mb-3">
+        <div
+          class="flex flex-wrap items-start justify-end justify-items-center -mb-3">
           <button
+            (click)="openSaqueModal()"
             class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="-5 -11 24 24" width="24" fill="currentColor">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-2 -6 24 24"
+              width="24"
+              fill="currentColor">
+              <path
+                d="M3.423 4.996h13.154L14.04 2.46a1 1 0 1 1 1.415-1.414l4.242 4.243a1 1 0 0 1 0 1.414l-4.242 4.242a1 1 0 0 1-1.415-1.414l2.536-2.535H3.423L5.96 9.53a1 1 0 1 1-1.415 1.414L.302 6.703a.997.997 0 0 1 0-1.414l4.242-4.243A1 1 0 1 1 5.96 2.46L3.423 4.996z"></path>
+            </svg>
+            Transferencia
+          </button>
+          <button
+            (click)="openSaqueModal()"
+            class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-5 -11 24 24"
+              width="24"
+              fill="currentColor">
               <path d="M1 0h12a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2z"></path>
             </svg>
             Sacar
           </button>
           <button
+            (click)="openDepositoModal()"
             class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-            <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            <svg
+              aria-hidden="true"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
               class="flex-shrink-0 h-6 w-6 text-white -ml-1 mr-2">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
             Depositar
           </button>
-          <button [routerLink]="['/cliente/editar', crudAuth.getContaId()]"
+          <button
+            [routerLink]="['/cliente/editar', crudAuth.getAutenticacaoId()]"
             class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
-            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="-4 -2 24 24" width="24" fill="currentColor">
+            <svg
+              class="mr-2"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="-4 -2 24 24"
+              width="24"
+              fill="currentColor">
               <path
-                d="M3 0h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3zm2 1h6a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 12h2a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2zm0-4h6a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2zm0-4h6a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2z">
-              </path>
+                d="M3 0h10a3 3 0 0 1 3 3v14a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V3a3 3 0 0 1 3-3zm0 2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3zm2 1h6a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2zm0 12h2a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2zm0-4h6a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2zm0-4h6a1 1 0 0 1 0 2H5a1 1 0 1 1 0-2z"></path>
             </svg>
             Atualizar cadastro
           </button>
         </div>
-
       </section>
     </main>
   </div>

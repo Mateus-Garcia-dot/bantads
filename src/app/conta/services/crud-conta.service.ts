@@ -3,22 +3,15 @@ import db from 'src/app/shared/database/database';
 import { Conta } from 'src/app/shared/models/conta.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudContaService {
-
-  constructor(
-  ) { }
+  constructor() {}
 
   async getContas(): Promise<Conta[]> {
     const response = await db.get('/conta');
     return await response.data.reduce(async (acc: Conta[], conta: any) => {
-      acc.push(new Conta(
-        conta.id,
-        conta.cliente,
-        conta.gerente,
-        conta.limite,
-      ));
+      acc.push(new Conta(conta.id, conta.cliente, conta.gerente, conta.limite));
       return acc;
     }, []);
   }
@@ -30,6 +23,7 @@ export class CrudContaService {
       response.data.cliente,
       response.data.gerente,
       response.data.limite,
+      response.data.saldo
     );
   }
 
@@ -40,16 +34,18 @@ export class CrudContaService {
       response.data.cliente,
       response.data.gerente,
       response.data.limite,
+      response.data.saldo
     );
   }
 
   async updateConta(conta: Conta): Promise<Conta> {
-    const response = await db.put(`/conta/${conta.id}`, conta.toJson());
+    const response = await db.patch(`/conta/${conta.id}`, conta.toJson());
     return new Conta(
       response.data.id,
       response.data.cliente,
       response.data.gerente,
       response.data.limite,
+      response.data.saldo
     );
   }
 
@@ -60,18 +56,36 @@ export class CrudContaService {
   async getContaByGerenteId(id: number): Promise<Conta[]> {
     const response = await db.get('/conta', {
       params: {
-        gerente: id
-      }
+        gerente: id,
+      },
     });
     return await response.data.reduce(async (acc: Conta[], conta: any) => {
-      acc.push(new Conta(
-        conta.id,
-        conta.cliente,
-        conta.gerente,
-        conta.limite,
-      ));
+      acc.push(
+        new Conta(
+          conta.id,
+          conta.cliente,
+          conta.gerente,
+          conta.limite,
+          conta.saldo
+        )
+      );
       return acc;
     }, []);
   }
 
+  async saque(contaId: number, valor: number) {
+    const conta = await this.getConta(contaId);
+    const final = conta.saldo! - valor;
+    if (final < -conta.limite!) {
+      throw new Error('Saldo insuficiente');
+    }
+    conta.saldo = final;
+    this.updateConta(conta);
+  }
+
+  async deposito(contaId: number, valor: number) {
+    const conta = await this.getConta(contaId);
+    conta.saldo = conta.saldo! + valor;
+    this.updateConta(conta);
+  }
 }

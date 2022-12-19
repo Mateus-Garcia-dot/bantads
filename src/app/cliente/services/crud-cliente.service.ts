@@ -5,50 +5,50 @@ import { Cliente } from 'src/app/shared/models/cliente.model';
 import { Endereco } from 'src/app/shared/models/endereco.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CrudClienteService {
+  constructor() {}
 
-  constructor() { }
-
-  public  async getCliente(id: number) {
-    const response =  await db.get(`/cliente/${id}`)
+  public async getCliente(id: number) {
+    const response = await db.get(`/cliente/${id}`);
     return new Cliente(
       response.data.id,
       response.data.nome,
       response.data.cpf,
       response.data.endereco,
       response.data.telefone,
-      response.data.salario,
-    )
+      response.data.salario
+    );
   }
 
   public async getClientes() {
-    const response = await db.get('/cliente')
+    const response = await db.get('/cliente');
     response.data.reduce((acc: Cliente[], cliente: any) => {
-      acc.push(new Cliente(
-        cliente.id,
-        cliente.nome,
-        cliente.cpf,
-        cliente.endereco,
-        cliente.telefone,
-        cliente.salario,
-      ))
-      return acc
-    }, [])
+      acc.push(
+        new Cliente(
+          cliente.id,
+          cliente.nome,
+          cliente.cpf,
+          cliente.endereco,
+          cliente.telefone,
+          cliente.salario
+        )
+      );
+      return acc;
+    }, []);
   }
 
   public async createCliente(cliente: Cliente) {
-    const response = await db.post('/cliente', cliente.toJson())
+    const response = await db.post('/cliente', cliente.toJson());
     return new Cliente(
       response.data.id,
       response.data.nome,
       response.data.cpf,
       response.data.endereco,
       response.data.telefone,
-      response.data.salario,
-    )
-
+      response.data.salario
+    );
   }
 
   public async updateCliente(cliente: Cliente) {
@@ -58,19 +58,18 @@ export class CrudClienteService {
       endereco: cliente.endereco,
       telefone: cliente.telefone,
       salario: cliente.salario,
-    })
+    });
     return new Cliente(
       response.data.id,
       response.data.nome,
       response.data.cpf,
       response.data.endereco,
       response.data.telefone,
-      response.data.salario,
-    )
+      response.data.salario
+    );
   }
 
   public async deleteCliente(id: number) {
-    await db.delete(`/cliente/${id}`)
+    await db.delete(`/cliente/${id}`);
   }
-
 }

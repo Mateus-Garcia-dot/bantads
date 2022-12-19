@@ -1,12 +1,11 @@
-
 export enum autenticacaoType {
-   ADMIN = 1,
-   CLIENTE = 2,
-   GERENTE = 3
-} 
+  ADMIN = 1,
+  CLIENTE = 2,
+  GERENTE = 3,
+}
 
 export class Autenticacao {
- constructor( 
+  constructor(
     public id?: number,
     public login?: string,
     public senha?: string,
@@ -16,15 +15,14 @@ export class Autenticacao {
     public conta?: number
   ) {}
 
-   toJson() {
-      return {
-         id: this.id,
-         login: this.login,
-         senha: this.senha || undefined,
-         type: this.tipo,
-         public: this.isAprovada,
-         conta: this.conta
-      }
-    }
+  toJson() {
+    return {
+      id: this.id,
+      login: this.login,
+      senha: this.senha || undefined,
+      type: this.tipo,
+      public: this.isAprovada,
+      conta: this.conta,
+    };
+  }
 }
-

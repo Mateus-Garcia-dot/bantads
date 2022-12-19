@@ -8,23 +8,16 @@ import { NarikCustomValidatorsModule } from '@narik/custom-validators';
 import { NgxMaskModule } from 'ngx-mask';
 import { LoginService } from './services/login.service';
 
-
-
 @NgModule({
-  declarations: [
-    LoginComponent,
-    RegisterComponent
-  ],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NarikCustomValidatorsModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
-  providers: [
-    LoginService
-  ]
+  providers: [LoginService],
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {}

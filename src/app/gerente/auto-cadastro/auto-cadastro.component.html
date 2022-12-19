@@ -1,46 +1,60 @@
 <div class="flex-1 h-full">
-   <div class="bg-slate-50 h-full">
-      <div class="container mx-auto text-center align-middle">
-         <p class="text-gray sm:text-6xl text-4xl">Dashboard auto cadastro</p>
+  <div class="bg-slate-50 h-full">
+    <div class="container mx-auto text-center align-middle">
+      <p class="text-gray sm:text-6xl text-4xl">Dashboard auto cadastro</p>
+    </div>
+    <div class="p-8">
+      <div class="bg-white rounded-lg shadow-lg">
+        <table class="table-auto w-full">
+          <thead class="bg-blue-500 text-white shadow-lg">
+            <tr>
+              <th class="py-3 px-4 text-left">CPF</th>
+              <th class="py-3 px-4 text-left">Nome</th>
+              <th class="py-3 px-4 text-left">Salario</th>
+              <th class="py-3 px-4 text-left">Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let cliente of pendingAprovalClientes; let i = index"
+              class="hover:bg-gray-100">
+              <td class="px-4 py-3">{{ cliente.cpf }}</td>
+              <td class="px-4 py-3">{{ cliente.nome }}</td>
+              <td class="px-4 py-3">{{ cliente.salario }}</td>
+              <td class="px-4 py-3 text-center">
+                <div class="group inline-block relative">
+                  <button
+                    class="hover:bg-gray-300 p-1 px-2 font-bold rounded-lg focus:outline-none">
+                    &#8943;
+                  </button>
+                  <ul class="absolute hidden pt-1 group-hover:block pl-0">
+                    <li class="">
+                      <button
+                        (click)="
+                          aprovarAutenticacao(pendingAprovalAccount[i].id!)
+                        "
+                        class="rounded-t bg-gray-200 hover:bg-gray-400 text-blue-800 no-underline py-2 px-4 block whitespace-no-wrap"
+                        href="#">
+                        Aprovar
+                      </button>
+                    </li>
+                    <li class="">
+                      <button
+                        (click)="
+                          reprovarAutenticacao(pendingAprovalAccount[i].id!)
+                        "
+                        class="bg-gray-200 hover:bg-gray-400 py-2 px-4 text-red-700 no-underline block whitespace-no-wrap"
+                        href="#">
+                        Recusar
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="p-8">
-         <div class=" bg-white rounded-lg shadow-lg">
-            <table class="table-auto w-full">
-               <thead class="bg-blue-500 text-white shadow-lg">
-                  <tr>
-                     <th class="py-3 px-4 text-left">CPF</th>
-                     <th class="py-3 px-4 text-left">Nome</th>
-                     <th class="py-3 px-4 text-left">Salario</th>
-                     <th class="py-3 px-4 text-left">Opções</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr *ngFor="let cliente of pendingAprovalClientes; let i = index" class="hover:bg-gray-100">
-                     <td class="px-4 py-3">{{cliente.cpf}}</td>
-                     <td class="px-4 py-3">{{cliente.nome}}</td>
-                     <td class="px-4 py-3">{{cliente.salario}}</td>
-                     <td class="px-4 py-3 text-center">
-                        <div class="group inline-block relative">
-                           <button
-                              class="hover:bg-gray-300 p-1 px-2 font-bold rounded-lg focus:outline-none">&#8943;</button>
-                           <ul class="absolute hidden pt-1 group-hover:block pl-0">
-                              <li class="">
-                                 <button (click)="aprovarAutenticacao(pendingAprovalAccount[i].id!)"
-                                    class="rounded-t bg-gray-200 hover:bg-gray-400 text-blue-800 no-underline py-2 px-4 block whitespace-no-wrap"
-                                    href="#">Aprovar</button>
-                              </li>
-                              <li class="">
-                                 <button (click)="reprovarAutenticacao(pendingAprovalAccount[i].id!)"
-                                    class="bg-gray-200 hover:bg-gray-400 py-2 px-4 text-red-700 no-underline block whitespace-no-wrap"
-                                    href="#">Recusar</button>
-                              </li>
-                           </ul>
-                        </div>
-                     </td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-      </div>
-   </div>
+    </div>
+  </div>
 </div>
