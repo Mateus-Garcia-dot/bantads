@@ -2,7 +2,7 @@
   class="p-0 main-modal absolute w-full h-full inset-0 z-50 overflow-auto flex justify-center items-center animated fadeIn faster"
   style="background: rgba(0, 0, 0, 0.7)">
   <div
-    class="border border-teal-500 modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+    class="border border-teal-500 modal-container text-black bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
     <div class="modal-content py-4 text-left px-6">
       <div class="flex justify-between items-center pb-3">
         <p class="text-2xl font-bold">Saque</p>
@@ -19,49 +19,54 @@
           </svg>
         </div>
       </div>
-      <div class="my-5">
-        <div class="pb-2 grow group">
-          <label class="text-sm">Email</label>
-          <input
-            type="text"
-            placeholder="email@email.com"
-            name="emailInput"
-            [(ngModel)]="valor"
-            #saque="ngModel"
-            class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
-            required
-            ngvemail />
-          <span *ngIf="saque.errors && saque.touched" class="absolute h-fit">
-            <span
-              class="mr right-1/2 top-1 animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
-            <span
-              class="absolute right-1/2 top-1 inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-            <div>
-              <span
-                class="absolute hidden group-hover:flex flex-col top-1/2 -right-3 translate-x-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm before:content-[''] before:absolute before:top-1/2 before:right-[100%] before:-translate-y-1/2 before:border-8 before:border-y-transparent before:border-l-transparent before:border-r-gray-700">
-                <div [hidden]="!saque.errors['required']">
-                  O campo é obrigatório
-                </div>
-                <div [hidden]="!saque.errors['email']">
-                  O campo precisa ser um email
-                </div>
-              </span>
+      <div class="">
+        <form
+          class="justfy-self-center"
+          #formSaque="ngForm"
+          (keyup.enter)="onSubmit()">
+          <div class="pr-2 grow group">
+            <label class="text-sm">Valor</label>
+            <input
+              type="text"
+              mask="separator.2"
+              thousandSeparator=""
+              placeholder="0000,00"
+              name="valor"
+              [(ngModel)]="valor"
+              #saque="ngModel"
+              class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+              required />
+            <div
+              *ngIf="saque.errors && saque.touched"
+              class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
+              role="alert">
+              <strong class="font-bold">Erro! :(</strong>
+              <div [hidden]="!saque.errors['required']">
+                o campo é obrigatório
+              </div>
+              <div [hidden]="!saque.errors['mask']">o campo está invalido</div>
             </div>
-          </span>
-        </div>
+          </div>
+        </form>
+      </div>
 
-        <div class="flex justify-end pt-2">
-          <button
-            (click)="closeModal()"
-            class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">
-            Cancelar
-          </button>
-          <button
-            (click)="onSubmit()"
-            class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-            Confirmar
-          </button>
+      <div class="flex justify-end pt-2">
+        <div
+          [hidden]="erroMsg === ''"
+          class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
+          role="alert">
+          <div *ngIf="erroMsg !== ''">{{ erroMsg }}</div>
         </div>
+        <button
+          (click)="closeModal()"
+          class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">
+          Cancelar
+        </button>
+        <button
+          (click)="onSubmit()"
+          class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+          Confirmar
+        </button>
       </div>
     </div>
   </div>

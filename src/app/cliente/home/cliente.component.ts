@@ -44,6 +44,9 @@ export class ClienteComponent implements OnInit {
       ModalDepositoComponent,
       dialogConfig
     );
+    modalDialog.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
   }
 
   openSaqueModal() {
@@ -51,6 +54,9 @@ export class ClienteComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.panelClass = 'custom-dialog-container';
     const modalDialog = this.matDialog.open(ModalSaqueComponent, dialogConfig);
+    modalDialog.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
   }
 
   openTransferenciaModal() {
@@ -61,5 +67,8 @@ export class ClienteComponent implements OnInit {
       ModalTransferenciaComponent,
       dialogConfig
     );
+    modalDialog.afterClosed().subscribe(result => {
+      this.ngOnInit();
+    });
   }
 }

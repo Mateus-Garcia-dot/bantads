@@ -13,6 +13,8 @@ import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
 export class ModalSaqueComponent implements OnInit {
   @ViewChild('formSaque') formSaque!: NgForm;
   public valor!: number;
+  public erroMsg = '';
+
   constructor(
     public dialogRef: MatDialogRef<ModalSaqueComponent>,
     private crudConta: CrudContaService,
@@ -43,6 +45,13 @@ export class ModalSaqueComponent implements OnInit {
       autenticacaoId
     );
     const conta = await this.crudConta.getConta(autenticacao.conta!);
-    this.crudConta.saque(conta.cliente!, this.valor);
+    try {
+      await this.crudConta.saque(conta.cliente!, this.valor);
+      this.dialogRef.close();
+    } catch (err) {
+      if (err instanceof Error) {
+        this.erroMsg = err.message;
+      }
+    }
   }
 }

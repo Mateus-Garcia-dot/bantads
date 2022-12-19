@@ -68,7 +68,7 @@
     {
       "id": 2,
       "limite": 1000,
-      "saldo": null,
+      "saldo": -999.89,
       "cliente": 2,
       "gerente": 1
     }

@@ -25,7 +25,11 @@
               </svg>
             </div>
             <div>
-              <span class="block text-2xl font-bold">{{ conta?.saldo }}</span>
+              <span
+                [ngClass]="{ 'text-red-600': conta?.saldo! < 0 }"
+                class="block text-2xl font-bold"
+                >{{ conta?.saldo | number : '.2' }}</span
+              >
               <span class="block text-gray-500">Saldo</span>
             </div>
           </div>
