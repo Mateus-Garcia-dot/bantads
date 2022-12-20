@@ -15,5 +15,6 @@ export class Cliente {
   ) {
     this.endereco = new Endereco();
     this.conta = new Conta();
+    this.salario = 0;
   }
 }

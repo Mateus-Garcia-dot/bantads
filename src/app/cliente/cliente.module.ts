@@ -5,6 +5,7 @@ import { ClienteAutocadastroComponent } from './cliente-autocadastro/cliente-aut
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClienteExtratoComponent } from './cliente-extrato/cliente-extrato.component';
+import { NumericoDirectiveModule } from 'src/shared/directives/shared/directives/numerico-directive/numerico-directive.module';
 
 
 
@@ -19,6 +20,7 @@ import { ClienteExtratoComponent } from './cliente-extrato/cliente-extrato.compo
     CommonModule,
     FormsModule,
     RouterModule,
+    NumericoDirectiveModule
   ]
 })
 export class ClienteModule { }
