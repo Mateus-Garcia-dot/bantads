@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AdministradorService } from './services/administrador.service';
 import { AdministradorEditarComponent } from './administrador-editar/administrador-editar.component';
 import { AdministradorInserirComponent } from './administrador-inserir/administrador-inserir.component';
+import { NumericoDirectiveModule } from 'src/shared/directives/shared/directives/numerico-directive/numerico-directive.module';
 
 
 
@@ -18,7 +19,8 @@ import { AdministradorInserirComponent } from './administrador-inserir/administr
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    NumericoDirectiveModule
   ],
   providers: [
     AdministradorService
