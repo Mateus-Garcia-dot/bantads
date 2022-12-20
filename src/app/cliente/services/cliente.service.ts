@@ -81,12 +81,12 @@ export class ClienteService {
     }));
   }
 
-  recusarCadastro(cliente: Cliente) {
-    this.contaService.aprovarConta(cliente.conta);
+  recusarCadastro(cliente: Cliente): Observable<any>{
+    return this.contaService.recusarConta(cliente.conta);
   }
 
-  aprovarCadastro(cliente: Cliente) {
-    this.contaService.aprovarConta(cliente.conta);
+  aprovarCadastro(cliente: Cliente): Observable<any> {
+    return this.contaService.aprovarConta(cliente.conta);
   }
 
 }

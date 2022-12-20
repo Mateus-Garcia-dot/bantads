@@ -109,7 +109,7 @@
     {
       "id": 1671402571192,
       "numeroConta": 1,
-      "pendenteAprovacao": true,
+      "pendenteAprovacao": false,
       "limite": 5000,
       "cliente": {
         "salario": "10000",
@@ -135,12 +135,13 @@
       },
       "dataCriacao": "2022-12-18T22:29:34.061Z",
       "saldo": 600,
-      "historicoMovimentacoes": []
+      "historicoMovimentacoes": [],
+      "aprovada": true
     },
     {
       "id": 1671402612426,
       "numeroConta": 2,
-      "pendenteAprovacao": true,
+      "pendenteAprovacao": false,
       "limite": 2500,
       "cliente": {
         "salario": "5000",
@@ -166,12 +167,13 @@
       },
       "dataCriacao": "2022-12-18T22:30:20.677Z",
       "saldo": 500,
-      "historicoMovimentacoes": []
+      "historicoMovimentacoes": [],
+      "aprovada": true
     },
     {
       "id": 1671565751967,
       "numeroConta": 3,
-      "pendenteAprovacao": true,
+      "pendenteAprovacao": false,
       "limite": 10000,
       "cliente": {
         "salario": "20000",
@@ -197,7 +199,8 @@
       },
       "dataCriacao": "2022-12-20T19:49:12.026Z",
       "saldo": "010000",
-      "historicoMovimentacoes": []
+      "historicoMovimentacoes": [],
+      "aprovada": true
     }
   ],
   "transacoes": [

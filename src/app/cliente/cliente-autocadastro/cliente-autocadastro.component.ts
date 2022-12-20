@@ -58,8 +58,8 @@ export class ClienteAutocadastroComponent implements OnInit {
           return this.contaService.criarConta(this.cliente, gerenteDisponivel[0])
         } )
       )
-      .subscribe(e => {
-        if (e) {
+      .subscribe(conta => {
+        if (conta) {
           this.loginService.login(new Login(this.login.login, this.login.senha)).subscribe((uau) => {
               if (uau.length) {
                 this.loginService.usuarioLogado = uau[0];

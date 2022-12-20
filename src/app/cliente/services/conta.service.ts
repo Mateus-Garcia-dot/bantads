@@ -50,13 +50,13 @@ export class ContaService {
   aprovarConta(conta?: Conta) {
     conta!.aprovada = true;
     conta!.pendenteAprovacao = false;
-    this.atualizaConta(conta!);
+    return this.atualizaConta(conta!);
   }
 
   recusarConta(conta?: Conta) {
     conta!.aprovada = false;
     conta!.pendenteAprovacao = false;
-    this.atualizaConta(conta!);
+    return this.atualizaConta(conta!);
   }
 
   getByNumeroConta(numeroConta: any): Observable<Conta[]> {
