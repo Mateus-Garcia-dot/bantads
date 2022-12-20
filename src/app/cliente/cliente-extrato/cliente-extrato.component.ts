@@ -23,10 +23,17 @@ export class ClienteExtratoComponent implements OnInit {
 
   tipoTransacao = TipoTransacao;
 
+  loading = true;
+
   constructor(
     private historicoTransacoesService: HistoricoTransacaoService,
   ) {
-    this.historicoTransacoesService.listarTransacoesPorContaId(this.clienteLogado?.conta?.id).subscribe(transacoes => this.historicoTransacoes = transacoes);
+    this.historicoTransacoesService
+    .listarTransacoesPorContaId(this.clienteLogado?.conta?.id)
+    .subscribe(transacoes => {
+      this.transacoes = transacoes;
+      this.loading = false;
+    });
   }
 
   ngOnInit(): void { }

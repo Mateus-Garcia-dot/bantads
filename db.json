@@ -134,7 +134,7 @@
         "id": 1
       },
       "dataCriacao": "2022-12-18T22:29:34.061Z",
-      "saldo": 400,
+      "saldo": 600,
       "historicoMovimentacoes": []
     },
     {
@@ -165,7 +165,7 @@
         "id": 2
       },
       "dataCriacao": "2022-12-18T22:30:20.677Z",
-      "saldo": 0,
+      "saldo": 300,
       "historicoMovimentacoes": []
     },
     {
@@ -196,7 +196,7 @@
         "id": 3
       },
       "dataCriacao": "2022-12-20T19:49:12.026Z",
-      "saldo": 0,
+      "saldo": "010000",
       "historicoMovimentacoes": []
     }
   ],
@@ -274,6 +274,191 @@
       },
       "data": "2022-12-18T22:29:48.588Z",
       "id": 2
+    },
+    {
+      "tipoTransacao": "DEPÓSITO",
+      "valor": "10000",
+      "contaOrigem": {
+        "id": 1671565751967,
+        "numeroConta": 3,
+        "pendenteAprovacao": true,
+        "limite": 10000,
+        "cliente": {
+          "salario": "20000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-20T19:46:47.618Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "alguem",
+          "email": "aa@h.com",
+          "cpf": "08364103946",
+          "usuarioId": 10,
+          "endereco": {
+            "tipo": "2342",
+            "logradouro": "2342",
+            "numero": "234",
+            "complemento": "234",
+            "cidade": "234",
+            "estado": "234"
+          },
+          "id": 3
+        },
+        "dataCriacao": "2022-12-20T19:49:12.026Z",
+        "saldo": "010000",
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T19:55:28.899Z",
+      "id": 3
+    },
+    {
+      "tipoTransacao": "DEPÓSITO",
+      "valor": 100,
+      "contaOrigem": {
+        "id": 1671402612426,
+        "numeroConta": 2,
+        "pendenteAprovacao": true,
+        "limite": 2500,
+        "cliente": {
+          "salario": "5000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-18T22:29:56.706Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "Mateuszinho",
+          "email": "312",
+          "cpf": "123123",
+          "usuarioId": 9,
+          "endereco": {
+            "tipo": "12",
+            "logradouro": "12",
+            "numero": 12,
+            "complemento": "12",
+            "cidade": "12",
+            "estado": "12"
+          },
+          "id": 2
+        },
+        "dataCriacao": "2022-12-18T22:30:20.677Z",
+        "saldo": 100,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T19:57:08.359Z",
+      "id": 4
+    },
+    {
+      "tipoTransacao": "DEPÓSITO",
+      "valor": 200,
+      "contaOrigem": {
+        "id": 1671402612426,
+        "numeroConta": 2,
+        "pendenteAprovacao": true,
+        "limite": 2500,
+        "cliente": {
+          "salario": "5000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-18T22:29:56.706Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "Mateuszinho",
+          "email": "312",
+          "cpf": "123123",
+          "usuarioId": 9,
+          "endereco": {
+            "tipo": "12",
+            "logradouro": "12",
+            "numero": 12,
+            "complemento": "12",
+            "cidade": "12",
+            "estado": "12"
+          },
+          "id": 2
+        },
+        "dataCriacao": "2022-12-18T22:30:20.677Z",
+        "saldo": 300,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T19:57:16.122Z",
+      "id": 5
+    },
+    {
+      "tipoTransacao": "TRANSFERÊNCIA",
+      "valor": 100,
+      "contaOrigem": {
+        "id": 1671402612426,
+        "numeroConta": 2,
+        "pendenteAprovacao": true,
+        "limite": 2500,
+        "cliente": {
+          "salario": "5000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-18T22:29:56.706Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "Mateuszinho",
+          "email": "312",
+          "cpf": "123123",
+          "usuarioId": 9,
+          "endereco": {
+            "tipo": "12",
+            "logradouro": "12",
+            "numero": 12,
+            "complemento": "12",
+            "cidade": "12",
+            "estado": "12"
+          },
+          "id": 2
+        },
+        "dataCriacao": "2022-12-18T22:30:20.677Z",
+        "saldo": 200,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T19:57:38.387Z",
+      "id": 6
+    },
+    {
+      "tipoTransacao": "TRANSFERÊNCIA",
+      "valor": 100,
+      "contaOrigem": {
+        "id": 1671402612426,
+        "numeroConta": 2,
+        "pendenteAprovacao": true,
+        "limite": 2500,
+        "cliente": {
+          "salario": "5000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-18T22:29:56.706Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "Mateuszinho",
+          "email": "312",
+          "cpf": "123123",
+          "usuarioId": 9,
+          "endereco": {
+            "tipo": "12",
+            "logradouro": "12",
+            "numero": 12,
+            "complemento": "12",
+            "cidade": "12",
+            "estado": "12"
+          },
+          "id": 2
+        },
+        "dataCriacao": "2022-12-18T22:30:20.677Z",
+        "saldo": 100,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T19:57:41.843Z",
+      "id": 7
     }
   ]
 }
