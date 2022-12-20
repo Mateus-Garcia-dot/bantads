@@ -20,7 +20,7 @@ export class ClienteHomeComponent implements OnInit {
   valorSaque: number = 0;
   valorDeposito: number = 0;
   valorTransferencia: number = 0;
-  contaDestino: number = 0;
+  numeroContaDestino: number = 0;
 
   transacoes!: HistoricoTransacao[];
 
@@ -52,6 +52,6 @@ export class ClienteHomeComponent implements OnInit {
   }
 
   transferir() {
-    this.clienteService.transferir(this.cliente, this.contaDestino, this.valorTransferencia).subscribe();
+    this.clienteService.transferir(this.cliente, this.numeroContaDestino, this.valorTransferencia).subscribe();
   }
 }
