@@ -21,7 +21,7 @@
               <td>{{ cliente.endereco!.cidade }}</td>
               <td>{{ cliente.endereco!.estado }}</td>
               <!-- <td>{{ cliente.conta!.saldo }}</td> -->
-              <td><a class="btn btn-primary" [routerLink]="['/', 'clientes', cliente.id]">ver detalhes</a></td>
+              <td><a class="btn btn-primary" [routerLink]="['/', 'clientes', 'detalhes', cliente.id]">ver detalhes</a></td>
             </tr>
           </tbody>
         </table>

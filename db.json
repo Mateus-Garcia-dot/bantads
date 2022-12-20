@@ -134,7 +134,7 @@
         "id": 1
       },
       "dataCriacao": "2022-12-18T22:29:34.061Z",
-      "saldo": 700,
+      "saldo": 600,
       "historicoMovimentacoes": []
     },
     {
@@ -274,6 +274,43 @@
       },
       "data": "2022-12-20T20:00:57.707Z",
       "id": 2
+    },
+    {
+      "tipoTransacao": "SAQUE",
+      "valor": 100,
+      "contaOrigem": {
+        "id": 1671402571192,
+        "numeroConta": 1,
+        "pendenteAprovacao": true,
+        "limite": 5000,
+        "cliente": {
+          "salario": "10000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-18T22:29:15.342Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "Fernanda",
+          "email": "12321@hotmail.com",
+          "cpf": "12312312",
+          "usuarioId": 8,
+          "endereco": {
+            "tipo": "12",
+            "logradouro": "12",
+            "numero": 12,
+            "complemento": "21",
+            "cidade": "12",
+            "estado": "21"
+          },
+          "id": 1
+        },
+        "dataCriacao": "2022-12-18T22:29:34.061Z",
+        "saldo": 600,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T20:03:26.303Z",
+      "id": 3
     }
   ]
 }
