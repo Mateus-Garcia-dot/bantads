@@ -5,6 +5,6 @@ export class Gerente {
         public senha?: string,
         public saldoPositivo?: string,
         public saldoNegativo?: string,
-        public clientes?: []
+        public quantidadeClientes: number = 0
     ){}
 }

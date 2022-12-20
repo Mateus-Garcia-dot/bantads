@@ -104,7 +104,15 @@
       "id": 3
     }
   ],
-  "gerentes": [],
+  "gerentes": [
+    {
+      "login": "gerenteNovoo",
+      "senha": "gerenteNovoo",
+      "saldoPositivo": 123,
+      "saldoNegativo": 123,
+      "id": 1
+    }
+  ],
   "contas": [
     {
       "id": 1671402571192,

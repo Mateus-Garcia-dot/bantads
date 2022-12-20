@@ -12,7 +12,7 @@
                     <th>Saldo Negativo</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="!loading">
                 <tr *ngFor="let gerente of gerentes">
                     <td class="text-center" style="width: 300px;">
                         <a  href="#" title="Editar" alt="Editar" class="btn btn-xs btn-info" style="float:left; margin-right:10px" [routerLink]="['/admin/gerente/editar', gerente.id]">
@@ -24,7 +24,7 @@
                     </td>
                     <td>{{gerente.login}}</td>
                     <td>{{gerente.senha}}</td>
-                    <td>{{gerente.clientes}}</td>
+                    <td>{{gerente.quantidadeClientes}}</td>
                     <td>{{gerente.saldoPositivo}}</td>
                     <td>{{gerente.saldoNegativo}}</td>
                 </tr>

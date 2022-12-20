@@ -49,13 +49,13 @@ export class ClienteAutocadastroComponent implements OnInit {
       .pipe(
         switchMap(cliente => {
           this.cliente = cliente;
-          return this.gerenteService.listarTodos()
+          return this.gerenteService.getGerenteDisponivel()
         } )
       )
       .pipe(
         switchMap(gerentes => {
-          const gerenteDisponivel = gerentes.sort((g1, g2) => g1!.clientes!?.length - g2!.clientes!?.length);
-          return this.contaService.criarConta(this.cliente, gerenteDisponivel[0])
+          const gerenteDisponivel = gerentes[0];
+          return this.contaService.criarConta(this.cliente, gerenteDisponivel)
         } )
       )
       .subscribe(conta => {

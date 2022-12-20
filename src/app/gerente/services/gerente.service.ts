@@ -32,6 +32,14 @@ export class GerenteService {
     return this.httpClient.get<Gerente>(`${this.BASE_URL}/${id}`, this.httpOptions);
   }
 
+  getGerenteDisponivel(): Observable<Gerente[]> {
+    return this.httpClient.get<Gerente[]>(this.BASE_URL, this.httpOptions);
+  }
+
+  atribuiCliente(id: number): Observable<Gerente | undefined> {
+    return this.httpClient.get<Gerente>(`${this.BASE_URL}/${id}`, this.httpOptions);
+  }
+
   atualizar(gerente: Gerente): Observable<any> {
     return this.httpClient.put<Gerente[]>(`${this.BASE_URL}/${gerente.id}`, gerente, this.httpOptions);
   }
