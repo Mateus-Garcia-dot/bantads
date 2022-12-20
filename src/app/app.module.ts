@@ -10,7 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ClienteModule } from './cliente/cliente.module';
 import { GerenteModule } from './gerente/gerente.module';
 import { HomeComponent } from './home/home.component';
-import { UsuarioModule } from './usuario/usuario.module';
+
 
 @NgModule({
   declarations: [
@@ -25,9 +25,8 @@ import { UsuarioModule } from './usuario/usuario.module';
     AuthModule,
     AdministradorModule,
     GerenteModule,
-    HttpClientModule 
+    HttpClientModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

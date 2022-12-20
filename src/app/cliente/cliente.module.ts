@@ -6,7 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClienteExtratoComponent } from './cliente-extrato/cliente-extrato.component';
 import { NumericoDirectiveModule } from 'src/shared/directives/shared/directives/numerico-directive/numerico-directive.module';
+import { CpfDirectiveModule } from 'src/shared/directives/cpf-directive/cpf-directive.module';
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
+export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
 
 @NgModule({
@@ -14,13 +17,16 @@ import { NumericoDirectiveModule } from 'src/shared/directives/shared/directives
     ClienteHomeComponent,
     ClienteAutocadastroComponent,
     ClienteExtratoComponent,
-    
+
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    NumericoDirectiveModule
+    NumericoDirectiveModule,
+    CpfDirectiveModule,
+    NgxMaskModule.forRoot(),
   ]
+
 })
 export class ClienteModule { }

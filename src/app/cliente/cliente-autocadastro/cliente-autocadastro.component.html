@@ -55,12 +55,15 @@
           id="cpf"
           name="cpf"
           required
+          cpfValidator
+          mask="000.000.000-00"
         />
         <div
           *ngIf="cpf.errors && (cpf.dirty || cpf.touched)"
           class="alert alert-danger"
         >
           <div [hidden]="!cpf.errors?.['required']">Digite o seu CPF</div>
+          <div [hidden]="!cpf.errors?.['cpfInvalido']">CPF inválido</div>
         </div>
       </div>
 
