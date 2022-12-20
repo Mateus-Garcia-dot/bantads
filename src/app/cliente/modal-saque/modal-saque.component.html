@@ -37,7 +37,7 @@
               class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
               required />
             <div
-              *ngIf="saque.errors && saque.touched"
+              *ngIf="saque.errors && formSaque.submitted"
               class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
               role="alert">
               <strong class="font-bold">Erro! :(</strong>
@@ -47,26 +47,28 @@
               <div [hidden]="!saque.errors['mask']">o campo está invalido</div>
             </div>
           </div>
-        </form>
-      </div>
 
-      <div class="flex justify-end pt-2">
-        <div
-          [hidden]="erroMsg === ''"
-          class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
-          role="alert">
-          <div *ngIf="erroMsg !== ''">{{ erroMsg }}</div>
-        </div>
-        <button
-          (click)="closeModal()"
-          class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">
-          Cancelar
-        </button>
-        <button
-          (click)="onSubmit()"
-          class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-          Confirmar
-        </button>
+          <div class="flex justify-end pt-2">
+            <div
+              [hidden]="erroMsg === ''"
+              class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
+              role="alert">
+              <div *ngIf="erroMsg !== ''">{{ erroMsg }}</div>
+            </div>
+            <button
+              type="button"
+              (click)="closeModal()"
+              class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              (click)="onSubmit()"
+              class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+              Confirmar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

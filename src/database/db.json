@@ -13,8 +13,24 @@
       "cpf": "11111111111",
       "endereco": 2,
       "telefone": "11111111111",
-      "salario": 2000,
+      "salario": 4000,
       "id": 2
+    },
+    {
+      "nome": "cliente",
+      "cpf": "11111111111",
+      "endereco": 3,
+      "telefone": "11111111111",
+      "salario": 20000,
+      "id": 3
+    },
+    {
+      "nome": "usuario1",
+      "cpf": "11111111111",
+      "endereco": 4,
+      "telefone": "12222222222",
+      "salario": 2000,
+      "id": 4
     }
   ],
   "endereco": [
@@ -37,14 +53,34 @@
       "cep": "11111111",
       "estado": "11111111",
       "id": 2
+    },
+    {
+      "tipo": "1111",
+      "logradouro": "1111",
+      "numero": 1111,
+      "cidade": "111",
+      "complemento": "111",
+      "cep": "11111111",
+      "estado": "11111",
+      "id": 3
+    },
+    {
+      "tipo": "222222",
+      "logradouro": "2222222",
+      "numero": 2222222,
+      "cidade": "2222",
+      "complemento": "2222",
+      "cep": "22222222",
+      "estado": "2222",
+      "id": 4
     }
   ],
   "gerente": [
     {
-      "id": 1,
-      "nome": "Jane Doe",
-      "cpf": "12345678901",
-      "telefone": "555-555-5555"
+      "nome": "gerente",
+      "cpf": "22222222222",
+      "telefone": "11111111111",
+      "id": 1
     }
   ],
   "movimentacao": [
@@ -67,10 +103,24 @@
     },
     {
       "id": 2,
-      "limite": 1000,
-      "saldo": -999.89,
+      "limite": 2000,
+      "saldo": 3740.19,
       "cliente": 2,
       "gerente": 1
+    },
+    {
+      "cliente": 3,
+      "gerente": 1,
+      "limite": 10000,
+      "saldo": 190000,
+      "id": 3
+    },
+    {
+      "cliente": 4,
+      "gerente": 1,
+      "limite": 1000,
+      "saldo": -700,
+      "id": 4
     }
   ],
   "autenticacao": [
@@ -81,19 +131,48 @@
       "senha": "123",
       "tipo": 2,
       "isAprovada": true,
-      "isPending": false,
-      "type": 2
+      "isPending": false
     },
     {
+      "id": 2,
       "login": "test1@test.com",
       "senha": "test1",
       "conta": 2,
-      "id": 2,
       "isPending": false,
       "tipo": 2,
-      "isAprovada": true,
-      "type": 2,
+      "isAprovada": true
+    },
+    {
+      "id": 3,
+      "login": "admin@admin.com",
+      "senha": "admin",
+      "tipo": 1,
+      "isAprovada": true
+    },
+    {
+      "login": "cliente@cliente.com",
+      "tipo": 2,
+      "conta": 3,
+      "id": 7,
+      "isPending": false,
+      "senha": "123",
       "public": true
+    },
+    {
+      "login": "usuario1@usuario.com",
+      "tipo": 2,
+      "conta": 4,
+      "isPending": false,
+      "id": 8,
+      "senha": "8z1qji3b",
+      "public": true
+    },
+    {
+      "login": "gerente@gerente.com",
+      "senha": "123",
+      "tipo": 3,
+      "conta": 1,
+      "id": 9
     }
   ]
 }

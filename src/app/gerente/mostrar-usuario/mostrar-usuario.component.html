@@ -1,0 +1,201 @@
+<div class="flex items-center justify-center bg-gray-100 h-full">
+  <form
+    class="bg-white py-5 px-8 border-t-4 border-blue-700 rounded-md shadow-lg"
+    #formRegister="ngForm">
+    <h2 class="text-3xl text-gray-400 mb-3">Mostrar cliente</h2>
+
+    <div class="flex">
+      <div class="pr-2 grow group">
+        <label class="text-sm">Email</label>
+        <input
+          type="text"
+          placeholder="email@email.com"
+          name="email"
+          [(ngModel)]="autenticacao.login"
+          #email="ngModel"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          disabled
+          ngvemail />
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="pr-2 grow group">
+        <label class="text-sm">Nome</label>
+        <input
+          type="text"
+          placeholder="nome"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          name="nome"
+          [(ngModel)]="cliente.nome"
+          #nome="ngModel"
+          disabled />
+        <span *ngIf="nome.errors && nome.touched" class="absolute h-fit">
+          <span
+            class="mr right-1/2 top-1 animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+          <span
+            class="absolute right-1/2 top-1 inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+          <div>
+            <span
+              class="absolute hidden group-hover:flex flex-col top-1/2 -right-3 translate-x-full w-48 px-2 py-1 bg-gray-700 rounded-lg text-center text-white text-sm before:content-[''] before:absolute before:top-1/2 before:right-[100%] before:-translate-y-1/2 before:border-8 before:border-y-transparent before:border-l-transparent before:border-r-gray-700">
+              <div [hidden]="!nome.errors['disabled']">
+                O campo é obrigatório
+              </div>
+            </span>
+          </div>
+        </span>
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">CPF</label>
+        <input
+          type="text"
+          mask="000.000.000-00"
+          placeholder="000.000.000-00"
+          name="cpf"
+          [(ngModel)]="cliente.cpf"
+          #cpf="ngModel"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">Telefone</label>
+        <input
+          type="text"
+          mask="(00) 00000-0000"
+          placeholder="(00) 00000-0000"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          name="telefone"
+          [(ngModel)]="cliente.telefone"
+          #telefone="ngModel"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">Salario</label>
+        <input
+          type="text"
+          mask="separator.2"
+          thousandSeparator=""
+          placeholder="0000,00"
+          name="salario"
+          [(ngModel)]="cliente.salario"
+          #salario="ngModel"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          disabled />
+      </div>
+      <div class="pr-2 grow group">
+        <label class="text-sm">Saldo</label>
+        <input
+          type="text"
+          placeholder="000.00"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          name="saldo"
+          [(ngModel)]="conta.saldo"
+          #saldo="ngModel"
+          disabled />
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="pr-2 grow group">
+        <label class="text-sm">Tipo</label>
+        <input
+          type="text"
+          placeholder="rua/avenida"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          [(ngModel)]="endereco.tipo"
+          name="tipo"
+          #tipo="ngModel"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">Logradouro</label>
+        <input
+          type="text"
+          placeholder="logradouro"
+          name="logradouro"
+          [(ngModel)]="endereco.logradouro"
+          #logradouro="ngModel"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow">
+        <label class="text-sm">Numero</label>
+        <input
+          type="text"
+          thousandSeparator=""
+          mask="separator.0"
+          placeholder="0000"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          name="numero"
+          [(ngModel)]="endereco.numero"
+          #numero="ngModel"
+          disabled />
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="pr-2 grow group">
+        <label class="text-sm">Complemento</label>
+        <input
+          type="text"
+          placeholder="complemento"
+          name="complemento"
+          [(ngModel)]="endereco.complemento"
+          #complemento="ngModel"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">CEP</label>
+        <input
+          type="text"
+          mask="00000-000"
+          placeholder="00000-000"
+          name="cep"
+          [(ngModel)]="endereco.cep"
+          #cep="ngModel"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">Cidade</label>
+        <input
+          type="text"
+          placeholder="cidade"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          name="cidade"
+          [(ngModel)]="endereco.cidade"
+          #cidade="ngModel"
+          disabled />
+      </div>
+
+      <div class="pr-2 grow group">
+        <label class="text-sm">Estado</label>
+        <input
+          type="text"
+          placeholder="estado"
+          class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+          name="estado"
+          [(ngModel)]="endereco.estado"
+          #estado="ngModel"
+          disabled />
+      </div>
+    </div>
+
+    <div class="flex place-content-center pt-5">
+      <button
+        class="border-none bg-blue-800 py-2 px-3 text-white roudend-sm w-25 smt-2 rounded-md hover:bg-blue-700"
+        (click)="onSubmit()"
+        type="button">
+        Voltar
+      </button>
+    </div>
+  </form>
+</div>

@@ -11,6 +11,7 @@ export class CrudGerenteService {
 
   async getGerentes(): Promise<Gerente[]> {
     const response = await db.get('/gerente');
+    console.log(response);
     return response.data.reduce((acc: Gerente[], gerente: any) => {
       acc.push(
         new Gerente(gerente.id, gerente.nome, gerente.cpf, gerente.telefone)
@@ -40,7 +41,7 @@ export class CrudGerenteService {
   }
 
   async updateGerente(gerente: Gerente): Promise<Gerente> {
-    const response = await db.put(`/gerente/${gerente.id}`, gerente.toJson());
+    const response = await db.patch(`/gerente/${gerente.id}`, gerente.toJson());
     return new Gerente(
       response.data.id,
       response.data.nome,
@@ -55,6 +56,7 @@ export class CrudGerenteService {
 
   async getGerenteWithLessClientes() {
     const gerentes = await this.getGerentes();
+    if (gerentes.length === 0) return null;
     const conta = [];
     for (let gerente of gerentes) {
       conta.push([

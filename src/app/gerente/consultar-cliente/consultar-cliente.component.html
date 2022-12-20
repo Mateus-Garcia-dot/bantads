@@ -1,0 +1,67 @@
+<div class="flex-1 h-full">
+  <div class="bg-slate-50 h-full">
+    <div class="container mx-auto text-center align-middle">
+      <p class="text-gray sm:text-6xl text-4xl">Buscar clientes</p>
+    </div>
+    <div class="p-8">
+      <form (submit)="onSearch()" class="" #formLogin="ngForm">
+        <div class="pb-2 grow group">
+          <label class="text-sm">usuario</label>
+          <input
+            type="text"
+            placeholder="Insira usuario"
+            name="nome"
+            [(ngModel)]="nome"
+            #emailInput="ngModel"
+            class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+            required
+            ngvemail />
+        </div>
+      </form>
+      <div class="bg-white rounded-lg shadow-lg">
+        <table class="table-auto w-full">
+          <thead class="bg-blue-500 text-white shadow-lg">
+            <tr>
+              <th class="py-3 px-4 text-left">CPF</th>
+              <th class="py-3 px-4 text-left">Nome</th>
+              <th class="py-3 px-4 text-left">Cidade</th>
+              <th class="py-3 px-4 text-left">estado</th>
+              <th class="py-3 px-4 text-left">Saldo</th>
+              <th class="py-3 px-4 text-left"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of mesh; let i = index" class="hover:bg-gray-100">
+              <td class="px-4 py-3">{{ m.cliente.cpf }}</td>
+              <td class="px-4 py-3">{{ m.cliente.nome }}</td>
+              <td class="px-4 py-3">{{ m.endereco.cidade }}</td>
+              <td class="px-4 py-3">{{ m.endereco.estado }}</td>
+              <td class="px-4 py-3">{{ m.conta.saldo }}</td>
+              <td class="px-4 py-3 text-center flex  z-{{ i }}">
+                <div class="group inline-block">
+                  <button
+                    class="hover:bg-gray-300 p-1 px-2 font-bold rounded-lg focus:outline-none">
+                    &#8943;
+                  </button>
+                  <ul class="absolute hidden pt-1 group-hover:block pl-0">
+                    <li class="">
+                      <button
+                        [routerLink]="[
+                          '/gerente/cliente/mostrar',
+                          m.autenticacao.id
+                        ]"
+                        class="rounded-t bg-gray-200 hover:bg-gray-400 text-blue-800 no-underline py-2 px-4 block whitespace-no-wrap"
+                        href="#">
+                        Mostrar
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

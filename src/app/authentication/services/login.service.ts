@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import db from 'src/app/shared/database/database';
-import { autenticacaoType } from 'src/app/shared/models/autenticacao.model';
 import { CrudAutenticacaoService } from './crud-autenticacao.service';
 
 const LS_CHAVE: string = 'loggedUser';
@@ -24,25 +23,26 @@ export class LoginService {
       params: {
         email,
         senha,
-        _limit: 1,
       },
     });
-    if (autenticacao.data.length === 0) {
+    const match = autenticacao.data.find(
+      (auth: any) => auth.login === email && auth.senha === senha
+    );
+    if (!match) {
       return false;
     }
-    if (autenticacao.data[0].isPending) {
+    if (match.isPending) {
       return false;
     }
-    localStorage[LS_CHAVE] = JSON.stringify(autenticacao.data[0].id);
+    localStorage[LS_CHAVE] = JSON.stringify(match.id);
     return true;
-  }
-
-  public async getLoggedUser() {
-    return null;
   }
 
   public async getPermissionLevel() {
     const LS = localStorage[LS_CHAVE];
+    if (!LS) {
+      return 0;
+    }
     const auth = await this.crudAuthService.getAutenticacao(Number(LS));
     return auth.tipo;
   }

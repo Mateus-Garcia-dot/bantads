@@ -10,6 +10,7 @@ import { LoginService } from './authentication/services/login.service';
 import { ClienteModule } from './cliente/cliente.module';
 import { GerenteModule } from './gerente/gerente.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     ClienteModule,
     GerenteModule,
+    AdminModule,
     RouterModule,
     AuthenticationModule,
     FormsModule,

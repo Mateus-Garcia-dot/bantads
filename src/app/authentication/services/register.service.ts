@@ -37,9 +37,9 @@ export class RegisterService {
     const conta = new Conta();
     conta.cliente = clienteNew.id;
     conta.saldo = 0;
-    conta.gerente = (
-      await this.crudGerenteService.getGerenteWithLessClientes()
-    ).id;
+    conta.gerente =
+      (await this.crudGerenteService.getGerenteWithLessClientes())?.id ||
+      undefined;
     conta.limite = clienteNew.salario! >= 2000 ? clienteNew.salario! / 2 : 0;
     const contaNew = await this.crudContaService.createConta(conta);
 

@@ -32,7 +32,7 @@ export class AutoCadastroComponent implements OnInit {
   }
 
   async aprovarAutenticacao(id: number) {
-    const auth = new Autenticacao();
+    const auth = await this.crudAutenticacao.getAutenticacao(id);
     auth.senha = Math.random().toString(36).slice(-8);
     auth.isPending = false;
     auth.isAprovada = true;
@@ -41,7 +41,7 @@ export class AutoCadastroComponent implements OnInit {
   }
 
   async reprovarAutenticacao(id: number) {
-    const auth = new Autenticacao();
+    const auth = await this.crudAutenticacao.getAutenticacao(id);
     auth.isPending = false;
     auth.isAprovada = true;
     await this.crudAutenticacao.updateAutenticacao(auth);

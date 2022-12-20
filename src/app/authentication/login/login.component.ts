@@ -20,11 +20,18 @@ export class LoginComponent implements OnInit {
   async ngOnInit() {
     if (await this.loginService.isLoggedIn()) {
       const permissionlevel = await this.loginService.getPermissionLevel();
-      console.log(permissionlevel);
       if (permissionlevel === autenticacaoType.CLIENTE) {
-        this.router.navigate(['/cliente/home']);
+        return this.router.navigate(['/cliente/home']);
       }
+      if (permissionlevel === autenticacaoType.GERENTE) {
+        return this.router.navigate(['/gerente/home']);
+      }
+      if (permissionlevel === autenticacaoType.ADMIN) {
+        return this.router.navigate(['/admin/home']);
+      }
+      return;
     }
+    return;
   }
 
   async onSubmit() {

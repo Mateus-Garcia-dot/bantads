@@ -20,9 +20,10 @@ export class Autenticacao {
       id: this.id,
       login: this.login,
       senha: this.senha || undefined,
-      type: this.tipo,
+      tipo: this.tipo,
       public: this.isAprovada,
       conta: this.conta,
+      isPending: this.isPending,
     };
   }
 }

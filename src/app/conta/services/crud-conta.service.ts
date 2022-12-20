@@ -10,10 +10,19 @@ export class CrudContaService {
 
   async getContas(): Promise<Conta[]> {
     const response = await db.get('/conta');
-    return await response.data.reduce(async (acc: Conta[], conta: any) => {
-      acc.push(new Conta(conta.id, conta.cliente, conta.gerente, conta.limite));
-      return acc;
-    }, []);
+    const acc = [];
+    for (const conta of response.data) {
+      acc.push(
+        new Conta(
+          conta.id,
+          conta.cliente,
+          conta.gerente,
+          conta.limite,
+          conta.saldo
+        )
+      );
+    }
+    return acc;
   }
 
   async getConta(id: number): Promise<Conta> {
@@ -59,7 +68,8 @@ export class CrudContaService {
         gerente: id,
       },
     });
-    return await response.data.reduce(async (acc: Conta[], conta: any) => {
+    const acc = [];
+    for (const conta of response.data) {
       acc.push(
         new Conta(
           conta.id,
@@ -69,8 +79,16 @@ export class CrudContaService {
           conta.saldo
         )
       );
-      return acc;
-    }, []);
+    }
+    return acc;
+  }
+  async getContaByClienteId(id: number): Promise<Conta> {
+    const response = await db.get('/conta', {
+      params: {
+        cliente: id,
+      },
+    });
+    return response.data.find((conta: any) => conta.cliente === id);
   }
 
   async saque(contaId: number, valor: number) {

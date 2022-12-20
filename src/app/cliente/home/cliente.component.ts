@@ -9,7 +9,10 @@ import { ModalDepositoComponent } from '../modal-deposito/modal-deposito.compone
 import { ModalSaqueComponent } from '../modal-saque/modal-saque.component';
 import { ModalTransferenciaComponent } from '../modal-transferencia/modal-transferencia.component';
 import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 
+registerLocaleData(localePt);
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',

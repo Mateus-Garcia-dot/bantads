@@ -72,4 +72,25 @@ export class CrudClienteService {
   public async deleteCliente(id: number) {
     await db.delete(`/cliente/${id}`);
   }
+
+  public async getClienteByName(name: string): Promise<Cliente[]> {
+    const response = await db.get('/cliente', {
+      params: {
+        q: name,
+      },
+    });
+    return response.data.reduce((acc: Cliente[], cliente: any) => {
+      acc.push(
+        new Cliente(
+          cliente.id,
+          cliente.nome,
+          cliente.cpf,
+          cliente.endereco,
+          cliente.telefone,
+          cliente.salario
+        )
+      );
+      return acc;
+    }, []);
+  }
 }

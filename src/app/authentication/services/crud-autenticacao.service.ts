@@ -18,7 +18,7 @@ export class CrudAutenticacaoService {
         new Autenticacao(
           autenticacao.id,
           autenticacao.login,
-          autenticacao.senha,
+          undefined,
           autenticacao.tipo,
           autenticacao.isAprovada,
           autenticacao.conta
@@ -39,6 +39,22 @@ export class CrudAutenticacaoService {
       response.data.isAprovada,
       response.data.conta
     );
+  }
+
+  async getAutenticacaoByContaAndTipo(conta: number, tipo: number) {
+    const response = await db.get('/autenticacao', {
+      params: {
+        conta: conta,
+        tipo: tipo,
+      },
+    });
+    return response.data.find((autenticacao: any) => {
+      return autenticacao.conta === conta && autenticacao.tipo === tipo;
+    });
+  }
+
+  async deleteAutenticacao(id: number): Promise<void> {
+    await db.delete(`/autenticacao/${id}`);
   }
 
   async createAutenticacao(autenticacao: Autenticacao): Promise<Autenticacao> {
