@@ -29,7 +29,10 @@ export class AdminHomeComponent implements OnInit {
   remover($event: any, gerente: Gerente): void {
     $event.preventDefault();
     if (confirm(`Deseja realmente remover o gerente ${gerente.login}?`)) {
-      this.gerentesService.remover(gerente.id!).subscribe(() => this.listarTodos());
+      this.gerentesService.remover(gerente.id!).subscribe(() => {
+        this.listarTodos()
+      }
+      );
     }
 
   }

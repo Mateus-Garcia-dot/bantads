@@ -52,6 +52,11 @@ export class ClienteHomeComponent implements OnInit {
   }
 
   transferir() {
-    this.clienteService.transferir(this.cliente, this.numeroContaDestino, this.valorTransferencia).subscribe();
+    this.clienteService.transferir(this.cliente, this.numeroContaDestino, this.valorTransferencia).subscribe({
+      next: (result) => {},
+      error: (error) => {
+        alert('ocorreu um erro, verifique se existe essa conta');
+      },
+  })
   }
 }
