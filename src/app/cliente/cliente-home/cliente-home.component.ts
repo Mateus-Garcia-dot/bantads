@@ -32,7 +32,6 @@ export class ClienteHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.clienteService.buscarClientePorUsuario(this.loginService.usuarioLogado)
       .pipe(switchMap(cliente => {
         this.cliente = cliente[0];

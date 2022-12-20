@@ -27,6 +27,13 @@
       "senha": "Mateuszinho",
       "perfil": "CLIENTE",
       "id": 9
+    },
+    {
+      "nome": "alguem",
+      "login": "alguem",
+      "senha": "alguem",
+      "perfil": "CLIENTE",
+      "id": 10
     }
   ],
   "clientes": [
@@ -73,6 +80,28 @@
         "estado": "12"
       },
       "id": 2
+    },
+    {
+      "salario": "20000",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-20T19:46:47.618Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "alguem",
+      "email": "aa@h.com",
+      "cpf": "08364103946",
+      "usuarioId": 10,
+      "endereco": {
+        "tipo": "2342",
+        "logradouro": "2342",
+        "numero": "234",
+        "complemento": "234",
+        "cidade": "234",
+        "estado": "234"
+      },
+      "id": 3
     }
   ],
   "gerentes": [],
@@ -136,6 +165,37 @@
         "id": 2
       },
       "dataCriacao": "2022-12-18T22:30:20.677Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    },
+    {
+      "id": 1671565751967,
+      "numeroConta": 3,
+      "pendenteAprovacao": true,
+      "limite": 10000,
+      "cliente": {
+        "salario": "20000",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-20T19:46:47.618Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "alguem",
+        "email": "aa@h.com",
+        "cpf": "08364103946",
+        "usuarioId": 10,
+        "endereco": {
+          "tipo": "2342",
+          "logradouro": "2342",
+          "numero": "234",
+          "complemento": "234",
+          "cidade": "234",
+          "estado": "234"
+        },
+        "id": 3
+      },
+      "dataCriacao": "2022-12-20T19:49:12.026Z",
       "saldo": 0,
       "historicoMovimentacoes": []
     }

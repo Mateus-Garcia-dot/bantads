@@ -37,7 +37,7 @@ export class ClienteService {
   }
 
   buscarClientePorUsuario(usuario: Usuario): Observable<Cliente[]> {
-    return this.HttpClient.get<Cliente[]>(`${this.BASE_URL}?usuario${usuario.id}`, this.httpOptions);
+    return this.HttpClient.get<Cliente[]>(`${this.BASE_URL}?usuarioId=${usuario.id}`, this.httpOptions);
   }
 
   listarTodos(): Observable<Cliente[]> {
