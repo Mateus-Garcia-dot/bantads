@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <h1>BANTADS</h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" >
+        <li class="nav-item" [hidden]="usuarioLogado?.perfil !== 'ADMIN'">
+          <a class="nav-link active" aria-current="page" [routerLink]="['admin/gerente/inserir']">Cadastrar Gerente</a>
+        </li>
+
+        <li class="nav-item" [hidden]="usuarioLogado?.perfil !== 'CLIENTE'">
+          <a class="nav-link active" aria-current="page" [routerLink]="['extrato']">Extrato</a>
+        </li>
+
+        
+        <li class="nav-item" [hidden]="usuarioLogado?.perfil !== 'GERENTE'">
+          <a class="nav-link active" aria-current="page" [routerLink]="['clientes']">Clientes</a>
+        </li>
+        <li class="nav-item" [hidden]="usuarioLogado?.perfil !== 'GERENTE'">
+          <a class="nav-link active" aria-current="page" [routerLink]="['clientes/top']">Top clientes</a>
+        </li>
+        <li class="nav-item" [hidden]="usuarioLogado?.perfil !== 'GERENTE'">
+          <a class="nav-link active" aria-current="page" [routerLink]="['gerente-consulta-cpf']">Buscar por Cpf</a>
+        </li>
+
+      </ul>
+      <form class="d-flex">
+        <ul *ngIf="usuarioLogado" class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link">{{ usuarioLogado.nome }}</a>
+          </li>
+          <li class="nav-item" (click)="logout()">
+            <a class="nav-link" >Logout</a>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>

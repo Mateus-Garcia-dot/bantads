@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Saldo</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cliente of clientes">
+              <th scope="row">1</th>
+              <td>{{ cliente.nome }}</td>
+              <td>{{ cliente.cpf }}</td>
+              <td>{{ cliente.endereco!.cidade }}</td>
+              <td>{{ cliente.endereco!.estado }}</td>
+              <!-- <td>{{ cliente.conta!.saldo }}</td> -->
+              <td><a class="btn btn-primary" [routerLink]="['/', 'clientes', 'detalhes', cliente.id]">ver detalhes</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

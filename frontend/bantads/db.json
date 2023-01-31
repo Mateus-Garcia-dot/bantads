@@ -1,0 +1,192 @@
+{
+  "usuarios": [
+    {
+      "nome": "admin",
+      "login": "admin",
+      "senha": "admin",
+      "perfil": "ADMIN",
+      "id": 6
+    },
+    {
+      "nome": "gerente",
+      "login": "gerente",
+      "senha": "gerente",
+      "perfil": "GERENTE",
+      "id": 7
+    },
+    {
+      "nome": "cliente",
+      "login": "cliente",
+      "senha": "cliente",
+      "perfil": "CLIENTE",
+      "id": 8
+    }
+  ],
+  "clientes": [
+    {
+      "salario": "10000",
+      "conta": {
+        "pendenteAprovacao": true,
+        "dataCriacao": "2022-12-20T21:04:03.419Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "nome": "cliente",
+      "email": "cliente@hotmail.com",
+      "cpf": "08364103946",
+      "usuarioId": 8,
+      "endereco": {
+        "tipo": "123",
+        "logradouro": "123",
+        "numero": "12",
+        "complemento": "123",
+        "cidade": "123",
+        "estado": "123"
+      },
+      "id": 1
+    }
+  ],
+  "gerentes": [
+    {
+      "login": "gerente",
+      "senha": "gerente",
+      "saldoPositivo": "1",
+      "saldoNegativo": "1",
+      "quantidadeClientes": 0,
+      "id": 1
+    }
+  ],
+  "contas": [
+    {
+      "id": 1671570261558,
+      "numeroConta": 1,
+      "pendenteAprovacao": true,
+      "gerente": {
+        "login": "gerente",
+        "senha": "gerente",
+        "saldoPositivo": "1",
+        "saldoNegativo": "1",
+        "quantidadeClientes": 0,
+        "id": 1
+      },
+      "limite": 5000,
+      "cliente": {
+        "salario": "10000",
+        "conta": {
+          "pendenteAprovacao": true,
+          "dataCriacao": "2022-12-20T21:04:03.419Z",
+          "saldo": 0,
+          "historicoMovimentacoes": []
+        },
+        "nome": "cliente",
+        "email": "cliente@hotmail.com",
+        "cpf": "08364103946",
+        "usuarioId": 8,
+        "endereco": {
+          "tipo": "123",
+          "logradouro": "123",
+          "numero": "12",
+          "complemento": "123",
+          "cidade": "123",
+          "estado": "123"
+        },
+        "id": 1
+      },
+      "dataCriacao": "2022-12-20T21:04:21.574Z",
+      "saldo": 0,
+      "historicoMovimentacoes": []
+    }
+  ],
+  "transacoes": [
+    {
+      "tipoTransacao": "SAQUE",
+      "valor": 100,
+      "contaOrigem": {
+        "id": 1671570261558,
+        "numeroConta": 1,
+        "pendenteAprovacao": true,
+        "gerente": {
+          "login": "gerente",
+          "senha": "gerente",
+          "saldoPositivo": "1",
+          "saldoNegativo": "1",
+          "quantidadeClientes": 0,
+          "id": 1
+        },
+        "limite": 5000,
+        "cliente": {
+          "salario": "10000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-20T21:04:03.419Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "cliente",
+          "email": "cliente@hotmail.com",
+          "cpf": "08364103946",
+          "usuarioId": 8,
+          "endereco": {
+            "tipo": "123",
+            "logradouro": "123",
+            "numero": "12",
+            "complemento": "123",
+            "cidade": "123",
+            "estado": "123"
+          },
+          "id": 1
+        },
+        "dataCriacao": "2022-12-20T21:04:21.574Z",
+        "saldo": -100,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T21:04:26.702Z",
+      "id": 1
+    },
+    {
+      "tipoTransacao": "DEPÓSITO",
+      "valor": 100,
+      "contaOrigem": {
+        "id": 1671570261558,
+        "numeroConta": 1,
+        "pendenteAprovacao": true,
+        "gerente": {
+          "login": "gerente",
+          "senha": "gerente",
+          "saldoPositivo": "1",
+          "saldoNegativo": "1",
+          "quantidadeClientes": 0,
+          "id": 1
+        },
+        "limite": 5000,
+        "cliente": {
+          "salario": "10000",
+          "conta": {
+            "pendenteAprovacao": true,
+            "dataCriacao": "2022-12-20T21:04:03.419Z",
+            "saldo": 0,
+            "historicoMovimentacoes": []
+          },
+          "nome": "cliente",
+          "email": "cliente@hotmail.com",
+          "cpf": "08364103946",
+          "usuarioId": 8,
+          "endereco": {
+            "tipo": "123",
+            "logradouro": "123",
+            "numero": "12",
+            "complemento": "123",
+            "cidade": "123",
+            "estado": "123"
+          },
+          "id": 1
+        },
+        "dataCriacao": "2022-12-20T21:04:21.574Z",
+        "saldo": 0,
+        "historicoMovimentacoes": []
+      },
+      "data": "2022-12-20T21:04:28.436Z",
+      "id": 2
+    }
+  ]
+}

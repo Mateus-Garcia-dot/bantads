@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label for="cpf">Insira o CPF:</label>
+  <input
+    [(ngModel)]="cpf"
+    type="text"
+    class="form-control"
+    id="cpf"
+    name="cpf"
+  />
+</div>
+
+<div class="form-group">
+  <button
+    [disabled]="!cpf"
+    (click)="buscar()"
+    type="button"
+    class="btn btn-primary"
+  >
+    <i class="fa fa-save" aria-hidden="true"></i> Buscar
+  </button>
+</div>
+
+
+<div *ngIf="cliente">
+  <app-gerente-cliente-detalhes [clienteId]="cliente.id"></app-gerente-cliente-detalhes>
+</div>

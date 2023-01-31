@@ -1,0 +1,81 @@
+<div class="container" *ngIf="conta">
+  <div class="card">
+    <div class="card-body">
+      <div>
+        SALDO: {{ conta.saldo }}
+      </div>
+      <div>
+        LIMITE: {{ conta.limite }}
+      </div>
+    </div>
+  </div>
+
+  <div class="operacoes">
+    <div class="card text-center">
+      <div class="card-body">
+        <div>
+          <label for="valorSaque">SACAR:</label>
+          <input
+            [(ngModel)]="valorSaque"
+            type="number"
+            class="form-control"
+            id="valorSaque"
+            name="valorSaque"
+            required
+          />
+        </div>
+        <button class="btn btn-info" (click)="sacar()">SACAR</button>
+      </div>
+    </div>
+
+    <div class="card text-center">
+      <div class="card-body">
+        <div>
+          <label for="valorDeposito">DEPOSITO:</label>
+          <input
+            [(ngModel)]="valorDeposito"
+            type="number"
+            class="form-control"
+            id="valorDeposito"
+            name="valorDeposito"
+            required
+          />
+        </div>
+
+        <button class="btn btn-info" (click)="depositar()">DEPOSITAR</button>
+      </div>
+    </div>
+
+    <div class="card text-center">
+      <div class="card-body">
+        <div>
+          <div>
+            <label for="valorTransferencia">TRANSFERIR:</label>
+            <input
+              [(ngModel)]="valorTransferencia"
+              type="number"
+              class="form-control"
+              id="valorTransferencia"
+              name="valorTransferencia"
+              required
+            />
+          </div>
+
+          <div>
+            <label for="numeroContaDestino">NUMERO CONTA DESTINO:</label>
+            <input
+              [(ngModel)]="numeroContaDestino"
+              type="number"
+              class="form-control"
+              id="numeroContaDestino"
+              name="numeroContaDestino"
+              required
+            />
+          </div>
+        </div>
+
+        <button class="btn btn-info" (click)="transferir()">TRANSFERIR</button>
+      </div>
+    </div>
+  </div>
+</div>

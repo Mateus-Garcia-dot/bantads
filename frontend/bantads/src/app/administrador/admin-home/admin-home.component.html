@@ -1,0 +1,35 @@
+<div class="col-sm-12 col-md-8" >
+    <h3>Gerentes</h3>
+    <div class="box-field">
+        <table class="table table-dark table-striped" >
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Login</th>
+                    <th>Senha</th>
+                    <th>Clientes</th>
+                    <th>Saldo Positivo</th>
+                    <th>Saldo Negativo</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="!loading">
+                <tr *ngFor="let gerente of gerentes">
+                    <td class="text-center" style="width: 300px;">
+                        <a  href="#" title="Editar" alt="Editar" class="btn btn-xs btn-info" style="float:left; margin-right:10px" [routerLink]="['/admin/gerente/editar', gerente.id]">
+                            <i class="fa fa-edit" aria-hidden="true"></i>Editar
+                        </a>
+                        <a  href="#" title="Remover" alt="Remover" class="btn btn-xs btn-danger" style="float:left" (click)="remover($event,gerente)">
+                            <i class="fa fa-times" aria-hidden="true"></i>Remover
+                        </a>
+                    </td>
+                    <td>{{gerente.login}}</td>
+                    <td>{{gerente.senha}}</td>
+                    <td>{{gerente.quantidadeClientes}}</td>
+                    <td>{{gerente.saldoPositivo}}</td>
+                    <td>{{gerente.saldoNegativo}}</td>
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+
+</div>

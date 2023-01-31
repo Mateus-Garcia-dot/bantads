@@ -1,0 +1,12 @@
+<div *ngIf="cliente">
+    <h3>Cliente</h3>
+    <div> Nome: {{ cliente.nome }}</div>
+    <div> CPF: {{ cliente.cpf }}</div>
+    <div> Cidade: {{ cliente.endereco!.cidade }}</div>
+    <div> Estado: {{ cliente.endereco!.estado }}</div>
+
+    <h3>Conta</h3>
+    <div> Número da conta: {{ cliente.conta!.numeroConta }}</div>
+    <div> Saldo: {{ cliente.conta!.saldo }}</div>
+    <div> Limite: {{ cliente.conta!.limite }}</div>
+</div>

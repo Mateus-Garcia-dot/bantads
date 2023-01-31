@@ -1,0 +1,51 @@
+<div class="container">
+  <form class="form-inline" #formFitro="ngForm">
+    <div class="col-4">
+      <label for="dataIncial">Data inicial</label>
+      <input
+        [(ngModel)]="filtro.dataIncial"
+        #dataIncial="ngModel" 
+        type="date"
+        class="form-control mb-2 mr-sm-2"
+        id="dataIncial"
+        name="dataIncial"
+      />
+    </div>
+    <div class="col-4">
+      <label for="dataFinal">Data final</label>
+      <input
+      [(ngModel)]="filtro.dataFinal"
+      #dataFinal="ngModel" 
+      type="date"
+      class="form-control mb-2 mr-sm-2"
+      id="dataFinal"
+      name="dataFinal"
+    />
+    </div>
+    <button [disabled]="!formFitro.valid" type="submit" class="btn btn-primary mb-2" (click)="filtrar()">
+      Filtrar
+    </button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Tipo da operação</th>
+        <th>Cliente de origem</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transacao of transacoes"  [ngClass]="{
+        saida: (transacao.tipoTransacao == tipoTransacao.SAQUE || transacao.tipoTransacao == tipoTransacao.TRANSFERENCIA), 
+        entrada: transacao.tipoTransacao == tipoTransacao.DEPOSITO
+       }">
+        <td>{{ transacao.data | date: "dd/MM/yyyy HH:mm" }}</td>
+        <td>{{ transacao.valor }}</td>
+        <td>{{ transacao.tipoTransacao }}</td>
+        <td>{{ transacao.contaOrigem?.cliente?.nome }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
