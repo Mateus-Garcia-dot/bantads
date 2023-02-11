@@ -30,26 +30,27 @@ export class CpfDirective implements Validator {
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
+    if(c.value) {
+      const cpf = c.value?.replace(/\D/g, '');
 
-    const cpf = c.value.replace(/\D/g, '');
-
-    if ([this.cpfLength].indexOf(cpf.length) < 0) {
-      return { cpfInvalido: true };
+      if ([this.cpfLength].indexOf(cpf.length) < 0) {
+        return { cpfInvalido: true };
+      }
+  
+      if (/^([0-9])\1*$/.test(cpf)) {
+        return { cpfInvalido: true };
+      }
+  
+      const cpfArr: number[] = cpf.split('').reverse().slice(2);
+  
+      cpfArr.unshift(this.buildDigit(cpfArr));
+      cpfArr.unshift(this.buildDigit(cpfArr));
+  
+      if (cpf !== cpfArr.reverse().join('')) {
+        return { cpfInvalido: true };
+      }
     }
-
-    if (/^([0-9])\1*$/.test(cpf)) {
-      return { cpfInvalido: true };
-    }
-
-    const cpfArr: number[] = cpf.split('').reverse().slice(2);
-
-    cpfArr.unshift(this.buildDigit(cpfArr));
-    cpfArr.unshift(this.buildDigit(cpfArr));
-
-    if (cpf !== cpfArr.reverse().join('')) {
-      return { cpfInvalido: true };
-    }
-
+  
     return null;
   }
 }

@@ -8,6 +8,8 @@ import { ClienteExtratoComponent } from './cliente-extrato/cliente-extrato.compo
 import { NumericoDirectiveModule } from 'src/shared/directives/shared/directives/numerico-directive/numerico-directive.module';
 import { CpfDirectiveModule } from 'src/shared/directives/cpf-directive/cpf-directive.module';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -20,6 +22,8 @@ export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
   ],
   imports: [
+    MatFormFieldModule,
+    MatInputModule,
     CommonModule,
     FormsModule,
     RouterModule,
