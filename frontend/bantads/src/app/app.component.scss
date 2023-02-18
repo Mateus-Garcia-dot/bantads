@@ -1,0 +1,17 @@
+@import '~@angular/material/theming';
+
+.container-fluid {
+    padding: 0px;
+}
+
+nav {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #3f51b5;;
+
+    a {
+      color: white;
+    }
+}
+
+
