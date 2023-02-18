@@ -41,7 +41,7 @@ export class ClienteAutocadastroComponent implements OnInit {
       this.usuarioService.registrar(new Usuario(undefined, this.cliente.nome, this.cliente.nome, this.cliente.nome, 'CLIENTE'))
       .pipe(
         switchMap(login => {
-          this.login = login; 
+          this.login = login;
           this.cliente.usuarioId = this.login.id;
           return this.clienteService.autocadastrar(this.cliente)
         } )
@@ -74,6 +74,10 @@ export class ClienteAutocadastroComponent implements OnInit {
         }
       });
     }
+  }
+
+  goToLogin(){
+    this.router.navigate(['/login'])
   }
 
   private redirecionaParaHome() {

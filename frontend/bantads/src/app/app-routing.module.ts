@@ -19,11 +19,11 @@ const routes: Routes = [
   ...LoginRoutes,
   { path: 'home-cliente', component: ClienteHomeComponent, canActivate: [AuthGuard], data: { role: 'CLIENTE' }},
   { path: 'autocadastro', component: ClienteAutocadastroComponent },
-  { path: 'extrato', component: ClienteExtratoComponent },
+  { path: 'extrato', component: ClienteExtratoComponent, canActivate: [AuthGuard], data: { role: 'CLIENTE' }},
   { path: 'home-admin', component: AdminHomeComponent, canActivate: [AuthGuard], data: { role: 'ADMIN' }},
   { path: 'admin/gerente/editar/:id',  component: AdministradorEditarComponent, canActivate: [AuthGuard], data: { role: 'ADMIN' }},
   { path: 'admin/gerente/inserir', component: AdministradorInserirComponent, canActivate: [AuthGuard], data: { role: 'ADMIN' }},
-  
+
   { path: 'home-gerente', component: GerenteHomeComponent, canActivate: [AuthGuard], data: { role: 'GERENTE' }},
   { path: 'clientes', component: GerenteConsultaClientesComponent, canActivate: [AuthGuard], data: { role: 'GERENTE' }},
   { path: 'clientes/detalhes/:id', component: GerenteClienteDetalhesComponent, canActivate: [AuthGuard], data: { role: 'GERENTE' }},

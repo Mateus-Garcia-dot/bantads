@@ -7,20 +7,10 @@
   <form #formSolicitacao="ngForm">
     <div class="form-group">
       <label for="salario">Informe o motivo:</label>
-      <input
-        [(ngModel)]="motivoCadastroRecusado.motivo"
-        #motivo="ngModel"
-        type="text"
-        class="form-control"
-        id="motivo"
-        name="motivo"
-        required
-      />
-      <div
-        *ngIf=" motivo.errors && (motivo.dirty || motivo.touched)"
-        class="alert alert-danger"
-      >
-        <div [hidden]="!motivo.errors?.['required']">
+      <input [(ngModel)]="motivoCadastroRecusado.motivo" #motivo="ngModel" type="text" class="form-control" id="motivo"
+        name="motivo" required />
+      <div *ngIf=" motivo.errors && (motivo.dirty || motivo.touched)" class="alert alert-danger">
+        <div [hidden]="!motivo?.errors?.['required']">
           Digite o motivo
         </div>
       </div>
@@ -28,18 +18,11 @@
   </form>
 </div>
 <div class="modal-footer">
-    <button
-    [disabled]="!formSolicitacao.valid"
-    type="button"
-    class="btn btn-outline-danger"
+  <button [disabled]="!formSolicitacao.valid" type="button" class="btn btn-outline-danger"
     (click)="recusarSolicitacao()">
     Recusar
   </button>
-  <button
-    type="button"
-    class="btn btn-outline-dark"
-    (click)="activeModal.close()"
-  >
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">
     Fechar
   </button>
 </div>

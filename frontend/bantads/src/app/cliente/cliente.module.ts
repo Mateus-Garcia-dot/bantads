@@ -10,6 +10,7 @@ import { CpfDirectiveModule } from 'src/shared/directives/cpf-directive/cpf-dire
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
 
@@ -23,6 +24,7 @@ export const options: Partial<null|IConfig> | (() => Partial<IConfig>) = null;
   ],
   imports: [
     MatFormFieldModule,
+    MatButtonModule,
     MatInputModule,
     CommonModule,
     FormsModule,
