@@ -22,6 +22,9 @@
                     <th class="py-3 px-4 text-left">Nome</th>
                     <th class="py-3 px-4 text-left">CPF</th>
                     <th class="py-3 px-4 text-left">
+                      Quantidade de clientes
+                    </th>
+                    <th class="py-3 px-4 text-left">
                       Sum saldo positivo cliente
                     </th>
                     <th class="py-3 px-4 text-left">
@@ -35,6 +38,7 @@
                     class="hover:bg-gray-100">
                     <td class="px-4 py-3">{{ gerente.name }}</td>
                     <td class="px-4 py-3">{{ gerente.cpf }}</td>
+                    <td class="px-4 py-3">{{ qntClientes[i] }}</td>
                     <td class="px-4 py-3">{{ positiveBalances[i] }}</td>
                     <td class="px-4 py-3">{{ negativeBalances[i] }}</td>
                   </tr>

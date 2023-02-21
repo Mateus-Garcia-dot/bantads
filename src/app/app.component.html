@@ -50,6 +50,18 @@
             >adicionar</a
           >
           <a
+            *ngIf="authLevel === autenticacaoType.ADMIN"
+            href="#"
+            [routerLink]="['admin/cliente/listar']"
+            [ngClass]="
+              this.router.url === 'admin/cliente/listar'
+                ? 'bg-gray-900'
+                : 'bg-gray-800'
+            "
+            class="px-3 py-2 text-sm no-underline rounded text-white"
+            >listar clientes</a
+          >
+          <a
             *ngIf="authLevel === autenticacaoType.GERENTE"
             href="#"
             [routerLink]="['gerente/auto\-cadastro']"
