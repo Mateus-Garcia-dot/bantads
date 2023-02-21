@@ -1,10 +1,14 @@
-FROM node:16-alpine
+FROM node:latest as node
 
 WORKDIR /app
 
 COPY . .
 
 RUN npm install
-EXPOSE 4200
 
-CMD ["npm", "start"]
+RUN npm run build --prod
+
+#stage 2
+FROM nginx:alpine
+
+COPY --from=node /app/dist/bantads /usr/share/nginx/html
