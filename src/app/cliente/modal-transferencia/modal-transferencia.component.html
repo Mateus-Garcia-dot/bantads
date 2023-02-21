@@ -2,11 +2,10 @@
   class="p-0 main-modal absolute w-full h-full inset-0 z-50 overflow-auto flex justify-center items-center animated fadeIn faster"
   style="background: rgba(0, 0, 0, 0.7)">
   <div
-    class="border border-teal-500 modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+    class="border border-teal-500 modal-container text-black bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
     <div class="modal-content py-4 text-left px-6">
-      <!--Title-->
       <div class="flex justify-between items-center pb-3">
-        <p class="text-2xl font-bold">Header</p>
+        <p class="text-2xl font-bold">Transferencia</p>
         <div class="modal-close cursor-pointer z-50">
           <svg
             (click)="closeModal()"
@@ -20,25 +19,81 @@
           </svg>
         </div>
       </div>
-      <!--Body-->
-      <div class="my-5">
-        <p>
-          Inliberali Persius Multi iustitia pronuntiaret expeteretur sanos
-          didicisset laus angusti ferrentur arbitrium arbitramur huic
-          desiderent.?
-        </p>
-      </div>
-      <!--Footer-->
-      <div class="flex justify-end pt-2">
-        <button
-          (click)="closeModal()"
-          class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">
-          Cancel
-        </button>
-        <button
-          class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-          Confirm
-        </button>
+      <div class="">
+        <form
+          class="justfy-self-center"
+          #formSaque="ngForm"
+          (keyup.enter)="onSubmit()">
+          <!-- div for cpf -->
+          <div class="pr-2 grow group">
+            <label class="text-sm">CPF</label>
+            <input
+              type="text"
+              mask="000.000.000-00"
+              placeholder="000.000.000-00"
+              name="cpf"
+              [(ngModel)]="cpf"
+              #cpf1="ngModel"
+              class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+              required />
+            <div
+              *ngIf="cpf1.errors && formSaque.submitted"
+              class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
+              role="alert">
+              <strong class="font-bold">Erro! :(</strong>
+              <div [hidden]="!cpf1.errors['required']">
+                o campo é obrigatório
+              </div>
+              <div [hidden]="!cpf1.errors['mask']">o campo está invalido</div>
+            </div>
+          </div>
+
+          <!-- div for valor -->
+          <div class="pr-2 grow group">
+            <label class="text-sm">Valor</label>
+            <input
+              type="text"
+              mask="separator.2"
+              thousandSeparator=""
+              placeholder="0000,00"
+              name="valor"
+              [(ngModel)]="valor"
+              #saque="ngModel"
+              class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
+              required />
+            <div
+              *ngIf="saque.errors && formSaque.submitted"
+              class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
+              role="alert">
+              <strong class="font-bold">Erro! :(</strong>
+              <div [hidden]="!saque.errors['required']">
+                o campo é obrigatório
+              </div>
+              <div [hidden]="!saque.errors['mask']">o campo está invalido</div>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-2">
+            <div
+              [hidden]="erroMsg === ''"
+              class="bg-red-100 flex flex-col border-red-400 text-red-700 px-4 py-3 rounded relative m-2"
+              role="alert">
+              <div *ngIf="erroMsg !== ''">{{ erroMsg }}</div>
+            </div>
+            <button
+              type="button"
+              (click)="closeModal()"
+              class="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300">
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              (click)="onSubmit()"
+              class="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+              Confirmar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

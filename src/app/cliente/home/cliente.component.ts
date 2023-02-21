@@ -25,8 +25,6 @@ export class ClienteComponent implements OnInit {
 
   constructor(
     public crudAuth: LoginService,
-    private crudConta: CrudContaService,
-    private crudCliente: CrudClienteService,
     public matDialog: MatDialog,
     public autenticacaoService: CrudAutenticacaoService
   ) { }
