@@ -1,21 +1,20 @@
 export class Cliente {
   constructor(
-    public id?: number,
-    public nome?: string,
+    public uuid?: string,
+    public name?: string,
     public cpf?: string,
-    public endereco?: number,
-    public telefone?: string,
-    public salario?: number
-  ) {}
+    public address?: number,
+    public phone?: string,
+    public salary?: number
+  ) { }
 
   public toJson() {
     return {
-      id: this.id,
-      nome: this.nome,
+      name: this.name,
       cpf: this.cpf,
-      endereco: this.endereco,
-      telefone: this.telefone,
-      salario: this.salario,
+      address: this.address,
+      phone: this.phone,
+      salary: this.salary,
     };
   }
 }

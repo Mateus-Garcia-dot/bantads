@@ -29,15 +29,15 @@ export class ListarClientesComponent implements OnInit {
     private crudCliente: CrudClienteService,
     private crudEndereco: CrudEnderecoService,
     private crudAutenticacao: CrudAutenticacaoService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     const contas = await this.crudContas.getContas();
     for (const conta of contas) {
-      const cliente = await this.crudCliente.getCliente(conta.cliente!);
-      const endereco = await this.crudEndereco.getEndereco(cliente.endereco!);
+      const cliente = await this.crudCliente.getCliente(conta.customer!);
+      const endereco = await this.crudEndereco.getEndereco(cliente.address!);
       const auth = await this.crudAutenticacao.getAutenticacaoByContaAndTipo(
-        conta.id!,
+        conta.uuid!,
         autenticacaoType.CLIENTE
       );
       this.mesh.push({
@@ -48,7 +48,7 @@ export class ListarClientesComponent implements OnInit {
       });
     }
     this.mesh.sort((a, b) => {
-      return a.cliente.nome?.localeCompare(b.cliente.nome!)!;
+      return a.cliente.name?.localeCompare(b.cliente.name!)!;
     });
   }
 }

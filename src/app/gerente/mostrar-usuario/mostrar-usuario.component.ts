@@ -4,6 +4,7 @@ import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-au
 import { CrudClienteService } from 'src/app/cliente/services/crud-cliente.service';
 import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
 import { CrudEnderecoService } from 'src/app/endereco/services/crud-endereco.service';
+import db from 'src/app/shared/database/database';
 import { Autenticacao } from 'src/app/shared/models/autenticacao.model';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 import { Conta } from 'src/app/shared/models/conta.model';
@@ -21,26 +22,19 @@ export class MostrarUsuarioComponent implements OnInit {
   autenticacao!: Autenticacao;
 
   constructor(
-    private crudEndereco: CrudEnderecoService,
-    private crudCliente: CrudClienteService,
-    private crudConta: CrudContaService,
-    private crudAutenticacao: CrudAutenticacaoService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       const id = params.get('id');
       if (id) {
-        this.autenticacao = await this.crudAutenticacao.getAutenticacao(
-          Number(id)
-        );
-        this.conta = await this.crudConta.getConta(this.autenticacao.conta!);
-        this.cliente = await this.crudCliente.getCliente(this.conta.cliente!);
-        this.endereco = await this.crudEndereco.getEndereco(
-          this.cliente.endereco!
-        );
+        const customerResponse = (await db.get(`/customer/${id}`)).data;
+        this.conta = new Conta(customerResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
+        this.cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
+        this.endereco = new Endereco(customerResponse.address.uuid, customerResponse.address.type, customerResponse.address.street, customerResponse.address.number, customerResponse.address.city, customerResponse.address.complement, customerResponse.address.cep, customerResponse.address.state);
+        this.autenticacao = new Autenticacao(customerResponse.authentication.uuid, customerResponse.authentication.login, customerResponse.authentication.password, customerResponse.authentication.isPending, customerResponse.authentication.isApproved);
       }
     });
   }

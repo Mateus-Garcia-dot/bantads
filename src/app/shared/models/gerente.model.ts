@@ -1,19 +1,21 @@
+import { Autenticacao } from './autenticacao.model';
 import { Conta } from './conta.model';
 
 export class Gerente {
   constructor(
-    public id?: number,
-    public nome?: string,
+    public uuid?: string,
+    public name?: string,
     public cpf?: string,
-    public telefone?: string
-  ) {}
+    public telephone?: string,
+    public authentication?: Autenticacao
+  ) { }
 
   toJson() {
     return {
-      id: this.id,
-      nome: this.nome,
+      uuid: this.uuid,
+      name: this.name,
       cpf: this.cpf,
-      telefone: this.telefone,
+      telephone: this.telephone,
     };
   }
 }

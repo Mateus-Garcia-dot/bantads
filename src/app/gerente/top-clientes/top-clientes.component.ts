@@ -3,6 +3,7 @@ import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-au
 import { CrudClienteService } from 'src/app/cliente/services/crud-cliente.service';
 import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
 import { CrudEnderecoService } from 'src/app/endereco/services/crud-endereco.service';
+import db from 'src/app/shared/database/database';
 import {
   Autenticacao,
   autenticacaoType,
@@ -29,17 +30,15 @@ export class TopClientesComponent implements OnInit {
     private crudCliente: CrudClienteService,
     private crudEndereco: CrudEnderecoService,
     private crudAutenticacao: CrudAutenticacaoService
-  ) {}
+  ) { }
 
   async ngOnInit() {
-    const contas = await this.crudContas.getContas();
-    for (const conta of contas) {
-      const cliente = await this.crudCliente.getCliente(conta.cliente!);
-      const endereco = await this.crudEndereco.getEndereco(cliente.endereco!);
-      const auth = await this.crudAutenticacao.getAutenticacaoByContaAndTipo(
-        conta.id!,
-        autenticacaoType.CLIENTE
-      );
+    const customersResponse = (await db.get('/customer/top')).data;
+    for (const customerResponse of customersResponse) {
+      const conta = new Conta(customersResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
+      const cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
+      const endereco = new Endereco(customerResponse.address.uuid, customerResponse.address.type, customerResponse.address.street, customerResponse.address.number, customerResponse.address.city, customerResponse.address.complement, customerResponse.address.cep, customerResponse.address.state);
+      const auth = new Autenticacao(customerResponse.authentication.uuid, customerResponse.authentication.login, customerResponse.authentication.password, customerResponse.authentication.isPending, customerResponse.authentication.isApproved);
       this.mesh.push({
         conta,
         cliente,
@@ -47,9 +46,5 @@ export class TopClientesComponent implements OnInit {
         autenticacao: auth,
       });
     }
-    this.mesh.sort((a, b) => {
-      return b.conta.saldo! - a.conta.saldo!;
-    });
-    this.mesh = this.mesh.slice(0, 5);
   }
 }

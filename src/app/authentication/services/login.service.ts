@@ -8,7 +8,7 @@ const LS_CHAVE: string = 'loggedUser';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private crudAuthService: CrudAutenticacaoService) {}
+  constructor(private crudAuthService: CrudAutenticacaoService) { }
 
   async isLoggedIn(): Promise<boolean> {
     return localStorage[LS_CHAVE] !== undefined;
@@ -18,37 +18,34 @@ export class LoginService {
     delete localStorage[LS_CHAVE];
   }
 
-  public async login(email: string, senha: string): Promise<boolean> {
-    const autenticacao = await db.get('/autenticacao', {
-      params: {
-        email,
-        senha,
-      },
-    });
-    const match = autenticacao.data.find(
-      (auth: any) => auth.login === email && auth.senha === senha
-    );
-    if (!match) {
+  public async login(login: string, password: string): Promise<boolean> {
+    try {
+      const autenticacao = await db.post('/login', {
+        login,
+        password,
+      });
+      localStorage[LS_CHAVE] = JSON.stringify(autenticacao.data);
+      return true;
+    } catch (err) {
       return false;
     }
-    if (match.isPending) {
-      return false;
-    }
-    localStorage[LS_CHAVE] = JSON.stringify(match.id);
-    return true;
   }
 
   public async getPermissionLevel() {
-    const LS = localStorage[LS_CHAVE];
+    const LS = JSON.parse(localStorage[LS_CHAVE]).type;
     if (!LS) {
       return 0;
     }
-    const auth = await this.crudAuthService.getAutenticacao(Number(LS));
-    return auth.tipo;
+    return LS;
   }
 
   public getAutenticacaoId() {
-    const id = localStorage[LS_CHAVE];
-    return Number(id);
+    const id = JSON.parse(localStorage[LS_CHAVE]).uuid;
+    return id;
+  }
+
+  public getCustumerId() {
+    const id = JSON.parse(localStorage[LS_CHAVE]).customer;
+    return id;
   }
 }

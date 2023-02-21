@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
-import { LoginService } from 'src/app/authentication/services/login.service';
-import { CrudClienteService } from 'src/app/cliente/services/crud-cliente.service';
-import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
-import { CrudEnderecoService } from 'src/app/endereco/services/crud-endereco.service';
+import db from 'src/app/shared/database/database';
 import {
   Autenticacao,
-  autenticacaoType,
 } from 'src/app/shared/models/autenticacao.model';
 import { Cliente } from 'src/app/shared/models/cliente.model';
 import { Conta } from 'src/app/shared/models/conta.model';
@@ -25,30 +20,15 @@ export class ListarUsuariosComponent implements OnInit {
     autenticacao: Autenticacao;
   }[] = [];
 
-  constructor(
-    private crudContas: CrudContaService,
-    private crudCliente: CrudClienteService,
-    private crudEndereco: CrudEnderecoService,
-    private crudAutenticacao: CrudAutenticacaoService,
-    private loginService: LoginService
-  ) {}
+  constructor() { }
 
   async ngOnInit() {
-    const authGerenteId = this.loginService.getAutenticacaoId();
-    const getAuthGerent = await this.crudAutenticacao.getAutenticacao(
-      authGerenteId
-    );
-    const contas = await this.crudContas.getContaByGerenteId(
-      getAuthGerent.conta!
-    );
-    for (const conta of contas) {
-      const cliente = await this.crudCliente.getCliente(conta.cliente!);
-      const endereco = await this.crudEndereco.getEndereco(cliente.endereco!);
-      const auth = await this.crudAutenticacao.getAutenticacaoByContaAndTipo(
-        conta.id!,
-        autenticacaoType.CLIENTE
-      );
-
+    const customersResponse = (await db.get('/customer')).data;
+    for (const customerResponse of customersResponse) {
+      const conta = new Conta(customersResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
+      const cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
+      const endereco = new Endereco(customerResponse.address.uuid, customerResponse.address.type, customerResponse.address.street, customerResponse.address.number, customerResponse.address.city, customerResponse.address.complement, customerResponse.address.cep, customerResponse.address.state);
+      const auth = new Autenticacao(customerResponse.authentication.uuid, customerResponse.authentication.login, customerResponse.authentication.password, customerResponse.authentication.isPending, customerResponse.authentication.isApproved);
       this.mesh.push({
         conta,
         cliente,
@@ -57,7 +37,7 @@ export class ListarUsuariosComponent implements OnInit {
       });
     }
     this.mesh.sort((a, b) => {
-      return a.cliente.nome?.localeCompare(b.cliente.nome!)!;
-    });
+      return a.cliente.name?.localeCompare(b.cliente.name!)!;
+    })
   }
 }

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
 import { LoginService } from 'src/app/authentication/services/login.service';
 import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
+import db from 'src/app/shared/database/database';
 
 @Component({
   selector: 'app-modal-saque',
@@ -20,7 +21,7 @@ export class ModalSaqueComponent implements OnInit {
     private crudConta: CrudContaService,
     private loginService: LoginService,
     private autenticacaoService: CrudAutenticacaoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     return;
@@ -40,18 +41,12 @@ export class ModalSaqueComponent implements OnInit {
       this.formSaque.control.markAllAsTouched();
       return;
     }
-    const autenticacaoId = this.loginService.getAutenticacaoId();
-    const autenticacao = await this.autenticacaoService.getAutenticacao(
-      autenticacaoId
-    );
-    const conta = await this.crudConta.getConta(autenticacao.conta!);
     try {
-      await this.crudConta.saque(conta.cliente!, this.valor);
-      this.dialogRef.close();
+      await db.post('/account/withdraw/' + this.loginService.getCustumerId(), { amount: this.valor })
     } catch (err) {
-      if (err instanceof Error) {
-        this.erroMsg = err.message;
-      }
+      this.erroMsg = "Fundos insuficientes";
+      return
     }
+    this.dialogRef.close();
   }
 }

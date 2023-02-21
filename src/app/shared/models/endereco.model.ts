@@ -1,25 +1,24 @@
 export class Endereco {
   constructor(
-    public id?: number,
-    public tipo?: string,
-    public logradouro?: string,
-    public numero?: number,
-    public cidade?: string,
-    public complemento?: string,
+    public id?: string,
+    public type?: string,
+    public street?: string,
+    public number?: number,
+    public city?: string,
+    public complement?: string,
     public cep?: string,
-    public estado?: string
-  ) {}
+    public state?: string
+  ) { }
 
   public toJson() {
     return {
-      id: this.id,
-      tipo: this.tipo,
-      logradouro: this.logradouro,
-      numero: this.numero,
-      cidade: this.cidade,
-      complemento: this.complemento,
+      type: this.type,
+      street: this.street,
+      number: this.number,
+      city: this.city,
+      complement: this.complement,
       cep: this.cep,
-      estado: this.estado,
+      state: this.state,
     };
   }
 }

@@ -8,9 +8,9 @@ import { Endereco } from 'src/app/shared/models/endereco.model';
   providedIn: 'root',
 })
 export class CrudClienteService {
-  constructor() {}
+  constructor() { }
 
-  public async getCliente(id: number) {
+  public async getCliente(id: string) {
     const response = await db.get(`/cliente/${id}`);
     return new Cliente(
       response.data.id,
@@ -52,12 +52,12 @@ export class CrudClienteService {
   }
 
   public async updateCliente(cliente: Cliente) {
-    const response = await db.patch(`/cliente/${cliente.id}`, {
-      nome: cliente.nome,
+    const response = await db.patch(`/cliente/${cliente.uuid}`, {
+      nome: cliente.name,
       cpf: cliente.cpf,
-      endereco: cliente.endereco,
-      telefone: cliente.telefone,
-      salario: cliente.salario,
+      endereco: cliente.address,
+      telefone: cliente.phone,
+      salario: cliente.salary,
     });
     return new Cliente(
       response.data.id,

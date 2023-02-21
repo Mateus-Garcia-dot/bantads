@@ -42,7 +42,7 @@
           placeholder="******"
           name="senha"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
-          [(ngModel)]="autenticacao.senha"
+          [(ngModel)]="autenticacao.password"
           #senhaInput="ngModel" />
         <span
           *ngIf="senhaInput.errors && senhaInput.touched"
@@ -71,7 +71,7 @@
           placeholder="nome"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="nome"
-          [(ngModel)]="cliente.nome"
+          [(ngModel)]="cliente.name"
           #nome="ngModel"
           required />
         <span *ngIf="nome.errors && nome.touched" class="absolute h-fit">
@@ -127,7 +127,7 @@
           placeholder="(00) 00000-0000"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="telefone"
-          [(ngModel)]="cliente.telefone"
+          [(ngModel)]="cliente.phone"
           #telefone="ngModel"
           required />
         <span
@@ -157,7 +157,7 @@
           thousandSeparator=""
           placeholder="0000,00"
           name="salario"
-          [(ngModel)]="cliente.salario"
+          [(ngModel)]="cliente.salary"
           #salario="ngModel"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           required />
@@ -188,7 +188,7 @@
           type="text"
           placeholder="rua/avenida"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
-          [(ngModel)]="endereco.tipo"
+          [(ngModel)]="endereco.type"
           name="tipo"
           #tipo="ngModel"
           required />
@@ -214,7 +214,7 @@
           type="text"
           placeholder="logradouro"
           name="logradouro"
-          [(ngModel)]="endereco.logradouro"
+          [(ngModel)]="endereco.street"
           #logradouro="ngModel"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           required />
@@ -245,7 +245,7 @@
           placeholder="0000"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="numero"
-          [(ngModel)]="endereco.numero"
+          [(ngModel)]="endereco.number"
           #numero="ngModel"
           required />
         <span *ngIf="numero.errors && numero.touched" class="absolute h-fit">
@@ -273,7 +273,7 @@
           type="text"
           placeholder="complemento"
           name="complemento"
-          [(ngModel)]="endereco.complemento"
+          [(ngModel)]="endereco.complement"
           #complemento="ngModel"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           required />
@@ -333,7 +333,7 @@
           placeholder="cidade"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="cidade"
-          [(ngModel)]="endereco.cidade"
+          [(ngModel)]="endereco.city"
           #cidade="ngModel"
           required />
         <span *ngIf="cidade.errors && cidade.touched" class="absolute h-fit">
@@ -360,7 +360,7 @@
           placeholder="estado"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="estado"
-          [(ngModel)]="endereco.estado"
+          [(ngModel)]="endereco.state"
           #estado="ngModel"
           required />
         <span *ngIf="estado.errors && estado.touched" class="absolute h-fit">

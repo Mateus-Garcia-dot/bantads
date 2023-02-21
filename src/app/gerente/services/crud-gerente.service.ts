@@ -7,7 +7,7 @@ import { Gerente } from 'src/app/shared/models/gerente.model';
   providedIn: 'root',
 })
 export class CrudGerenteService {
-  constructor(private contaService: CrudContaService) {}
+  constructor(private contaService: CrudContaService) { }
 
   async getGerentes(): Promise<Gerente[]> {
     const response = await db.get('/gerente');
@@ -20,7 +20,7 @@ export class CrudGerenteService {
     }, []);
   }
 
-  async getGerente(id: number): Promise<Gerente> {
+  async getGerente(id: string): Promise<Gerente> {
     const response = await db.get(`/gerente/${id}`);
     return new Gerente(
       response.data.id,
@@ -41,7 +41,7 @@ export class CrudGerenteService {
   }
 
   async updateGerente(gerente: Gerente): Promise<Gerente> {
-    const response = await db.patch(`/gerente/${gerente.id}`, gerente.toJson());
+    const response = await db.patch(`/gerente/${gerente.uuid}`, gerente.toJson());
     return new Gerente(
       response.data.id,
       response.data.nome,
@@ -50,7 +50,7 @@ export class CrudGerenteService {
     );
   }
 
-  async deleteGerente(id: number): Promise<void> {
+  async deleteGerente(id: string): Promise<void> {
     await db.delete(`/gerente/${id}`);
   }
 
@@ -61,7 +61,7 @@ export class CrudGerenteService {
     for (let gerente of gerentes) {
       conta.push([
         gerente,
-        (await this.contaService.getContaByGerenteId(gerente.id!)).length,
+        (await this.contaService.getContaByGerenteId(gerente.uuid!)).length,
       ]);
     }
     conta.sort((a: any, b: any) => a[1] - b[1]);

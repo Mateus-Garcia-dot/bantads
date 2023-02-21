@@ -6,24 +6,23 @@ export enum autenticacaoType {
 
 export class Autenticacao {
   constructor(
-    public id?: number,
+    public uuid?: string,
     public login?: string,
-    public senha?: string,
-    public tipo?: autenticacaoType,
+    public password?: string,
+    public type?: autenticacaoType,
     public isPending?: boolean,
-    public isAprovada?: boolean,
-    public conta?: number
-  ) {}
+    public isApproved?: boolean,
+    public customer?: string
+  ) { }
 
   toJson() {
     return {
-      id: this.id,
       login: this.login,
-      senha: this.senha || undefined,
-      tipo: this.tipo,
-      public: this.isAprovada,
-      conta: this.conta,
+      password: this.password,
+      type: this.type,
       isPending: this.isPending,
+      isApproved: this.isApproved,
+      customer: this.customer,
     };
   }
 }

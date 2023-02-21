@@ -4,20 +4,20 @@ import { Movimentacao } from './movimentacao.model';
 
 export class Conta {
   constructor(
-    public id?: number,
-    public cliente?: number,
-    public gerente?: number,
-    public limite?: number,
-    public saldo?: number
-  ) {}
+    public uuid?: string,
+    public customer?: string,
+    public manager?: string,
+    public limitAmount?: number,
+    public balance?: number
+  ) { }
 
   public toJson() {
     return {
-      id: this.id,
-      cliente: this.cliente,
-      gerente: this.gerente,
-      limite: this.limite,
-      saldo: this.saldo,
+      uuid: this.uuid,
+      customer: this.customer,
+      manager: this.manager,
+      limitAmount: this.limitAmount,
+      balance: this.balance,
     };
   }
 }

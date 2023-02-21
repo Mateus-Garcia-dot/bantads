@@ -24,6 +24,7 @@
     "@narik/custom-validators": "^8.0.0",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.2",
+    "cors": "^2.8.5",
     "ngx-mask": "^14.2.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

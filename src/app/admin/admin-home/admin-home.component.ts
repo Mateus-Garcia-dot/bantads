@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
 import { CrudGerenteService } from 'src/app/gerente/services/crud-gerente.service';
+import db from 'src/app/shared/database/database';
 import { Gerente } from 'src/app/shared/models/gerente.model';
 
 @Component({
@@ -11,38 +12,20 @@ import { Gerente } from 'src/app/shared/models/gerente.model';
 export class AdminHomeComponent implements OnInit {
   gerentes!: Gerente[];
 
-  positiveBalances = [0];
-  negativeBalances = [0];
+  positiveBalances!: Array<number>;
+  negativeBalances!: Array<number>;
 
-  constructor(
-    private crudGerentes: CrudGerenteService,
-    private crudContas: CrudContaService
-  ) {}
+  constructor() { }
 
   async ngOnInit() {
-    this.gerentes = await this.crudGerentes.getGerentes();
-    console.log(this.gerentes);
-    this.positiveBalances = await Promise.all(
-      this.gerentes.map(gerente => this.sumPositiveBalance(gerente))
-    );
-    this.negativeBalances = await Promise.all(
-      this.gerentes.map(gerente => this.sumNegativeBalance(gerente))
-    );
-  }
-
-  async sumNegativeBalance(gerente: Gerente) {
-    const contas = await this.crudContas.getContaByGerenteId(gerente.id!);
-    return contas.reduce(
-      (acc, conta) => (conta.saldo! < 0 ? acc + conta.saldo! : 0),
-      0
-    );
-  }
-
-  async sumPositiveBalance(gerente: Gerente) {
-    const contas = await this.crudContas.getContaByGerenteId(gerente.id!);
-    return contas.reduce(
-      (acc, conta) => (conta.saldo! >= 0 ? acc + conta.saldo! : acc),
-      0
-    );
+    this.gerentes = []
+    this.positiveBalances = [];
+    this.negativeBalances = [];
+    const datas = await db.get('/manager/account');
+    for (let data of datas.data) {
+      this.gerentes.push(new Gerente(data.uuid, data.name, data.cpf, data.telephone, data.authentication))
+      this.positiveBalances.push(data.sumPositiveBalance);
+      this.negativeBalances.push(data.sumNegativeBalance)
+    }
   }
 }

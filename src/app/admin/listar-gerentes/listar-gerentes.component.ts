@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
-import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
-import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
-import { CrudGerenteService } from 'src/app/gerente/services/crud-gerente.service';
+import db from 'src/app/shared/database/database';
 import {
   Autenticacao,
-  autenticacaoType,
 } from 'src/app/shared/models/autenticacao.model';
 import { Gerente } from 'src/app/shared/models/gerente.model';
 
@@ -15,49 +11,31 @@ import { Gerente } from 'src/app/shared/models/gerente.model';
   styleUrls: ['./listar-gerentes.component.scss'],
 })
 export class ListarGerentesComponent implements OnInit {
-  gerentes!: Gerente[];
+  gerentes: Gerente[] = [];
   autenticacao: Autenticacao[] = [];
 
-  constructor(
-    private crudGerente: CrudGerenteService,
-    private crudAutenticacao: CrudAutenticacaoService,
-    private crudConta: CrudContaService,
-    private router: Router
-  ) {}
+  constructor() { }
 
   async ngOnInit() {
-    this.gerentes = await this.crudGerente.getGerentes();
-    for (let gerente of this.gerentes) {
-      let auth = await this.crudAutenticacao.getAutenticacaoByContaAndTipo(
-        gerente.id!,
-        autenticacaoType.GERENTE
-      );
-      this.autenticacao.push(auth);
+    this.gerentes = [];
+    const data = await db.get<Gerente[]>('/manager');
+    for (let manager of data.data) {
+      this.gerentes.push(new Gerente(
+        manager.uuid,
+        manager.name,
+        manager.cpf,
+        manager.telephone
+      ));
+      this.autenticacao.push(new Autenticacao(
+        manager.authentication!.uuid,
+        manager.authentication!.login,
+        manager.authentication!.password,
+      ))
     }
   }
 
-  async distributeHangingContas() {
-    const contas = await this.crudConta.getContas();
-    const hangingContas = await Promise.all(
-      contas.filter(async conta => {
-        return await this.crudGerente.getGerente(conta.gerente!);
-      })
-    );
-    for (let conta of hangingContas) {
-      const gerente = await this.crudGerente.getGerenteWithLessClientes();
-      if (gerente) {
-        conta.gerente = gerente.id;
-        await this.crudConta.updateConta(conta);
-      }
-    }
-  }
-
-  async deleteGerente(id: number) {
-    const autenticacao = await this.crudAutenticacao.getAutenticacao(id);
-    const gerente = await this.crudGerente.getGerente(autenticacao.conta!);
-    await this.crudAutenticacao.deleteAutenticacao(autenticacao.id!);
-    await this.crudGerente.deleteGerente(gerente.id!);
-    await this.distributeHangingContas();
+  async deleteGerente(id: string) {
+    await db.delete('/manager/' + id);
     this.ngOnInit();
   }
 }

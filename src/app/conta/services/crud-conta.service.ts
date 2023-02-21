@@ -6,7 +6,7 @@ import { Conta } from 'src/app/shared/models/conta.model';
   providedIn: 'root',
 })
 export class CrudContaService {
-  constructor() {}
+  constructor() { }
 
   async getContas(): Promise<Conta[]> {
     const response = await db.get('/conta');
@@ -25,7 +25,7 @@ export class CrudContaService {
     return acc;
   }
 
-  async getConta(id: number): Promise<Conta> {
+  async getConta(id: string): Promise<Conta> {
     const response = await db.get(`/conta/${id}`);
     return new Conta(
       response.data.id,
@@ -48,7 +48,7 @@ export class CrudContaService {
   }
 
   async updateConta(conta: Conta): Promise<Conta> {
-    const response = await db.patch(`/conta/${conta.id}`, conta.toJson());
+    const response = await db.patch(`/conta/${conta.uuid}`, conta.toJson());
     return new Conta(
       response.data.id,
       response.data.cliente,
@@ -62,7 +62,7 @@ export class CrudContaService {
     await db.delete(`/conta/${id}`);
   }
 
-  async getContaByGerenteId(id: number): Promise<Conta[]> {
+  async getContaByGerenteId(id: string): Promise<Conta[]> {
     const response = await db.get('/conta', {
       params: {
         gerente: id,
@@ -82,7 +82,7 @@ export class CrudContaService {
     }
     return acc;
   }
-  async getContaByClienteId(id: number): Promise<Conta> {
+  async getContaByClienteId(id: string): Promise<Conta> {
     const response = await db.get('/conta', {
       params: {
         cliente: id,
@@ -91,19 +91,9 @@ export class CrudContaService {
     return response.data.find((conta: any) => conta.cliente === id);
   }
 
-  async saque(contaId: number, valor: number) {
-    const conta = await this.getConta(contaId);
-    const final = conta.saldo! - valor;
-    if (final < -conta.limite!) {
-      throw new Error('Saldo insuficiente');
-    }
-    conta.saldo = final;
-    this.updateConta(conta);
+  async saque(contaId: string, valor: number) {
   }
 
-  async deposito(contaId: number, valor: number) {
-    const conta = await this.getConta(contaId);
-    conta.saldo = conta.saldo! + valor;
-    this.updateConta(conta);
+  async deposito(contaId: string, valor: number) {
   }
 }

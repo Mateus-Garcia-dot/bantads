@@ -16,13 +16,13 @@ export class GerenteHomeComponent implements OnInit {
     private loginService: LoginService,
     private crudGerente: CrudGerenteService,
     private autenticacao: CrudAutenticacaoService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     const autenticacaoId = this.loginService.getAutenticacaoId();
     const autenticacao = await this.autenticacao.getAutenticacao(
       autenticacaoId
     );
-    this.gerente = await this.crudGerente.getGerente(autenticacao.conta!);
+    this.gerente = await this.crudGerente.getGerente(autenticacao.customer!);
   }
 }

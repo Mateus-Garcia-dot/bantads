@@ -11,6 +11,7 @@ import { ModalTransferenciaComponent } from '../modal-transferencia/modal-transf
 import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import db from 'src/app/shared/database/database';
 
 registerLocaleData(localePt);
 @Component({
@@ -28,15 +29,16 @@ export class ClienteComponent implements OnInit {
     private crudCliente: CrudClienteService,
     public matDialog: MatDialog,
     public autenticacaoService: CrudAutenticacaoService
-  ) {}
+  ) { }
 
   async ngOnInit() {
-    const autenticacaoId = this.crudAuth.getAutenticacaoId();
-    const autenticacao = await this.autenticacaoService.getAutenticacao(
-      autenticacaoId
-    );
-    this.conta = await this.crudConta.getConta(autenticacao.conta!);
-    this.cliente = await this.crudCliente.getCliente(this.conta.cliente!);
+    const autenticacaoId = this.crudAuth.getCustumerId()
+    console.log(autenticacaoId)
+    const customerResponse = (await db.get('/customer/' + autenticacaoId)).data
+    const conta = new Conta(customerResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
+    const cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
+    this.cliente = cliente;
+    this.conta = conta;
   }
 
   openDepositoModal() {

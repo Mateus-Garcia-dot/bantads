@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
 import { LoginService } from 'src/app/authentication/services/login.service';
 import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
+import db from 'src/app/shared/database/database';
 
 @Component({
   selector: 'app-modal-deposito',
@@ -19,7 +20,7 @@ export class ModalDepositoComponent implements OnInit {
     private crudConta: CrudContaService,
     private loginService: LoginService,
     private autenticacaoService: CrudAutenticacaoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     return;
@@ -34,12 +35,10 @@ export class ModalDepositoComponent implements OnInit {
       this.formDeposito.control.markAllAsTouched();
       return;
     }
-    const autenticacaoId = this.loginService.getAutenticacaoId();
-    const autenticacao = await this.autenticacaoService.getAutenticacao(
-      autenticacaoId
-    );
-    const conta = await this.crudConta.getConta(autenticacao.conta!);
-    await this.crudConta.deposito(conta.cliente!, this.valor);
+    const autenticacaoId = this.loginService.getCustumerId();
+    db.post('/account/deposit/' + autenticacaoId, {
+      amount: this.valor
+    })
     this.dialogRef.close();
   }
 }

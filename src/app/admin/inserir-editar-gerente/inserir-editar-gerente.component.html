@@ -74,7 +74,7 @@
           placeholder="nome"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="nome"
-          [(ngModel)]="gerente.nome"
+          [(ngModel)]="gerente.name"
           #nome="ngModel"
           required />
         <span *ngIf="nome.errors && nome.touched" class="absolute h-fit">
@@ -129,7 +129,7 @@
           placeholder="(00) 00000-0000"
           class="w-full p-2 mt-1 bg-gray-200 rounded-md focus:outline-none"
           name="telefone"
-          [(ngModel)]="gerente.telefone"
+          [(ngModel)]="gerente.telephone"
           #telefone="ngModel"
           required />
         <span

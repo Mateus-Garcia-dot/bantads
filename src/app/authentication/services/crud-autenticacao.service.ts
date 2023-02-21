@@ -9,7 +9,7 @@ import {
   providedIn: 'root',
 })
 export class CrudAutenticacaoService {
-  constructor() {}
+  constructor() { }
 
   async getAutenticacoes(): Promise<Autenticacao[]> {
     const response = await db.get('/autenticacao');
@@ -28,20 +28,20 @@ export class CrudAutenticacaoService {
     }, []);
   }
 
-  async getAutenticacao(id: number): Promise<Autenticacao> {
-    const response = await db.get(`/autenticacao/${id}`);
+  async getAutenticacao(id: string): Promise<Autenticacao> {
+    const response = await db.get(`/auth/${id}`);
     return new Autenticacao(
-      response.data.id,
+      response.data.uuid,
       response.data.login,
       undefined,
-      response.data.tipo,
+      response.data.type,
       response.data.isPending,
-      response.data.isAprovada,
-      response.data.conta
+      response.data.isApproved,
+      response.data.customer
     );
   }
 
-  async getAutenticacaoByContaAndTipo(conta: number, tipo: number) {
+  async getAutenticacaoByContaAndTipo(conta: string, tipo: number) {
     const response = await db.get('/autenticacao', {
       params: {
         conta: conta,
@@ -53,7 +53,7 @@ export class CrudAutenticacaoService {
     });
   }
 
-  async deleteAutenticacao(id: number): Promise<void> {
+  async deleteAutenticacao(id: string): Promise<void> {
     await db.delete(`/autenticacao/${id}`);
   }
 
@@ -72,7 +72,7 @@ export class CrudAutenticacaoService {
 
   async updateAutenticacao(autenticacao: Autenticacao): Promise<Autenticacao> {
     const response = await db.patch(
-      `/autenticacao/${autenticacao.id}`,
+      `/autenticacao/${autenticacao.uuid}`,
       autenticacao.toJson()
     );
     return new Autenticacao(

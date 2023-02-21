@@ -8,7 +8,7 @@ import { Autenticacao } from 'src/app/shared/models/autenticacao.model';
 import { CrudAutenticacaoService } from 'src/app/authentication/services/crud-autenticacao.service';
 import { CrudEnderecoService } from 'src/app/endereco/services/crud-endereco.service';
 import { CrudContaService } from 'src/app/conta/services/crud-conta.service';
-import { Conta } from 'src/app/shared/models/conta.model';
+import db from 'src/app/shared/database/database';
 
 @Component({
   selector: 'app-editar-cliente',
@@ -30,20 +30,15 @@ export class EditarClienteComponent implements OnInit {
     private crudAuth: CrudAutenticacaoService,
     private crudEndereco: CrudEnderecoService,
     private crudConta: CrudContaService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async params => {
       const idCliente = params.get('id');
-      this.autenticacao = await this.crudAuth.getAutenticacao(
-        Number(idCliente)
-      );
-      this.cliente = await this.crudCliente.getCliente(
-        this.autenticacao.conta!
-      );
-      this.endereco = await this.crudEndereco.getEndereco(
-        this.cliente.endereco!
-      );
+      const customerResponse = (await db.get('/customer/' + idCliente)).data;
+      this.cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
+      this.endereco = new Endereco(customerResponse.address.uuid, customerResponse.address.type, customerResponse.address.street, customerResponse.address.number, customerResponse.address.city, customerResponse.address.complement, customerResponse.address.cep, customerResponse.address.state);
+      this.autenticacao = new Autenticacao(customerResponse.authentication.uuid, customerResponse.authentication.login, customerResponse.authentication.password, customerResponse.authentication.isPending, customerResponse.authentication.isApproved);
     });
   }
 
@@ -52,17 +47,14 @@ export class EditarClienteComponent implements OnInit {
       this.formEdit.control.markAllAsTouched();
       return;
     }
-    const autenticacaoNew = await this.crudAuth.updateAutenticacao(
-      this.autenticacao
-    );
-    const clienteNew = await this.crudCliente.updateCliente(this.cliente);
-    await this.crudEndereco.updateEndereco(this.endereco);
-
-    const conta = new Conta();
-    conta.id = autenticacaoNew.conta!;
-    conta.limite = clienteNew.salario! >= 2000 ? clienteNew.salario! / 2 : 0;
-    await this.crudConta.updateConta(conta);
-
+    db.put('/customer/' + this.cliente.uuid, {
+      ...this.cliente.toJson(),
+      address: this.endereco.toJson(),
+      authentication: {
+        login: this.autenticacao.login,
+        password: this.autenticacao.password,
+      }
+    })
     this.router.navigate(['/']);
   }
 }

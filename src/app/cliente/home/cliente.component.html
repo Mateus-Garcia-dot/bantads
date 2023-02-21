@@ -5,7 +5,7 @@
         class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
         <div class="mr-6">
           <h1 class="text-4xl font-semibold mb-2">Bem vindo!</h1>
-          <h2 class="text-gray-600 ml-0.5">{{ cliente?.nome }}</h2>
+          <h2 class="text-gray-600 ml-0.5">{{ cliente?.name }}</h2>
         </div>
       </div>
       <section
@@ -26,9 +26,9 @@
             </div>
             <div>
               <span
-                [ngClass]="{ 'text-red-600': conta?.saldo! < 0 }"
+                [ngClass]="{ 'text-red-600': conta?.balance! < 0 }"
                 class="block text-2xl font-bold"
-                >{{ conta?.saldo | number : '.2' : 'pt' }}</span
+                >{{ conta?.balance | number : '.2' : 'pt' }}</span
               >
               <span class="block text-gray-500">Saldo</span>
             </div>
@@ -47,7 +47,7 @@
               </svg>
             </div>
             <div>
-              <span class="block text-2xl font-bold">{{ conta?.limite }}</span>
+              <span class="block text-2xl font-bold">{{ conta?.limitAmount }}</span>
               <span class="block text-gray-500">Limite</span>
             </div>
           </div>
@@ -97,7 +97,7 @@
             Depositar
           </button>
           <button
-            [routerLink]="['/cliente/editar', crudAuth.getAutenticacaoId()]"
+            [routerLink]="['/cliente/editar', crudAuth.getCustumerId()]"
             class="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md ml-6 mb-3">
             <svg
               class="mr-2"

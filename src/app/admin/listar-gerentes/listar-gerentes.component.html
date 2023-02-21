@@ -19,10 +19,10 @@
             <tr
               *ngFor="let gerente of gerentes; let i = index"
               class="hover:bg-gray-100">
-              <td class="px-4 py-3">{{ gerente.nome }}</td>
+              <td class="px-4 py-3">{{ gerente.name }}</td>
               <td class="px-4 py-3">{{ gerente.cpf }}</td>
               <td class="px-4 py-3">{{ autenticacao[i].login }}</td>
-              <td class="px-4 py-3">{{ gerente.telefone }}</td>
+              <td class="px-4 py-3">{{ gerente.telephone }}</td>
               <td class="px-4 py-3 text-center">
                 <div class="group inline-block flex-1">
                   <button
@@ -34,7 +34,7 @@
                       <button
                         [routerLink]="[
                           '/admin/gerente/editar',
-                          autenticacao[i].id!
+                          gerentes[i].uuid
                         ]"
                         class="rounded-t w-full bg-gray-200 hover:bg-gray-400 text-blue-800 no-underline py-2 px-4 block whitespace-no-wrap"
                         href="#">
@@ -43,7 +43,7 @@
                     </li>
                     <li class="flex-1 w-full">
                       <button
-                        (click)="deleteGerente(autenticacao[i].id!)"
+                        (click)="deleteGerente(gerentes[i].uuid!)"
                         class="bg-gray-200 hover:bg-gray-400 py-2 px-4 text-red-700 no-underline block whitespace-no-wrap"
                         href="#">
                         excluir
