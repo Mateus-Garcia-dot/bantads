@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationModule } from 'src/app/authentication/authentication.module';
+import { LoginService } from 'src/app/authentication/services/login.service';
 import db from 'src/app/shared/database/database';
 import {
   Autenticacao,
@@ -20,10 +22,11 @@ export class ListarUsuariosComponent implements OnInit {
     autenticacao: Autenticacao;
   }[] = [];
 
-  constructor() { }
+  constructor(private LoginService: LoginService) {
+  }
 
   async ngOnInit() {
-    const customersResponse = (await db.get('/customer')).data;
+    const customersResponse = (await db.get('/customer/manager/' + this.LoginService.getCustumerId())).data;
     for (const customerResponse of customersResponse) {
       const conta = new Conta(customersResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
       const cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);

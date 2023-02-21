@@ -48,4 +48,5 @@ export class LoginService {
     const id = JSON.parse(localStorage[LS_CHAVE]).customer;
     return id;
   }
+
 }
