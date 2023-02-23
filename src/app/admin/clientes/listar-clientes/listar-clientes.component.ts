@@ -23,24 +23,22 @@ export class ListarClientesComponent implements OnInit {
   constructor() { }
 
   async ngOnInit() {
-    const contas = await db.get('/customer');
-    for (const contaRespose of contas.data) {
-      const customersResponse = (await db.get('/customer')).data;
-      for (const customerResponse of customersResponse) {
-        const conta = new Conta(customersResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
-        const cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
-        const endereco = new Endereco(customerResponse.address.uuid, customerResponse.address.type, customerResponse.address.street, customerResponse.address.number, customerResponse.address.city, customerResponse.address.complement, customerResponse.address.cep, customerResponse.address.state);
-        const auth = new Autenticacao(customerResponse.authentication.uuid, customerResponse.authentication.login, customerResponse.authentication.password, customerResponse.authentication.isPending, customerResponse.authentication.isApproved);
-        this.mesh.push({
-          conta,
-          cliente,
-          endereco,
-          autenticacao: auth,
-        });
-      }
-      this.mesh.sort((a, b) => {
-        return a.cliente.name?.localeCompare(b.cliente.name!)!;
-      })
+    this.mesh = []
+    const contas = (await db.get<any[]>('/customer')).data;
+    for (const customerResponse of contas) {
+      const conta = new Conta(customerResponse.account?.uuid, customerResponse.account?.customer, customerResponse.account?.manager, customerResponse.account?.limitAmount, customerResponse.account?.balance);
+      const cliente = new Cliente(customerResponse.uuid, customerResponse.name, customerResponse.cpf, customerResponse.address, customerResponse.phone, customerResponse.salary);
+      const endereco = new Endereco(customerResponse.address.uuid, customerResponse.address.type, customerResponse.address.street, customerResponse.address.number, customerResponse.address.city, customerResponse.address.complement, customerResponse.address.cep, customerResponse.address.state);
+      const auth = new Autenticacao(customerResponse.authentication.uuid, customerResponse.authentication.login, customerResponse.authentication.password, customerResponse.authentication.isPending, customerResponse.authentication.isApproved);
+      this.mesh.push({
+        conta,
+        cliente,
+        endereco,
+        autenticacao: auth,
+      });
     }
+    this.mesh.sort((a, b) => {
+      return a.cliente.name?.localeCompare(b.cliente.name!)!;
+    })
   }
 }

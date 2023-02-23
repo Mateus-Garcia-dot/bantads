@@ -40,6 +40,6 @@ export class MostrarUsuarioComponent implements OnInit {
   }
 
   onSubmit() {
-    this.router.navigate(['/gerente/cliente/listar']);
+    this.router.navigate(['/']);
   }
 }
